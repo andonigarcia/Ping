@@ -59,7 +59,7 @@ body{
 }
 
 /* Header */
-.header{
+header{
     background: #ac399d;
     border-bottom: 2px solid #555;
     display: inline-block;
@@ -119,7 +119,7 @@ body{
 }
 
 /* General Page Formatting */
-.pageGeneral{
+section{
     bottom: 50px;
     color: #ac399d;
     font-family: 'Raleway', impact, times, serif;
@@ -130,7 +130,7 @@ body{
     top: 100px;
 }
 
-.pageGeneral::-webkit-scrollbar{
+section::-webkit-scrollbar{
     display: none;
 }
 
@@ -152,6 +152,7 @@ form{
 }
 
 form input{
+    background: #f0f0f0;
     font-size: 14px;
     padding: 3px;
 }
@@ -160,11 +161,38 @@ form button{
     color: #ac399d;
 }
 
+.registerForm p{
+    margin: 0 auto;
+    width: 450px;
+}
+
+.registerForm label span{
+    clear: left;
+    float: left;
+    text-align: right;
+    margin: 5px 0;
+    width: 200px;
+}
+
+.registerForm label input{
+    float: left;
+    margin: 5px 0 5px 15px;
+}
+
+.registerForm button{
+    clear: both;
+    margin: 10px 0 15px 0;
+}
+
+.registerForm .firstElement{
+    margin-top: 25px;
+}
+
 
 
 /* Footer */
 
-.footer{
+footer{
     background: #c7c6c9;
     bottom: 0;
     border-top: 1px solid #444;
