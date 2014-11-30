@@ -9,6 +9,10 @@
         <title>Ping!</title>
         <meta name="description" content="Ping! is a revolutionary mobile advertising application using real-time push notifications based on geo-location.">
         <meta name="viewport" content="width=device-width">
+        <meta name="keywords" content="Ping, Ping!, ping, ping!, mobile advertisement, mobile advertising, push notifications, advertising, advertisement,
+              geo-location, geolocation, geofencing, iOS, Mobile Advertisement, Mobile Advertising, Push Notifications, Advertising, Advertisement, Geo-Location
+              Geolocation, Geo-location, Geofencing, Geo-Fencing, Geo-fencing, mobile advertising app, Ping!, real-time notifications">
+        <meta name="author" content="Andoni Garcia">
 
         <link rel="stylesheet" href="css/normalize.css">
         <link href='http://fonts.googleapis.com/css?family=Philosopher|Roboto|Raleway|Lobster+Two|Playball|Courgette' rel='stylesheet' type='text/css'>
@@ -16,7 +20,7 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body id="aboutBody">
-        <div class="header">
+        <header>
             <div class="headerLogo">
                 <span>P!</span>
             </div>
@@ -29,9 +33,9 @@
             <div class="headerSection">
                 <a href="about.html">About</a>
             </div>
-        </div>
+        </header>
         
-        <div class="pageGeneral">
+        <section>
             <h1 class="pageHeading">Welcome!</h1>
             <p class="pageParagraph">
                 Thanks for joining Ping! Currently we only offer our web services to
@@ -39,14 +43,15 @@
                 in the right place! Otherwise, for our consumer clients, please download
                 our iOS app and everything will be processed in there.
             </p>
-            <form class="registerForm">
-                <form class="loginForm">
+            <form class="registerForm" action="login.php" method="POST"
+                  autocomplete="on">
                 <fieldset>
-                    <legend>Register</legend>
-                    <p>
+                    <legend></legend>
+                    <p class="firstElement">
                         <label for="companyName">
                             <span>Company Name:</span>
-                            <input type="text" id="companyName" name="companyName" required/>
+                            <input type="text" id="companyName" name="companyName" 
+                                   autofocus required/>
                         </label>
                     </p>
                     <p>
@@ -103,20 +108,21 @@
                             <input type="password" id="password" name="Password" required/>
                         </label>
                     </p>
+                    <br>
                     <p>
                         <button type="submit">Register!</button>
                     </p>
                 </fieldset>
             </form>
-        </div>
+        </section>
         
-        <div class="footer">
+        <footer>
             <p class="footerText">
                 All Rights Reserved.
                 Ping! 2014-2015.
                 Protected under the GNU Public License.
             </p>
-        </div>
+        </footer>
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="js/plugins.js"></script>
