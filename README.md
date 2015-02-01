@@ -1,14 +1,11 @@
-Ping
-====
+#Ping
+This is the private repository for working on [Ping!](http://andonigarcia.github.io/Ping/Website3)
 
-Ping! is a mobile advertisement application built with both a web and mobile component.
+Currently this repository only handles the Website aspect of Ping!
+All code will eventually be on this repository. Once funding comes in, we'll pay for an enterprise GitHub account, but for now, this is it.
 
-The File Directory includes:
-/Frontend
-  /Website
-    /CSS
-    /Javascript
-  /Mobile
-/Backend
+## Current Website
+Website3 is the most current one.
 
-Please see further README descriptions for explanations of individual aspects of the app.
+## Contact
+[Andoni Garcia](mailto:andoni@uchicago.edu)
