@@ -17,3 +17,7 @@ If you get an error about your database not running, follow these steps:
 2. Execute `./db_create.py`
 3. Type `chmod a+x db_upgrade.py`
 4. Execute `./db_upgrade.py`
+
+### Update - 2/1/15 - Andoni Garcia
+I had a problem executing the views. As such, most of it is commented out and only the basic static pages are running. Working right now with the MVC to get functionality behind both the login and registration pages. Next goal is to have everything run, add registered companies to DB, check login appropriately and send companies to a landing page. Then I will work on the landing page/company views.
+-AMG
