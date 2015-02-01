@@ -1,0 +1,22 @@
+<!-- Extends Base Layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form id="registerForm" class="form" action="register.php" method="POST" role="form">
+        <fieldset>
+            <legend>Welcome to <span class="lilLogo">Ping!</span></legend>
+            <input type="text" id="regCompName" class="formInput" placeholder="Company Name" required autofocus>
+            <input type="text" id="regCompAddr1" class="formInput" placeholder="Company Address" required>
+            <input type="text" id="regCompAddr2" class="formInput" placeholder="Company Addr. Cont. (Optional)">
+            <input type="text" id="regCompCity" class="formInput" placeholder="Company City" required>
+            <input type="text" id="regCompState" class="formInput" placeholder="Company State" required>
+            <input type="text" id="regCompZip" class="formInput" placeholder="Company Zipcode" required>
+            <input type="text" id="regCompPhone" class="formInput" placeholder="Company Phone Number" required>
+            <input type="email" id="regEmail" class="formInput" placeholder="Email Address" required>
+            <input type="password" id="regPwd" class="formInput" placeholder="Password" required>
+            <button class="formButton" type="submit">Register!</button>
+        </fieldset>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+
+        {% if title %}
+        <title>Ping! - {{ title }}</title>
+        {% else %}
+        <title>Ping!</title>
+        {% endif %}
+
+        <!-- Viewport Options. Will add mobile stuff later -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+        
+        <!-- Open Graph protocol. See: http://ogp.me/ -->
+        <meta property="og:title" content="Ping!" />
+        <meta property="og:site_name" content="Ping!" />  
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="/index" />
+        <meta property="og:image" content="img/toni.jpg" />
+        <meta property="og:description" content="Ping! is a revolutionary mobile advertising application using real-time push notifications based on geo-location." />
+        
+        <!-- General meta tags -->
+        <meta name="keywords" content="Ping!, mobile advertisement, push notifications, geo-location, geofencing">
+        <meta name="author" content="Andoni M. Garcia">
+
+        <!-- Scripts -->
+        <link href='http://fonts.googleapis.com/css?family=Philosopher|Roboto|Raleway|Lobster+Two|Playball|Courgette' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/static/css/main.css">
+        <!--  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />  -->
+    </head>
+    <body>
+        <header class="header box">
+            <div class="headerBorder">
+                <h1 class="logo"><a href='index'>Ping!</a></h1>
+            </div>
+        </header>
+        <div class="body box">
+            <div class="nav box">
+                <nav class="sideNav">
+                    <ul class="sideNavList">
+                        <li><a href="login">Log In</a></li>
+                        <li><a href="register">Register</a></li>
+                        <li><a href="about">About Ping!</a></li>
+                        <li><a href="team">Meet The Crew</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="content box">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="/static/js/team.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>  -->
+    </body>
+</html>

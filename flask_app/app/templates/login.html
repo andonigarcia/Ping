@@ -1,0 +1,15 @@
+<!-- Extends Base Layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form id="loginForm" class="form" action="login.php" method="POST" role="form">
+        <fieldset>
+            <legend>Welcome Back!</legend>
+            <input type="email" id="loginEmail" class="formInput" placeholder="Email Address" required autofocus>
+            <input type="password" id="loginPwd" class="formInput" placeholder="Password" required>
+            <button class="formButton" type="submit">Log In!</button>
+        </fieldset>
+    </form>
+
+{% endblock %}
