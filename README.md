@@ -1,11 +1,8 @@
 #Ping
 This is the private repository for working on [Ping!](http://andonigarcia.github.io/Ping/Website3)
 
-Currently this repository only handles the Website aspect of Ping!
-All code will eventually be on this repository. Once funding comes in, we'll pay for an enterprise GitHub account, but for now, this is it.
-
-## Current Website
-Website3 is the most current one.
+The `static_websites` folder contains all versions of our website.
+The `flask_app` folder contains everything necessary to run the Flask server for our site.
 
 ## Contact
 [Andoni Garcia](mailto:andoni@uchicago.edu)
