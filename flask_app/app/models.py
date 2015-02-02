@@ -18,12 +18,6 @@ class Company(db.Model):
 	timestamp = db.Column(db.DateTime)
 	pings = db.relationship('Ping', backref = 'company', lazy = 'dynamic')
 
-	@staticmethod
-	def make_valid_email(email):
-		return re.sub('^[a-zA-Z0-9_\.]+@[a-zA-Z0-9_.]+\.[a-zA-Z0-9_]+', '', email)
-
-	#Todo validate the rest of the fields...
-
 	def is_authenticated(self):
 		return True
 
@@ -46,6 +40,12 @@ class Company(db.Model):
 			return True
 		else:
 			return False
+
+	def add_password(self, string):
+		string += SALT
+		pwd = sha256(string).hexdigest()
+		self.password = pwd
+		return True
 
 	def __repr__(self):
 		return '<Company %r>' % (self.email)

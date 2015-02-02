@@ -19,5 +19,16 @@ If you get an error about your database not running, follow these steps:
 4. Execute `./db_upgrade.py`
 
 ### Update - 2/1/15 - Andoni Garcia
-I had a problem executing the views. As such, most of it is commented out and only the basic static pages are running. Working right now with the MVC to get functionality behind both the login and registration pages. Next goal is to have everything run, add registered companies to DB, check login appropriately and send companies to a landing page. Then I will work on the landing page/company views.
+Still Todo:
+
+1. Create Error Pages
+2. Find a good library to check zipcodes, etc.
+3. Send registration emails/confirmations
+4. Make a robust company page
+  * Include a map
+  * Include abilities to post Pings
+  * Include payment processing
+  * Include analytics
+5. Make CSS mobile friendly
+
 -AMG

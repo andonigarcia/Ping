@@ -3,19 +3,83 @@
 
 {% block content %}
 
-    <form id="registerForm" class="form" action="register.php" method="POST" role="form">
+    <form id="registerForm" class="form" action="" method="POST" role="form" name="register">
+        {{ form.hidden_tag() }}
         <fieldset>
             <legend>Welcome to <span class="lilLogo">Ping!</span></legend>
-            <input type="text" id="regCompName" class="formInput" placeholder="Company Name" required autofocus>
-            <input type="text" id="regCompAddr1" class="formInput" placeholder="Company Address" required>
-            <input type="text" id="regCompAddr2" class="formInput" placeholder="Company Addr. Cont. (Optional)">
-            <input type="text" id="regCompCity" class="formInput" placeholder="Company City" required>
-            <input type="text" id="regCompState" class="formInput" placeholder="Company State" required>
-            <input type="text" id="regCompZip" class="formInput" placeholder="Company Zipcode" required>
-            <input type="text" id="regCompPhone" class="formInput" placeholder="Company Phone Number" required>
-            <input type="email" id="regEmail" class="formInput" placeholder="Email Address" required>
-            <input type="password" id="regPwd" class="formInput" placeholder="Password" required>
-            <button class="formButton" type="submit">Register!</button>
+            <p>
+                {{ form.name(type="text", id="regCompName", class="formInput", placeholder="Company Name", require=True, autofocus=True) }}
+            </p>
+            {% for error in form.name.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.addr1(type="text", id="regCompAddr1", class="formInput", placeholder="Company Address", require=True) }}
+            </p>
+            {% for error in form.addr1.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.addr2(type="text", id="regCompAddr2", class="formInput", placeholder="Company Addr. Cont. (Optional)") }}
+            </p>
+            {% for error in form.addr2.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.city(type="text", id="regCompCity", class="formInput", placeholder="Company City", require=True) }}
+            </p>
+            {% for error in form.city.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.state(type="text", id="regCompState", class="formInput", placeholder="Company State", require=True) }}
+            </p>
+            {% for error in form.state.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.zipcode(type="text", id="regCompZip", class="formInput", placeholder="Company Zipcode", require=True) }}
+            </p>
+            {% for error in form.zipcode.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.phone(type="text", id="regCompPhone", class="formInput", placeholder="Company Phone Number", require=True) }}
+            </p>
+            {% for error in form.phone.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.email(type="email", id="regEmail", class="formInput", placeholder="Email Address", require=True) }}
+            </p>
+            {% for error in form.email.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p>
+                {{ form.pwd(type="password", id="regPwd", class="formInput", placeholder="Password", require=True) }}
+            </p>
+            {% for error in form.pwd.errors %}
+                <p>
+                    <span class="formError">{{ error }}</span>
+                </p>
+            {% endfor %}
+            <p><input type="submit" class="formButton" value="Register!"></p>
         </fieldset>
     </form>
 

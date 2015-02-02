@@ -18,17 +18,3 @@ class CompanyRegisterForm(Form):
 	phone = StringField('CompanyPhone', validators = [DataRequired()])
 	email = StringField('CompanyEmail', validators = [DataRequired()])
 	pwd = StringField('CompanyPwd', validators = [DataRequired()])
-
-	def __init__(self, email, *args, **kwargs):
-		Form.__init__(self, *args, **kwargs)
-		self.email = email
-
-	# Still need to validate each field
-	def validate(self):
-		if not Form.validate(self):
-			return False
-		company = Company.query.filter_by(email = self.email.data).first()
-		if company is not None:
-			self.email.errors.append('This email is already registered.')
-			return False
-		return True
