@@ -5,9 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
 
         {% if title %}
-        <title>Ping! - {{ title }}</title>
+            <title>Ping! - {{ title }}</title>
         {% else %}
-        <title>Ping!</title>
+            <title>Ping!</title>
         {% endif %}
 
         <!-- Viewport Options. Will add mobile stuff later -->
@@ -41,14 +41,26 @@
             <div class="nav box">
                 <nav class="sideNav">
                     <ul class="sideNavList">
-                        <li><a href="login">Log In</a></li>
-                        <li><a href="register">Register</a></li>
+                        {% if g.company.is_authenticated() %}
+                            <li><a href="index">Home</a></li>
+                            <li><a href="logout">Logout</a></li>
+                        {% else %}
+                            <li><a href="login">Log In</a></li>
+                            <li><a href="register">Register</a></li>
+                        {% endif %}
                         <li><a href="about">About Ping!</a></li>
                         <li><a href="team">Meet The Crew</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="content box">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="Error">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 {% block content %}{% endblock %}
             </div>
         </div>

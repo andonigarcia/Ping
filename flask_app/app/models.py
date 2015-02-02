@@ -3,11 +3,6 @@ from config import SALT
 from hashlib import sha256
 import re
 import sys
-if sys.version_info >= (3, 0):
-	enable_search = False
-else:
-	enable_search = True
-	import flask.ext.whooshalchemy as whooshalchemy
 
 class Company(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
@@ -44,9 +39,9 @@ class Company(db.Model):
 		except NameError:
 			return str(self.id)  # for Python 3
 
-	def check_password(string):
-		tmpString = string + SALT
-		tmpCheck = sha256(tmpString.encode('UTF-8')).hexdigest()
+	def check_password(self, string):
+		string += SALT
+		tmpCheck = sha256(string).hexdigest()
 		if tmpCheck == self.password:
 			return True
 		else:
@@ -60,7 +55,7 @@ class Ping(db.Model):
 	message = db.Column(db.String(150))
 	timestamp = db.Column(db.DateTime)
 	duration = db.Column(db.DateTime)
-	company_id = db.Column(db.Integer, db.ForeignKey('company_id'))
+	company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
 
 	def __repr__(self):
 		return '<Ping %r>' % (self.message)

@@ -84,23 +84,64 @@ def internal_error(error):
 	db.session.rollback()
 	return render_template('500.html'), 500
 	'''
+
+def try_login(email, password):
+	if email is None or email == "":
+		return False
+	company = Company.query.filter_by(email = email).first()
+	if company is None:
+		return False
+	if company.check_password(str(password)):
+		return True
+	else:
+		return False
+
+@lm.user_loader
+def load_user(id):
+	return Company.query.get(int(id))
+
+@app.before_request
+def before_request():
+	g.company = current_user
+
 @app.route('/')
 @app.route('/index')
 def index():
-	return render_template('about.html')
+	if g.company is not None and g.company.is_authenticated():
+		return render_template('index.html')
+	return render_template('about.html', title = "About Ping!")
 
 @app.route('/team')
 def team():
-	return render_template('team.html')
+	return render_template('team.html', title = "Meet The Team")
 
 @app.route('/about')
 def about():
-	return render_template('about.html')
+	return render_template('about.html', title = "About Ping!")
 
-@app.route('/login')
+@app.route('/login', methods = ['GET','POST'])
 def login():
-	return render_template('login.html')
+	if g.company is not None and g.company.is_authenticated():
+		return redirect(url_for('index'))
+	form = CompanyLoginForm()
+	if form.validate_on_submit():
+		remember = form.remember_me.data
+		session['remember_me'] = remember
+		valid = try_login(form.email.data, form.password.data)
+		if not valid:
+			flash('Invalid Login. Please Try Again.')
+			return redirect(url_for('login'))
+		else:
+			company = Company.query.filter_by(email = form.email.data).first()
+			login_user(company, remember = remember)
+			return redirect(request.args.get('next') or url_for('index'))
+	return render_template('login.html', title = "Login", form = form)
+
+@app.route('/logout')
+def logout():
+	logout_user()
+	return redirect(url_for('index'))
 
 @app.route('/register')
 def register():
-	return render_template('register.html')
+	return render_template('register.html', title = "Register")
