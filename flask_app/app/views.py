@@ -129,7 +129,6 @@ def register():
 			return redirect(request.args.get('next') or url_for('index'))
 	return render_template('register.html', title = "Register", form = form)
 
-'''
 @app.errorhandler(400)
 def bad_request(error):
 	return render_template('400.html'), 400
@@ -142,4 +141,3 @@ def not_found_error(error):
 def internal_error(error):
 	db.session.rollback()
 	return render_template('500.html'), 500
-'''
