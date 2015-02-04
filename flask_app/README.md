@@ -18,17 +18,21 @@ If you get an error about your database not running, follow these steps:
 3. Type `chmod a+x db_upgrade.py`
 4. Execute `./db_upgrade.py`
 
-### Update - 2/1/15 - Andoni Garcia
+### Update - 2/4/15 - Andoni Garcia
 Still Todo:
 
-1. Create Error Pages
-2. Find a good library to check zipcodes, etc.
-3. Send registration emails/confirmations
-4. Make a robust company page
+1. Find a good library to check zipcodes, etc.
+2. Send registration emails/confirmations
+3. Make a robust company page
   * Include a map
   * Include abilities to post Pings
   * Include payment processing
   * Include analytics
+4. Bring the CSS up-to-date
 5. Make CSS mobile friendly
+6. Reformat each Picture to the same size
+7. Ping! Logo => Design and make SVG
+8. Favicon and iPhone icons...ugh I need a design day soon
+9. Landing Page! :D Interactive app? PICTURES! Infographics.
 
 -AMG
