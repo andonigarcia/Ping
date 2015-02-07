@@ -1,8 +1,0 @@
-Dear {{ company.name }},
-
-We, the Ping! team, would like to welcome you on board! Your registration is complete and your profile page is all set-up. See {{ url_for('index', _external=True) }} to see your profile and start sending Pings!
-
-If you have any questions, feel free to reach out to support@ping.com!
-
-Regards,
-The Ping! Team

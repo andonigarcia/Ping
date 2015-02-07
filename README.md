@@ -1,39 +1,8 @@
-# Ping!
+#Ping
 This is the private repository for working on [Ping!](http://andonigarcia.github.io/Ping/static_websites/Website3)
 
-## How to Set-Up
-In order to set-up the Flask server and run the program, you must follow a couple easy steps.
+The `static_websites` folder contains all versions of our website.
+The `flask_app` folder contains everything necessary to run the Flask server for our site.
 
-1. Download the source files
-2. In your terminal, change directories to the Ping root
-3. Type `chmod a+x run.py`
-4. Type `./run.py`
-5. Navigate your browser to `localhost:5000`
-
-## Troubleshooting
-If you get an error about your database not running, follow these steps:
-
-1. Type `chmod a+x db_create.py` at the root
-2. Execute `./db_create.py`
-3. Type `chmod a+x db_upgrade.py`
-4. Execute `./db_upgrade.py`
-
-### Update - 2/4/15 - Andoni Garcia
-Still Todo:
-
-1. Forms: CSS. Errors. Bad 5-char zip not handled
-2. Send registration emails/confirmations
-3. Make a robust company page
-  * Include a map
-  * Include abilities to post Pings
-  * Include payment processing
-  * Include analytics
-4. Bring the CSS up-to-date
-5. Make CSS mobile friendly
-6. Reformat each Picture to the same size
-7. Ping! Logo => Design and make SVG
-8. Favicon and iPhone icons...ugh I need a design day soon
-9. Landing Page! :D Interactive app? PICTURES! Infographics.
-10. Before production switch to a MySQL server (most likely when we set up an Apache server too, create the full LAMP stack)
-
--AMG
+## Contact
+[Andoni Garcia](mailto:andoni@uchicago.edu)
