@@ -21,7 +21,7 @@ If you get an error about your database not running, follow these steps:
 ### Update - 2/4/15 - Andoni Garcia
 Still Todo:
 
-1. Find a good library to check zipcodes, etc.
+1. Forms: CSS. Errors. Bad 5-char zip not handled
 2. Send registration emails/confirmations
 3. Make a robust company page
   * Include a map
@@ -34,5 +34,6 @@ Still Todo:
 7. Ping! Logo => Design and make SVG
 8. Favicon and iPhone icons...ugh I need a design day soon
 9. Landing Page! :D Interactive app? PICTURES! Infographics.
+10. Before production switch to a MySQL server (most likely when we set up an Apache server too, create the full LAMP stack)
 
 -AMG
