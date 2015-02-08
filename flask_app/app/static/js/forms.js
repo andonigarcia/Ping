@@ -8,8 +8,8 @@ function getZip(zipcode){
         dataType: "JSON",
         type: "GET",
         success: function(result, success){
-            $('#regCompState').val(result.state_short).attr("disabled", true);
-            $('#regCompCity').val(result.city).attr("disabled", true);
+            $('#regCompState').val(result.state_short).attr("readonly", true);
+            $('#regCompCity').val(result.city).attr("readonly", true);
             $('#regCompZip .error').remove()
         },
         error: function(result, success){

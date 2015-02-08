@@ -42,11 +42,12 @@ def try_register(name, address1, address2, city, state, zipcode, phone, email):
 	match = re.search(exp3, zipcode)
 	if match:
 		return False
-	match = re.search(exp3, phone)
-	if match:
+	exp4 = re.compile(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}")
+	match = re.search(exp4, phone)
+	if not match:
 		return False
-	exp4 = re.compile(r"[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\.[a-zA-Z0-9_]+")
-	match = re.search(exp4, email)
+	exp5 = re.compile(r"[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\.[a-zA-Z0-9_]+")
+	match = re.search(exp5, email)
 	if not match:
 		return False
 	company = Company.query.filter_by(email = email).first()
@@ -66,7 +67,7 @@ def before_request():
 @app.route('/index', methods = ['GET','POST'])
 def index():
 	if g.company is not None and g.company.is_authenticated():
-		return render_template('company.html')
+		return render_template('company.html', title = g.company.name)
 	return render_template('about.html', title = "About Ping!")
 
 @app.route('/team', methods = ['GET','POST'])
@@ -92,7 +93,7 @@ def login():
 		else:
 			company = Company.query.filter_by(email = form.email.data).first()
 			login_user(company, remember = remember)
-			return redirect(request.args.get('next') or url_for('index'))
+			return redirect(request.args.get('next') or url_for('company'))
 	return render_template('login.html', title = "Login", form = form)
 
 @app.route('/logout', methods = ['GET','POST'])
@@ -125,9 +126,16 @@ def register():
 			company.timestamp = datetime.utcnow()
 			db.session.add(company)
 			db.session.commit()
+			registration_notification(company)
 			login_user(company, remember = False)
-			return redirect(request.args.get('next') or url_for('index'))
+			return redirect(url_for('company'))
 	return render_template('register.html', title = "Register", form = form)
+
+@app.route('/company', methods = ['GET', 'POST'])
+@login_required
+def company():
+	return render_template('company.html', title = g.company.name)
+
 
 @app.errorhandler(400)
 def bad_request(error):

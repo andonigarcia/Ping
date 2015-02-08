@@ -56,7 +56,6 @@ function mttIndiv(id){
 }
 
 $(document).ready(function(){
-    console.log("Hello");
     $("#andoni").click(function(){
         mttIndiv("andoni");
     });

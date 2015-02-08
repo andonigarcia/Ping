@@ -20,10 +20,10 @@
                 {{ form.zipcode(type="text", id="regCompZip", class="formInput", placeholder="Company Zipcode", required=True, **{"data-validation":"length", "data-validation-length":"5-5", "data-validation-error-msg":"Your Zipcode Must Be Exactly 5 Characters Long!"}) }}
             </p>
             <p>
-                {{ form.city(type="text", id="regCompCity", class="formInput", placeholder="Company City", required=True, disabled=True) }}
+                {{ form.city(type="text", id="regCompCity", class="formInput", placeholder="Company City", required=True, readonly=True) }}
             </p>
             <p>
-                {{ form.state(type="text", id="regCompState", class="formInput", placeholder="Company State", required=True, disabled=True) }}
+                {{ form.state(type="text", id="regCompState", class="formInput", placeholder="Company State", required=True, readonly=True) }}
             </p>
             <p>
                 {{ form.phone(type="text", id="regCompPhone", class="formInput", placeholder="Company Phone Number", required=True, **{"data-validation":"length custom", "data-validation-length":"12-12", "data-validation-regexp":"(^[0-9]{3}-[0-9]{3}-[0-9]{4})$", "data-validation-error-msg":"Your Phone Number Must Be In The Form XXX-XXX-XXXX!", "data-validation-help":"Please Use Hyphen Seperation (e.g. 312-123-4567)"}) }}

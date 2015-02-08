@@ -7,8 +7,11 @@ In order to set-up the Flask server and run the program, you must follow a coupl
 1. Download the source files
 2. In your terminal, change directories to the Ping root
 3. Type `chmod a+x run.py`
-4. Type `./run.py`
-5. Navigate your browser to `localhost:5000`
+4. If you are running in production mode, you must enter your email credentials (otherwise registration won't work):
+  * Type `MAIL_USERNAME='x' MAIL_PASSWORD='y' ./run.py` where x is your gmail username and y is your password
+5. Else, if you are not running in production mode:
+  * Type `./run.py`
+6. Navigate your browser to `localhost:5000`
 
 ## Troubleshooting
 If you get an error about your database not running, follow these steps:
@@ -22,7 +25,7 @@ If you get an error about your database not running, follow these steps:
 Still Todo:
 
 1. Forms: CSS. Errors. Bad 5-char zip not handled
-2. Send registration emails/confirmations
+2. Informative registration errors.
 3. Make a robust company page
   * Include a map
   * Include abilities to post Pings
