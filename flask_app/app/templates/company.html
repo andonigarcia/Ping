@@ -11,11 +11,15 @@
 				{% if g.company.address2 %}
 					{{ g.company.address2 }}<br />
 				{% endif %}
-				{{ g.company.city }} , {{ g.company.state }} {{ g.company.zipcode }}<br />
+				{{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}<br />
 				{{ g.company.phone }}<br />
 				{{ g.company.email }}
 			</addr>
 		</div>
+		<div id="mapAddr" style="display:none;">
+			{{ g.company.address1 }} {% if g.company.address2 %} {{ g.company.address2 }} {% endif %} {{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}
+		</div>
+		<div class="googleMap" id="googleMap" style="height:200px;width:200px;"></div>
 	</p>
 
 	<a href="logout">Log Out?</a>
