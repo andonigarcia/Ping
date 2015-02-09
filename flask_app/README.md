@@ -2,21 +2,24 @@
 This is the private repository for working on [Ping!](http://andonigarcia.github.io/Ping/static_websites/Website3)
 
 ## How to Set-Up
-In order to set-up the Flask server and run the program, you must follow a couple easy steps.
+In order to set-up and run the Flask server:
 
 1. Download the source files
 2. In your terminal, change directories to the Ping root
 3. Type `chmod a+x db_create.py`
 4. Execute `./db_create.py`
-5. Type `chmod a+x run.py`
-6. If you are running in production mode, you must enter your email credentials (otherwise registration won't work):
-  * Type `MAIL_USERNAME='x' MAIL_PASSWORD='y' ./run.py` where x is your gmail username and y is your password
-7. Else, if you are not running in production mode:
-  * Type `./run.py`
-8. Navigate your browser to `localhost:5000`
+5. Type `chmod a+x db_migrate.py`
+6. Execute `./db_migrate.py`
+7. Type `chmod a+x run.py`
+8. Running the server:
+  * If you a running in production mode, you must enter your gmail credentials of your ADMIN account. As such, let x be your gmail username and y your password. Then type `MAIL_USERNAME='x@gmail.com' MAIL_PASSWORD='y' ./run.py`
+  * Else, if you are just testing, run the server by `./run.py`
+9. Navigate your browser to `localhost:5000`
 
-### Update - 2/8/15 - Andoni Garcia
-Still Todo:
+* Note, in order to deploy and run on a dedicated network, you must change line 3 of run.py to `app.run(debug = False, host='0.0.0.0')`
+
+## Still Todo:
+Updated - 2/8/15 - Andoni Garcia
 
 1. Company Page:
   * Include payment processing

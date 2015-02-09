@@ -2,4 +2,4 @@
 *.pyo
 *.mo
 app.db
-search.db
+db_repository/
