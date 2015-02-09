@@ -54,7 +54,8 @@ class Ping(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	message = db.Column(db.String(150))
 	timestamp = db.Column(db.DateTime)
-	duration = db.Column(db.DateTime)
+	startTime = db.Column(db.DateTime)
+	endTime = db.Column(db.DateTime)
 	company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
 
 	def __repr__(self):

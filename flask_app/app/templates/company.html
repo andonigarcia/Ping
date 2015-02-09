@@ -21,6 +21,29 @@
 		</div>
 		<div class="googleMap" id="googleMap" style="height:200px;width:200px;"></div>
 	</p>
+	<div>
+		<form id="addPing" class="form" action="" method="POST" role="form" name="addPing">
+    	{{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Add A Ping!</legend>
+            <p>
+            	Message: {{ form.message(type="text", maxlength="150", id="pingMessage", class="formInput", placeholder="Your Ping!", required=True, **{"data-validation":"length", "data-validation-length":"max150", "data-validation-error-msg":"Your Pings Must Be Less Than 150 Characters!"}) }}
+            </p>
+            <p>
+            	Start Time: {{ form.start(id="pingStart", class="formInput", required=True, **{"type":"datetime-local"}) }}
+            </p>
+            <p>
+            	End Time: {{ form.end(id="pingEnd", class="formInput", required=True, **{"type":"datetime-local"}) }}
+            </p>
+            <p><input type="submit" class="formButton" value="Add A Ping!"></p>
+        </fieldset>
+	</div>
+	<div>
+		<strong>Pings:</strong>
+		{% for ping in g.company.pings[::-1] %}
+			<p>{{ ping.message }} - from {{ ping.startTime }} to {{ ping.endTime }}</p>
+		{% endfor %}
+	</div>
 
 	<a href="logout">Log Out?</a>
 

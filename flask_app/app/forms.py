@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 from .models import Company
-from wtforms import StringField, BooleanField, TextAreaField
+from wtforms import StringField, BooleanField, TextAreaField, DateTimeField
 from wtforms.validators import DataRequired, Length
 
 class CompanyLoginForm(Form):
@@ -18,3 +18,8 @@ class CompanyRegisterForm(Form):
 	phone = StringField('CompanyPhone', validators = [DataRequired()])
 	email = StringField('CompanyEmail', validators = [DataRequired()])
 	pwd = StringField('CompanyPwd', validators = [DataRequired()])
+
+class PingForm(Form):
+	message = StringField('pingMessage', validators = [DataRequired()])
+	start = StringField('pingStart', validators = [DataRequired()])
+	end = StringField('pingEnd', validators = [DataRequired()])

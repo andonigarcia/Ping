@@ -14,10 +14,10 @@
                 {{ form.addr1(type="text", id="regCompAddr1", class="formInput", placeholder="Company Address", required=True, **{"data-validation":"length", "data-validation-length":"5-100", "data-validation-error-msg":"Your Address Must Be Less Than 3 Characters Long!"}) }}
             </p>
             <p>
-                {{ form.addr2(type="text", id="regCompAddr2", class="formInput", placeholder="Company Addr. Cont. (Optional)", **{"data-validation":"length", "data-validation-length":"max100", "data-validation-error-msg":"Your Address Must Be Less Than 3 Characters Long!"}) }}
+                {{ form.addr2(type="text", maxlength="100", id="regCompAddr2", class="formInput", placeholder="Company Addr. Cont. (Optional)", **{"data-validation":"length", "data-validation-length":"max100", "data-validation-error-msg":"Your Address Must Be Less Than 3 Characters Long!"}) }}
             </p>
             <p>
-                {{ form.zipcode(type="text", id="regCompZip", class="formInput", placeholder="Company Zipcode", required=True, **{"data-validation":"length", "data-validation-length":"5-5", "data-validation-error-msg":"Your Zipcode Must Be Exactly 5 Characters Long!"}) }}
+                {{ form.zipcode(type="text", maxlength="5", id="regCompZip", class="formInput", placeholder="Company Zipcode", required=True, **{"data-validation":"length", "data-validation-length":"5-5", "data-validation-error-msg":"Your Zipcode Must Be Exactly 5 Characters Long!"}) }}
             </p>
             <p>
                 {{ form.city(type="text", id="regCompCity", class="formInput", placeholder="Company City", required=True, readonly=True) }}
@@ -26,7 +26,7 @@
                 {{ form.state(type="text", id="regCompState", class="formInput", placeholder="Company State", required=True, readonly=True) }}
             </p>
             <p>
-                {{ form.phone(type="text", id="regCompPhone", class="formInput", placeholder="Company Phone Number", required=True, **{"data-validation":"length custom", "data-validation-length":"12-12", "data-validation-regexp":"(^[0-9]{3}-[0-9]{3}-[0-9]{4})$", "data-validation-error-msg":"Your Phone Number Must Be In The Form XXX-XXX-XXXX!", "data-validation-help":"Please Use Hyphen Seperation (e.g. 312-123-4567)"}) }}
+                {{ form.phone(type="tel", id="regCompPhone", class="formInput", placeholder="Company Phone Number", required=True, **{"data-validation":"length custom", "data-validation-length":"12-12", "data-validation-regexp":"(^[0-9]{3}-[0-9]{3}-[0-9]{4})$", "data-validation-error-msg":"Your Phone Number Must Be In The Form XXX-XXX-XXXX!", "data-validation-help":"Please Use Hyphen Seperation (e.g. 312-123-4567)"}) }}
             </p>
             <p>
                 {{ form.email(type="email", id="regEmail", class="formInput", placeholder="Email Address", required=True, **{"data-validation":"email", "data-validation-error-msg":"Please Enter A Valid Email"}) }}

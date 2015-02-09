@@ -19,17 +19,19 @@ In order to set-up the Flask server and run the program, you must follow a coupl
 Still Todo:
 
 1. Company Page:
-  * Include ability to post Pings
   * Include payment processing
   * Include analytics tab
   * Include editing capabilities
   * Include ability to add photo(s)
+  * Don't show old Pings (whose time is expired)
 2. Errors:
   * Registrations:
     -Incorrect zipcodes are not handled (i.e. 00000)
     -Incorrect registration errors/feedback is not informative
   * Google Maps:
     Not found addresses/problems with Geocode are not handled
+  * Posting Pings:
+    -Informative feedback (i.e. error: endTime < startTime)
 3. CSS:
   * Forms:
   	- Disable submit button until client-side validation is finished

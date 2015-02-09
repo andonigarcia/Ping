@@ -3,7 +3,7 @@ from datetime import datetime
 from .emails import registration_notification
 from flask import flash, g, jsonify, redirect, render_template, request, session, url_for  
 from flask.ext.login import current_user, login_required, login_user, logout_user
-from .forms import CompanyLoginForm, CompanyRegisterForm
+from .forms import CompanyLoginForm, CompanyRegisterForm, PingForm
 from .models import Company, Ping
 import re
 
@@ -55,6 +55,13 @@ def try_register(name, address1, address2, city, state, zipcode, phone, email):
 		return False
 	return True
 
+def try_post(message, start, end):
+	if len(message) > 150:
+		return False
+	if end < start:
+		return False
+	return True
+
 @lm.user_loader
 def load_user(id):
 	return Company.query.get(int(id))
@@ -67,7 +74,7 @@ def before_request():
 @app.route('/index', methods = ['GET','POST'])
 def index():
 	if g.company is not None and g.company.is_authenticated():
-		return render_template('company.html', title = g.company.name)
+		return redirect(url_for('company'))
 	return render_template('about.html', title = "About Ping!")
 
 @app.route('/team', methods = ['GET','POST'])
@@ -134,8 +141,24 @@ def register():
 @app.route('/company', methods = ['GET', 'POST'])
 @login_required
 def company():
-	return render_template('company.html', title = g.company.name)
-
+	form = PingForm()
+	if form.validate_on_submit():
+		message = form.message.data
+		start = datetime.strptime(form.start.data, "%Y-%m-%dT%H:%M")
+		end = datetime.strptime(form.end.data, "%Y-%m-%dT%H:%M")
+		
+		valid = try_post(message, start, end)
+		if not valid:
+			flash('Invalid <span class="lilLogo">Ping!</span>. Please Try Again.')
+			return redirect(url_for('company'))
+		else:
+			ping = Ping(message = message, startTime = start, endTime = end)
+			ping.timestamp = datetime.utcnow()
+			ping.company = g.company
+			db.session.add(ping)
+			db.session.commit()
+			return redirect(url_for('company'))
+	return render_template('company.html', title = g.company.name, form = form)
 
 @app.errorhandler(400)
 def bad_request(error):
