@@ -1,7 +1,8 @@
 from flask.ext.wtf import Form
 from .models import Company
-from wtforms import StringField, BooleanField, TextAreaField, DateTimeField
+from wtforms import StringField, BooleanField, TextAreaField, DateTimeField, FileField
 from wtforms.validators import DataRequired, Length
+
 
 class CompanyLoginForm(Form):
 	email = StringField('CompanyEmail', validators = [DataRequired()])
@@ -23,3 +24,6 @@ class PingForm(Form):
 	message = StringField('pingMessage', validators = [DataRequired()])
 	start = StringField('pingStart', validators = [DataRequired()])
 	end = StringField('pingEnd', validators = [DataRequired()])
+
+class ImageUpload(Form):
+	image = FileField('companyLogo', validators = [DataRequired()])

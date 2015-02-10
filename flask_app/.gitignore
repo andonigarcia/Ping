@@ -3,3 +3,4 @@
 *.mo
 app.db
 db_repository/
+app/static/img/companies/

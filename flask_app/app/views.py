@@ -1,11 +1,14 @@
-from app import app, db, lm
+from app import app, db, lm, ALLOWED_EXTENSIONS
 from datetime import datetime
 from .emails import registration_notification
+import errno
 from flask import flash, g, jsonify, redirect, render_template, request, session, url_for  
 from flask.ext.login import current_user, login_required, login_user, logout_user
-from .forms import CompanyLoginForm, CompanyRegisterForm, PingForm
+from .forms import CompanyLoginForm, CompanyRegisterForm, PingForm, ImageUpload
+import os
 from .models import Company, Ping
 import re
+from werkzeug import secure_filename
 
 def try_login(email, password):
 	if email is None or email == "":
@@ -61,6 +64,19 @@ def try_post(message, start, end):
 	if end < start:
 		return False
 	return True
+
+
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+def make_directory(dir):
+	path = os.path.dirname(dir)
+	if not os.path.exists(path):
+		try:
+			os.makedirs(path)
+		except OSError as exception:
+			if exception.errno != errno.EEXIST:
+				raise
 
 @lm.user_loader
 def load_user(id):
@@ -171,3 +187,24 @@ def not_found_error(error):
 def internal_error(error):
 	db.session.rollback()
 	return render_template('500.html'), 500
+
+
+@app.route('/fileupload', methods = ['GET', 'POST'])
+@login_required
+def upload_file(imgName = ""):
+	form = ImageUpload()
+	if form.validate_on_submit() and form.image.data:
+		file = request.files['image']
+		if file and allowed_file(file.filename):
+			init_cwd = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
+			add_cmpny = os.path.join(init_cwd, str(g.company.id))
+			filename = '/logo.' + file.filename.rsplit('.', 1)[1]
+			filedir = add_cmpny + filename
+			print(filedir)
+			make_directory(filedir)
+			#file.save(filedir)
+			open(filedir, 'w').write(file.read())
+			imgEnding = str(g.company.id) + filename
+			imgLocation = os.path.join(app.config['IMG_FOLDER'], imgEnding)
+			return redirect(url_for('upload_file', imgName = imgLocation))
+	return render_template('imguploadtest.html', imgName = imgName, form = form)

@@ -14,6 +14,7 @@ lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
 mail = Mail(app)
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'tiff'])
 
 # Setting up Mail Server
 if not app.debug:

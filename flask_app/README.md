@@ -23,9 +23,11 @@ Updated - 2/8/15 - Andoni Garcia
 
 1. Company Page:
   * Include payment processing
-  * Include analytics tab
+  * Include analytics tab <-- MOSTLY CSS
   * Include editing capabilities
-  * Include ability to add photo(s)
+  * Images:
+    - POST to url_for using AJAX...look into
+    - Integrate your nuanced ass function into the real site
 2. Errors:
   * Registrations:
     -Incorrect zipcodes are not handled (i.e. 00000)
@@ -37,6 +39,8 @@ Updated - 2/8/15 - Andoni Garcia
 3. CSS:
   * Forms:
   	- Disable submit button until client-side validation is finished
+  * Pings:
+    - JQuery Datetime plugin
   * Meet the Team:
     - Make pictures the same size
   * Everywhere:

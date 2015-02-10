@@ -24,3 +24,7 @@ ADMINS = ['andoni.m.garcia@gmail.com']
 
 # Hash Salt
 SALT = '\xd6"O|\x17\xa7\x0b\x87jV\xaf\x03B_h\xbd'
+
+# File Uploads
+UPLOAD_FOLDER = 'app/static/img/companies/'
+IMG_FOLDER = '/static/img/companies/'
