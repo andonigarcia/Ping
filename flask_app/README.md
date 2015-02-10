@@ -26,7 +26,6 @@ Updated - 2/8/15 - Andoni Garcia
   * Include analytics tab
   * Include editing capabilities
   * Include ability to add photo(s)
-  * Don't show old Pings (whose time is expired)
 2. Errors:
   * Registrations:
     -Incorrect zipcodes are not handled (i.e. 00000)

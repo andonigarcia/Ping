@@ -146,7 +146,6 @@ def company():
 		message = form.message.data
 		start = datetime.strptime(form.start.data, "%Y-%m-%dT%H:%M")
 		end = datetime.strptime(form.end.data, "%Y-%m-%dT%H:%M")
-		
 		valid = try_post(message, start, end)
 		if not valid:
 			flash('Invalid <span class="lilLogo">Ping!</span>. Please Try Again.')

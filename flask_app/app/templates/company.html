@@ -40,7 +40,7 @@
 	</div>
 	<div>
 		<strong>Pings:</strong>
-		{% for ping in g.company.pings[::-1] %}
+		{% for ping in g.company.current_pings()[::-1] %}
 			<p>{{ ping.message }} - from {{ ping.startTime }} to {{ ping.endTime }}</p>
 		{% endfor %}
 	</div>

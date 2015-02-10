@@ -1,5 +1,6 @@
 from app import app, db
 from config import SALT
+from datetime import datetime
 from hashlib import sha256
 import re
 import sys
@@ -32,6 +33,9 @@ class Company(db.Model):
 			return unicode(self.id)  # for Python 2
 		except NameError:
 			return str(self.id)  # for Python 3
+
+	def current_pings(self):
+		return Ping.query.filter(Ping.company_id == self.id).filter(Ping.endTime > datetime.utcnow())
 
 	def check_password(self, string):
 		string += SALT
