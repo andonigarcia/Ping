@@ -1,10 +1,11 @@
 import os
-from config import basedir, ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD
+from config import basedir, ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD, STRIPE_KEYS
 from flask import Flask
 from flask.ext.login import LoginManager
 from flask.ext.mail import Mail
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.json import JSONEncoder
+import stripe
 
 # Basic Set-Up
 app = Flask(__name__)
@@ -14,6 +15,7 @@ lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
 mail = Mail(app)
+stripe.api_key = STRIPE_KEYS['secret_key']
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'tiff'])
 
 # Setting up Mail Server

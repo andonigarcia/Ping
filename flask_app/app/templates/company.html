@@ -70,7 +70,12 @@
 			<p>{{ ping.message }} - from {{ ping.startTime }} to {{ ping.endTime }}</p>
 		{% endfor %}
 	</div>
-
+	<div>
+		<form action="/charge" method="POST">
+		  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}" data-description="Flask Test Charge" data-amount="2000" data-name="Demo Site" data-description="2 widgets ($5.00)">
+		  </script>
+		</form>
+	</div>
 	<a href="logout">Log Out?</a>
 
 {% endblock %}

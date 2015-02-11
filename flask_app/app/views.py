@@ -1,4 +1,4 @@
-from app import app, db, lm, ALLOWED_EXTENSIONS
+from app import app, db, lm, ALLOWED_EXTENSIONS, STRIPE_KEYS
 from datetime import datetime
 from .emails import registration_notification
 import errno
@@ -8,7 +8,10 @@ from .forms import CompanyLoginForm, CompanyRegisterForm, PingForm, ImageUpload,
 import os
 from .models import Company, Ping
 import re
+import stripe
 from werkzeug import secure_filename
+
+stripe.api_key = "sk_test_qSz9zN80HUYIs8LUTQLusMUr"
 
 def try_login(email, password):
 	if email is None or email == "":
@@ -206,7 +209,7 @@ def company():
 		form2.zipcode.data = g.company.zipcode
 		form2.phone.data = g.company.phone
 		form2.email.data = g.company.email
-	return render_template('company.html', title = g.company.name, form = form, form2 = form2)
+	return render_template('company.html', title = g.company.name, form = form, form2 = form2, key = STRIPE_KEYS['publishable_key'])
 
 @app.errorhandler(400)
 def bad_request(error):
@@ -240,3 +243,16 @@ def upload_file(imgName = ""):
 			imgLocation = os.path.join(app.config['IMG_FOLDER'], imgEnding)
 			return redirect(url_for('upload_file', imgName = imgLocation))
 	return render_template('imguploadtest.html', imgName = imgName, form = form)
+
+@app.route('/charge', methods = ['POST'])
+def charge():
+	amount = 500
+	customer = stripe.Customer.create(
+		email = g.company.email,
+		card = request.form['stripeToken'])
+	charge = stripe.Charge.create(
+		customer = customer.id,
+		amount = amount,
+		currency = 'usd',
+		description = 'Flask Test Charge')
+	return render_template('charge.html', amount = amount, description = description)

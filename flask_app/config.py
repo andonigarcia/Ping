@@ -28,3 +28,7 @@ SALT = '\xd6"O|\x17\xa7\x0b\x87jV\xaf\x03B_h\xbd'
 # File Uploads
 UPLOAD_FOLDER = 'app/static/img/companies/'
 IMG_FOLDER = '/static/img/companies/'
+
+# Stripe Account Info
+STRIPE_KEYS = {'secret_key':os.environ['STRIPE_SECRET_KEY'],
+				'publishable_key':os.environ['STRIPE_PUBLISHABLE_KEY']}
