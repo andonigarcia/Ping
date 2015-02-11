@@ -25,5 +25,14 @@ class PingForm(Form):
 	start = StringField('pingStart', validators = [DataRequired()])
 	end = StringField('pingEnd', validators = [DataRequired()])
 
+class CompanyEditForm(Form):
+	addr1 = StringField('CompanyAddr1', validators = [DataRequired()])
+	addr2 = StringField('CompanyAddr2')
+	city = StringField('CompanyCity', validators = [DataRequired()])
+	state = StringField('CompanyState', validators = [DataRequired()])
+	zipcode = StringField('CompanyZipcode', validators = [DataRequired()])
+	phone = StringField('CompanyPhone', validators = [DataRequired()])
+	email = StringField('CompanyEmail', validators = [DataRequired()])
+
 class ImageUpload(Form):
 	image = FileField('companyLogo', validators = [DataRequired()])

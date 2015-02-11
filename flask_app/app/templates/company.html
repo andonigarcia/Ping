@@ -3,10 +3,11 @@
 
 {% block content %}
 
-	<p>Welcome to {{ g.name }}</p>
+	<p>Welcome {{ g.company.name }}</p>
 	<p>Your information:<br />
 		<div>
 			<addr>
+				{{ g.company.name }}<br />
 				{{ g.company.address1 }}<br />
 				{% if g.company.address2 %}
 					{{ g.company.address2 }}<br />
@@ -15,6 +16,31 @@
 				{{ g.company.phone }}<br />
 				{{ g.company.email }}
 			</addr>
+			<form id="companyEdit" class="form" action="" method="POST" name="companyEdit">
+				{{ form2.hidden_tag() }}
+				<p>
+	                {{ form2.addr1(type="text", id="regCompAddr1", class="formInput", placeholder="Address", required=True, **{"data-validation":"length", "data-validation-length":"5-100", "data-validation-error-msg":"Your Address Must Be Less Than 3 Characters Long!"}) }}
+	            </p>
+	            <p>
+	                {{ form2.addr2(type="text", maxlength="100", id="regCompAddr2", class="formInput", placeholder="Addr. Cont. (Optional)", **{"data-validation":"length", "data-validation-length":"max100", "data-validation-error-msg":"Your Address Must Be Less Than 3 Characters Long!"}) }}
+	            </p>
+	            <p>
+	                {{ form2.zipcode(type="text", maxlength="5", id="regCompZip", class="formInput", placeholder="Zipcode", required=True, **{"data-validation":"length", "data-validation-length":"5-5", "data-validation-error-msg":"Your Zipcode Must Be Exactly 5 Characters Long!"}) }}
+	            </p>
+	            <p>
+	                {{ form2.city(type="text", id="regCompCity", class="formInput", placeholder="City", required=True, readonly=True) }}
+	            </p>
+	            <p>
+	                {{ form2.state(type="text", id="regCompState", class="formInput", placeholder="State", required=True, readonly=True) }}
+	            </p>
+	            <p>
+	                {{ form2.phone(type="tel", id="regCompPhone", class="formInput", placeholder="Phone Number", required=True, **{"data-validation":"length custom", "data-validation-length":"12-12", "data-validation-regexp":"(^[0-9]{3}-[0-9]{3}-[0-9]{4})$", "data-validation-error-msg":"Your Phone Number Must Be In The Form XXX-XXX-XXXX!", "data-validation-help":"Please Use Hyphen Seperation (e.g. 312-123-4567)"}) }}
+	            </p>
+	            <p>
+	                {{ form2.email(type="email", id="regEmail", class="formInput", placeholder="Email Address", required=True, **{"data-validation":"email", "data-validation-error-msg":"Please Enter A Valid Email"}) }}
+	            </p>
+	            <p><input type="submit" class="formButton" value="Edit My Info!"></p>
+			</form>
 		</div>
 		<div id="mapAddr" style="display:none;">
 			{{ g.company.address1 }} {% if g.company.address2 %} {{ g.company.address2 }} {% endif %} {{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}

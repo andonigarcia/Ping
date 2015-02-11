@@ -24,7 +24,6 @@ Updated - 2/8/15 - Andoni Garcia
 1. Company Page:
   * Include payment processing
   * Include analytics tab <-- MOSTLY CSS
-  * Include editing capabilities
   * Images:
     - POST to url_for using AJAX...look into
     - Integrate your nuanced ass function into the real site
@@ -39,6 +38,7 @@ Updated - 2/8/15 - Andoni Garcia
 3. CSS:
   * Forms:
   	- Disable submit button until client-side validation is finished
+    - Grey out and disable clicking on State/City fields
   * Pings:
     - JQuery Datetime plugin
   * Meet the Team:
