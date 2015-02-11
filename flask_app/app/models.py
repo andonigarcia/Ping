@@ -17,6 +17,7 @@ class Company(db.Model):
 	email = db.Column(db.String(150), index = True, unique = True)
 	password = db.Column(db.String(64))
 	timestamp = db.Column(db.DateTime)
+	logo = db.Column(db.String(100))
 	pings = db.relationship('Ping', backref = 'company', lazy = 'dynamic')
 
 	def is_authenticated(self):

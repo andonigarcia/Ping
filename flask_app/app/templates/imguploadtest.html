@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<img src="{{ imgName }}" alt="{{ g.company.name}}'s' Logo" height="200" width="200" />
+	<img src="{{ g.company.logo }}" alt="{{ g.company.name}}'s' Logo" height="200" width="200" />
 	<form action="", method="POST", enctype="multipart/form-data" name="imgUpload">
     	{{ form.hidden_tag() }}
         <p>

@@ -227,7 +227,7 @@ def internal_error(error):
 
 @app.route('/fileupload', methods = ['GET', 'POST'])
 @login_required
-def upload_file(imgName = ""):
+def upload_file():
 	form = ImageUpload()
 	if form.validate_on_submit() and form.image.data:
 		file = request.files['image']
@@ -241,8 +241,11 @@ def upload_file(imgName = ""):
 			open(filedir, 'w').write(file.read())
 			imgEnding = str(g.company.id) + filename
 			imgLocation = os.path.join(app.config['IMG_FOLDER'], imgEnding)
-			return redirect(url_for('upload_file', imgName = imgLocation))
-	return render_template('imguploadtest.html', imgName = imgName, form = form)
+			g.company.logo = imgLocation
+			db.session.add(g.company)
+			db.session.commit()
+			return redirect(url_for('upload_file'))
+	return render_template('imguploadtest.html', form = form)
 
 @app.route('/charge', methods = ['POST'])
 def charge():
