@@ -26,47 +26,47 @@ def try_login(email, password):
 
 def try_register(name, address1, address2, city, state, zipcode, phone, email, email_check):
 	if name is None or name == "" or address1 is None or address1 == "" or city is None or city == "" or state is None or state == "" or zipcode is None or zipcode == "" or phone is None or phone == "" or email is None or email == "":
-		return False
-	exp1 = re.compile(r"[^a-zA-Z0-9\._\-\\ ]")
+		return "One or more required fields is blank. Please check your responses and resubmit."
+	exp1 = re.compile(r"[^a-zA-Z0-9#\._\-\,\\ ]")
 	match = re.search(exp1, name)
 	if match:
-		return False
+		return "Your Company Name is invalid. We only allow numbers, letters, spaces and some punctuation."
 	match = re.search(exp1, address1)
 	if match:
-		return False
+		return "Your Address 1 field is invalid. We only allow numbers, letters, spaces and some punctuation."
 	match = re.search(exp1, address2)
 	if match:
-		return False
+		return "Your Address 2 field is invalid. We only allow numbers, letters, spaces and some punctuation."
 	exp2 = re.compile(r"[^a-zA-Z \-]")
 	match = re.search(exp2, city)
 	if match:
-		return False
+		return "Your City field is invalid. We only allow letters, spaces and hyphens. Please check your ZipCode."
 	match = re.search(exp2, state)
 	if match:
-		return False
+		return "Your state field is invalid. We only allow letters, spaces and hyphens. Please check your ZipCode."
 	exp3 = re.compile(r"[^0-9]")
 	match = re.search(exp3, zipcode)
 	if match:
-		return False
+		return "Your ZipCode is invalid. Please check to make sure you didn't enter the wrong Zip."
 	exp4 = re.compile(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}")
 	match = re.search(exp4, phone)
 	if not match:
-		return False
+		return "Your Phone Number does not match our specification. Please enter your 10 digit hyphenated Phone Number."
 	exp5 = re.compile(r"[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\.[a-zA-Z0-9_]+")
 	match = re.search(exp5, email)
 	if not match:
-		return False
+		return "Your Email Address is invalid. Please check to make sure you entered it correctly."
 	if email_check:
 		company = Company.query.filter_by(email = email).first()
 		if company is not None:
-			return False
+			return "This Email Address is already registered. Please register with a new one or login with this current one."
 	return True
 
 def try_post(message, start, end):
 	if len(message) > 150:
-		return False
+		return "Your Ping! must be less than 150 characters! Please try to shorten it."
 	if end < start:
-		return False
+		return "You can't have an End Time before your Start Time! Please correct this and resubmit your Ping!"
 	return True
 
 
@@ -115,7 +115,7 @@ def login():
 		session['remember_me'] = remember
 		valid = try_login(form.email.data, form.password.data)
 		if not valid:
-			flash('Invalid Login. Please Try Again.')
+			flash('Invalid Login Credentials. Please Try Again.')
 			return redirect(url_for('login'))
 		else:
 			company = Company.query.filter_by(email = form.email.data).first()
@@ -143,9 +143,9 @@ def register():
 		zipcode = form.zipcode.data
 		phone = form.phone.data
 		email = form.email.data
-		valid = try_register(name, address1, address2, city, state, zipcode, phone, email, True)
-		if not valid:
-			flash('Invalid Registration. Please Try Again.')
+		isError = try_register(name, address1, address2, city, state, zipcode, phone, email, True)
+		if isError != True:
+			flash(isError)
 			return redirect(url_for('register'))
 		else:
 			company = Company(name = name, address1 = address1, address2 = address2, city = city, state = state, zipcode = zipcode, phone = phone, email = email)
@@ -167,9 +167,9 @@ def company():
 		message = form.message.data
 		start = datetime.strptime(form.start.data, "%Y-%m-%dT%H:%M")
 		end = datetime.strptime(form.end.data, "%Y-%m-%dT%H:%M")
-		valid = try_post(message, start, end)
-		if not valid:
-			flash('Invalid <span class="lilLogo">Ping!</span>. Please Try Again.')
+		isError = try_post(message, start, end)
+		if isError != True:
+			flash(isError)
 			return redirect(url_for('company'))
 		else:
 			ping = Ping(message = message, startTime = start, endTime = end)
@@ -186,9 +186,9 @@ def company():
 		zipcode = form2.zipcode.data
 		phone = form2.phone.data
 		email = form2.email.data
-		valid = try_register(g.company.name, address1, address2, city, state, zipcode, phone, email, False)
-		if not valid:
-			flash('Invalid Information. Please Try Again.')
+		isError2 = try_register(g.company.name, address1, address2, city, state, zipcode, phone, email, False)
+		if isError2 != True:
+			flash(isError2)
 			return redirect(url_for('company'))
 		else:
 			g.company.address1 = address1
@@ -210,20 +210,6 @@ def company():
 		form2.phone.data = g.company.phone
 		form2.email.data = g.company.email
 	return render_template('company.html', title = g.company.name, form = form, form2 = form2, key = STRIPE_KEYS['publishable_key'])
-
-@app.errorhandler(400)
-def bad_request(error):
-	return render_template('400.html'), 400
-
-@app.errorhandler(404)
-def not_found_error(error):
-	return render_template('404.html'), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-	db.session.rollback()
-	return render_template('500.html'), 500
-
 
 @app.route('/fileupload', methods = ['GET', 'POST'])
 @login_required
@@ -248,6 +234,7 @@ def upload_file():
 	return render_template('imguploadtest.html', form = form)
 
 @app.route('/charge', methods = ['POST'])
+@login_required
 def charge():
 	amount = 500
 	customer = stripe.Customer.create(
@@ -259,3 +246,16 @@ def charge():
 		currency = 'usd',
 		description = 'Flask Test Charge')
 	return render_template('charge.html', amount = amount, description = description)
+
+@app.errorhandler(400)
+def bad_request(error):
+	return render_template('400.html'), 400
+
+@app.errorhandler(404)
+def not_found_error(error):
+	return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+	db.session.rollback()
+	return render_template('500.html'), 500

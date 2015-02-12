@@ -13,7 +13,8 @@ function getZip(zipcode){
             $('#regCompZip .error').remove()
         },
         error: function(result, success){
-            $('#regCompZip').append("<p class='error'>ERROR INVALID ZIP</p>")
+            $('#regCompState').val("")
+            $('#regCompCity').val("")
         }
     });
 }

@@ -15,8 +15,7 @@ lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
 mail = Mail(app)
-if STRIPE_KEYS:
-	stripe.api_key = STRIPE_KEYS['secret_key']
+stripe.api_key = STRIPE_KEYS['secret_key']
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'tiff'])
 
 # Setting up Mail Server

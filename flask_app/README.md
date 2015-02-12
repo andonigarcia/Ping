@@ -21,21 +21,14 @@ In order to set-up and run the Flask server:
 * Note, in order to deploy and run on a dedicated network, you must change line 3 of run.py to `app.run(debug = False, host='0.0.0.0')`
 
 ## Still Todo:
-Updated - 2/8/15 - Andoni Garcia
+Updated - 2/12/15 - Andoni Garcia
 
 1. Company Page:
   * Include analytics tab <-- MOSTLY CSS
-  * Images:
-    - POST to url_for using AJAX...look into
-    - Integrate your nuanced ass function into the real site
+  * Include tabs for past Pings
 2. Errors:
-  * Registrations:
-    -Incorrect zipcodes are not handled (i.e. 00000)
-    -Incorrect registration errors/feedback is not informative
   * Google Maps:
     Not found addresses/problems with Geocode are not handled
-  * Posting Pings:
-    -Informative feedback (i.e. error: endTime < startTime)
 3. CSS:
   * Forms:
   	- Disable submit button until client-side validation is finished
@@ -57,7 +50,7 @@ Updated - 2/8/15 - Andoni Garcia
   * We should open up a new html tab with a receipt after paying
   * Integrate our keys and stuff (account is under my email and password)
   * Create a variable payment strucutre and really solidify the CSS/HTML for paying.
-6. Server:
+7. Server:
   * Set up a LAMP stack. Deploy to a domain.
 
 -AMG
