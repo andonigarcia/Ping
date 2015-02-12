@@ -6,6 +6,7 @@
 	<p>Welcome {{ g.company.name }}</p>
 	<p>Your information:<br />
 		<div>
+			<img src="{{ g.company.logo }}" alt="{{ g.company.name}}'s' Logo" width="200" />
 			<addr>
 				{{ g.company.name }}<br />
 				{{ g.company.address1 }}<br />
@@ -40,6 +41,13 @@
 	                {{ form2.email(type="email", id="regEmail", class="formInput", placeholder="Email Address", required=True, **{"data-validation":"email", "data-validation-error-msg":"Please Enter A Valid Email"}) }}
 	            </p>
 	            <p><input type="submit" class="formButton" value="Edit My Info!"></p>
+			</form>
+			<form action="", method="POST", enctype="multipart/form-data" name="imgUpload">
+    			{{ form.hidden_tag() }}
+        		<p>
+		    	    {{ formImg.image }}
+		       		<input type="submit" value="Upload">
+				</p>
 			</form>
 		</div>
 		<div id="mapAddr" style="display:none;">

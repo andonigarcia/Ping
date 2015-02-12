@@ -30,5 +30,5 @@ UPLOAD_FOLDER = 'app/static/img/companies/'
 IMG_FOLDER = '/static/img/companies/'
 
 # Stripe Account Info
-STRIPE_KEYS = {'secret_key':os.environ['STRIPE_SECRET_KEY'],
-				'publishable_key':os.environ['STRIPE_PUBLISHABLE_KEY']}
+STRIPE_KEYS = {'secret_key':os.environ.get('STRIPE_SECRET_KEY'),
+				'publishable_key':os.environ.get('STRIPE_PUBLISHABLE_KEY')}

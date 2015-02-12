@@ -35,15 +35,13 @@ Updated - 2/12/15 - Andoni Garcia
     - Grey out and disable clicking on State/City fields
   * Pings:
     - JQuery Datetime plugin
-  * Meet the Team:
-    - Make pictures the same size
   * Everywhere:
     - Update new classes/tags. I haven't touched CSS since starting work
       on the server.
     - Make the site mobile friendly (if not mobile first)
 4. Design:
   * Ping! Logo.
-  * Favicon and iPhone icons
+  * iPhone icons
 5. Landing Page:
   * Interactive wireframe? More Pictures, Less Words.
 6. Stripe:

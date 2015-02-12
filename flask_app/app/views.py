@@ -2,11 +2,12 @@ from app import app, db, lm, ALLOWED_EXTENSIONS, STRIPE_KEYS
 from datetime import datetime
 from .emails import registration_notification
 import errno
-from flask import flash, g, jsonify, redirect, render_template, request, session, url_for  
+from flask import flash, g, jsonify, redirect, render_template, request, session, url_for, send_from_directory
 from flask.ext.login import current_user, login_required, login_user, logout_user
 from .forms import CompanyLoginForm, CompanyRegisterForm, PingForm, ImageUpload, CompanyEditForm
 import os
 from .models import Company, Ping
+import random
 import re
 import stripe
 from werkzeug import secure_filename
@@ -163,6 +164,7 @@ def register():
 def company():
 	form = PingForm()
 	form2 = CompanyEditForm()
+	formImg = ImageUpload()
 	if form.validate_on_submit():
 		message = form.message.data
 		start = datetime.strptime(form.start.data, "%Y-%m-%dT%H:%M")
@@ -201,6 +203,32 @@ def company():
 			db.session.add(g.company)
 			db.session.commit()
 			return redirect(url_for('company'))
+	if formImg.validate_on_submit():
+		if not formImg.image.data:
+			flash("File was empty. Please check your source.")
+			return redirect(url_for('company'))
+		else:
+			file = request.files['image']
+			if file:
+				if allowed_file(file.filename):
+					init_cwd = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
+					add_cmpny = os.path.join(init_cwd, str(g.company.id))
+					filename = '/logo.' + file.filename.rsplit('.', 1)[1]
+					filedir = add_cmpny + filename
+					make_directory(filedir)
+					open(filedir, 'w').write(file.read())
+					imgEnding = str(g.company.id) + filename + "?v=" + str(random.randint(1,10000))
+					imgLocation = os.path.join(app.config['IMG_FOLDER'], imgEnding)
+					g.company.logo = imgLocation
+					db.session.add(g.company)
+					db.session.commit()
+					return redirect(url_for('company'))
+				else:
+					flash("Your file name raised an error. Please reformat your file to standard image formatting.")
+					redirect(url_for('company'))
+			else:
+				flash("No file was found! Please check your input!")
+				redirect(url_for('company'))
 	else:
 		form2.addr1.data = g.company.address1
 		form2.addr2.data = g.company.address2
@@ -209,29 +237,7 @@ def company():
 		form2.zipcode.data = g.company.zipcode
 		form2.phone.data = g.company.phone
 		form2.email.data = g.company.email
-	return render_template('company.html', title = g.company.name, form = form, form2 = form2, key = STRIPE_KEYS['publishable_key'])
-
-@app.route('/fileupload', methods = ['GET', 'POST'])
-@login_required
-def upload_file():
-	form = ImageUpload()
-	if form.validate_on_submit() and form.image.data:
-		file = request.files['image']
-		if file and allowed_file(file.filename):
-			init_cwd = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
-			add_cmpny = os.path.join(init_cwd, str(g.company.id))
-			filename = '/logo.' + file.filename.rsplit('.', 1)[1]
-			filedir = add_cmpny + filename
-			print(filedir)
-			make_directory(filedir)
-			open(filedir, 'w').write(file.read())
-			imgEnding = str(g.company.id) + filename
-			imgLocation = os.path.join(app.config['IMG_FOLDER'], imgEnding)
-			g.company.logo = imgLocation
-			db.session.add(g.company)
-			db.session.commit()
-			return redirect(url_for('upload_file'))
-	return render_template('imguploadtest.html', form = form)
+	return render_template('company.html', title = g.company.name, form = form, form2 = form2, formImg = formImg, key = STRIPE_KEYS['publishable_key'])
 
 @app.route('/charge', methods = ['POST'])
 @login_required
