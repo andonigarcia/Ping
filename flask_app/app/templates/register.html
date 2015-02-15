@@ -34,7 +34,7 @@
             <p>
                 {{ form.pwd(type="password", id="regPwd", class="formInput", placeholder="Password", required=True, **{"data-validation":"length alphanumeric", "data-validation-length":"min6", "data-validation-allowing":"-_", "data-validation-error-msg":"Please Enter a Valid Password", "data-validation-help":"Minumum 6 Characters. Please Only Use Letters, Numbers, Hyphens and Underscores. (e.g. a-zA-Z0-9-_)"}) }}
             </p>
-            <p><input type="submit" class="formButton" value="Register!"></p>
+            <p><input type="submit" class="formButton" value="Register!" disabled></p>
         </fieldset>
     </form>
 

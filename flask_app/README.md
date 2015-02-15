@@ -21,23 +21,22 @@ In order to set-up and run the Flask server:
 * Note, in order to deploy and run on a dedicated network, you must change line 3 of run.py to `app.run(debug = False, host='0.0.0.0')`
 
 ## Still Todo:
-Updated - 2/12/15 - Andoni Garcia
+Updated - 2/14/15 - Andoni Garcia
 
 1. Company Page:
-  * Include analytics tab <-- MOSTLY CSS
-  * Include tabs for past Pings
+  * Tab-inate: Profile, Pings, Analytics, Payments
 2. Errors:
   * Google Maps:
     Not found addresses/problems with Geocode are not handled
 3. CSS:
   * Forms:
-  	- Disable submit button until client-side validation is finished
-    - Grey out and disable clicking on State/City fields
+  	- **Bug**: Click between help fields leads to build up of <br /> tags
+    - **Bug**: First click/offclick on a help field doesn't <br /> the two notifications
   * Pings:
     - JQuery Datetime plugin
+  * Company:
+    - Start CSS...
   * Everywhere:
-    - Update new classes/tags. I haven't touched CSS since starting work
-      on the server.
     - Make the site mobile friendly (if not mobile first)
 4. Design:
   * Ping! Logo.

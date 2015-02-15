@@ -1,4 +1,44 @@
-$.validate();
+$.validate({
+    borderColorOnError: "",
+    addValidClassOnAll: true
+});
+
+$("form").change(function(){
+    setTimeout(function(){
+        var formFields = $(this).add('.formInput[required]');
+        if (formFields.filter('.error').length) {
+            $(this).add('.formButton').attr('disabled', 'disabled');
+        } else {
+            isEmpty = false;
+            formFields.filter('.formInput').each(function(){
+                if (!$(this).val()) {
+                    isEmpty = true;
+                }
+            });
+            if (!isEmpty){
+                $(this).add('.formButton').removeAttr('disabled');
+            } else {
+                $(this).add('.formButton').attr('disabled', 'disabled');
+            }
+        }
+    }, 250);
+});
+
+helps = $("input[data-validation-help]");
+helps.each(function(){
+    $(this).focusin(function(){
+        if ($(this).siblings('span.form-error').length) {
+            $(this).siblings('span.form-error').before('<br />');
+        }
+    });
+    $(this).focusout(function(){
+        if ($(this).add('br').length > 1) {
+            $(this).siblings('span.help').fadeOut("slow", function(){
+                $(this).add('br').last().remove();
+            });
+        }
+    });
+});
 
 function getZip(zipcode){
     url = "http://zip.getziptastic.com/v2/US/" + zipcode;
