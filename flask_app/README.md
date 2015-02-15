@@ -21,10 +21,15 @@ In order to set-up and run the Flask server:
 * Note, in order to deploy and run on a dedicated network, you must change line 3 of run.py to `app.run(debug = False, host='0.0.0.0')`
 
 ## Still Todo:
-Updated - 2/14/15 - Andoni Garcia
+Updated - 2/15/15 - Andoni Garcia
 
 1. Company Page:
-  * Tab-inate: Profile, Pings, Analytics, Payments
+  * Analytics and Payments tabs
+  * Forms.js is acting funny -- See line 13
+  * When Submitting a Ping, try to refresh to ping tab
+  * Make responsive
+  * When uploading new logo, integrate a preview
+  * Update/refine Pings models
 2. Errors:
   * Google Maps:
     Not found addresses/problems with Geocode are not handled
@@ -34,8 +39,6 @@ Updated - 2/14/15 - Andoni Garcia
     - **Bug**: First click/offclick on a help field doesn't <br /> the two notifications
   * Pings:
     - JQuery Datetime plugin
-  * Company:
-    - Start CSS...
   * Everywhere:
     - Make the site mobile friendly (if not mobile first)
 4. Design:

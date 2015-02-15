@@ -3,25 +3,28 @@ $.validate({
     addValidClassOnAll: true
 });
 
-$("form").change(function(){
-    setTimeout(function(){
-        var formFields = $(this).add('.formInput[required]');
-        if (formFields.filter('.error').length) {
-            $(this).add('.formButton').attr('disabled', 'disabled');
-        } else {
-            isEmpty = false;
-            formFields.filter('.formInput').each(function(){
-                if (!$(this).val()) {
-                    isEmpty = true;
-                }
-            });
-            if (!isEmpty){
-                $(this).add('.formButton').removeAttr('disabled');
-            } else {
+$("form").each(function(){
+    $(this).change(function(){
+        setTimeout(function () {
+            var formFields = $(this).add('.formInput[required]');
+            if (formFields.filter('.error').length) {
                 $(this).add('.formButton').attr('disabled', 'disabled');
+            } else {
+                // Causes a problem when uploading in Company Page
+                isEmpty = false;
+                formFields.filter('.formInput').each(function () {
+                    if (!$(this).val()) {
+                        isEmpty = true;
+                    }
+                });
+                if (!isEmpty) {
+                    $(this).add('.formButton').removeAttr('disabled');
+                } else {
+                    $(this).add('.formButton').attr('disabled', 'disabled');
+                }
             }
-        }
-    }, 250);
+        }, 250);
+    });
 });
 
 helps = $("input[data-validation-help]");
@@ -50,11 +53,11 @@ function getZip(zipcode){
         success: function(result, success){
             $('#regCompState').val(result.state_short).attr("readonly", true);
             $('#regCompCity').val(result.city).attr("readonly", true);
-            $('#regCompZip .error').remove()
+            $('#regCompZip .error').remove();
         },
         error: function(result, success){
-            $('#regCompState').val("")
-            $('#regCompCity').val("")
+            $('#regCompState').val("");
+            $('#regCompCity').val("");
         }
     });
 }

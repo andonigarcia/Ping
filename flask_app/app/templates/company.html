@@ -2,88 +2,128 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-	<p>Welcome {{ g.company.name }}</p>
-	<p>Your information:<br />
-		<div>
-			<img src="{{ g.company.logo }}" alt="{{ g.company.name}}'s' Logo" width="200" />
-			<addr>
-				{{ g.company.name }}<br />
-				{{ g.company.address1 }}<br />
-				{% if g.company.address2 %}
-					{{ g.company.address2 }}<br />
-				{% endif %}
-				{{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}<br />
-				{{ g.company.phone }}<br />
-				{{ g.company.email }}
-			</addr>
-			<form id="companyEdit" class="form" action="" method="POST" name="companyEdit">
-				{{ form2.hidden_tag() }}
-				<p>
-	                {{ form2.addr1(type="text", id="regCompAddr1", class="formInput", placeholder="Address", required=True, **{"data-validation":"length", "data-validation-length":"5-100", "data-validation-error-msg":"Your Address Must Be Less Than 3 Characters Long!"}) }}
-	            </p>
-	            <p>
-	                {{ form2.addr2(type="text", maxlength="100", id="regCompAddr2", class="formInput", placeholder="Addr. Cont. (Optional)", **{"data-validation":"length", "data-validation-length":"max100", "data-validation-error-msg":"Your Address Must Be Less Than 3 Characters Long!"}) }}
-	            </p>
-	            <p>
-	                {{ form2.zipcode(type="text", maxlength="5", id="regCompZip", class="formInput", placeholder="Zipcode", required=True, **{"data-validation":"length", "data-validation-length":"5-5", "data-validation-error-msg":"Your Zipcode Must Be Exactly 5 Characters Long!"}) }}
-	            </p>
-	            <p>
-	                {{ form2.city(type="text", id="regCompCity", class="formInput", placeholder="City", required=True, readonly=True) }}
-	            </p>
-	            <p>
-	                {{ form2.state(type="text", id="regCompState", class="formInput", placeholder="State", required=True, readonly=True) }}
-	            </p>
-	            <p>
-	                {{ form2.phone(type="tel", id="regCompPhone", class="formInput", placeholder="Phone Number", required=True, **{"data-validation":"length custom", "data-validation-length":"12-12", "data-validation-regexp":"(^[0-9]{3}-[0-9]{3}-[0-9]{4})$", "data-validation-error-msg":"Your Phone Number Must Be In The Form XXX-XXX-XXXX!", "data-validation-help":"Please Use Hyphen Seperation (e.g. 312-123-4567)"}) }}
-	            </p>
-	            <p>
-	                {{ form2.email(type="email", id="regEmail", class="formInput", placeholder="Email Address", required=True, **{"data-validation":"email", "data-validation-error-msg":"Please Enter A Valid Email"}) }}
-	            </p>
-	            <p><input type="submit" class="formButton" value="Edit My Info!"></p>
-			</form>
-			<form action="", method="POST", enctype="multipart/form-data" name="imgUpload">
-    			{{ form.hidden_tag() }}
-        		<p>
-		    	    {{ formImg.image }}
-		       		<input type="submit" value="Upload">
-				</p>
-			</form>
+	<div class="headingTabs box">
+		<ul class="box">
+			<li class="active"><a href="#profile">Profile</a></li>
+			<li class=""><a href="#pings">Pings</a></li>
+			<li class=""><a href="#analytics">Analytics</a></li>
+			<li class=""><a href="#payments">Payments</a></li>
+		</ul>
+	</div>
+	<div class="innerContent box">
+		<div id="profile" class="compContent box">
+			<h2>Your Profile</h2>
+			<div class="profileImg box">
+				<img src="{{ g.company.logo }}" alt="{{ g.company.name}}'s' Logo" width="200" />
+				<br />
+				<button class="formButton" id="editLogo">Edit Logo</button>
+			</div>
+			<div class="profileAddr box">
+				<address>
+					<span class="name">{{ g.company.name }}</span><br />
+					{{ g.company.address1 }}<br />
+					{% if g.company.address2 %}
+						{{ g.company.address2 }}<br />
+					{% endif %}
+					{{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}<br />
+					<span class="rest">
+						{{ g.company.phone }}<br />
+						{{ g.company.email }}
+					</span>
+				</address>
+				<br />
+				<button class="formButton" id="editInfo">Edit Info</button>
+			</div>
+			<div id="mapAddr">
+				{{ g.company.address1 }} {% if g.company.address2 %} {{ g.company.address2 }} {% endif %} {{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}
+			</div>
+			<div class="googleMap box" id="googleMap"></div>
+			<div class="companyEditInfo overlay">
+				<div class="overlaySolid">
+					<span class="overlayClose">X</span>
+					<h3>Edit Your Info</h3>
+					<form id="companyEdit" class="form" action="" method="POST" name="companyEdit">
+						{{ form2.hidden_tag() }}
+						<p>
+							{{ form2.addr1(type="text", id="regCompAddr1", class="formInput", placeholder="Address", required=True, **{"data-validation":"length", "data-validation-length":"5-100", "data-validation-error-msg":"Your Address Must Be More Than 5 Characters Long!"}) }}
+						</p>
+						<p>
+							{{ form2.addr2(type="text", maxlength="100", id="regCompAddr2", class="formInput", placeholder="Addr. Cont. (Optional)", **{"data-validation":"length", "data-validation-length":"max100", "data-validation-error-msg":"Your Address Must Be Less Than 100 Characters Long!"}) }}
+						</p>
+						<p>
+							{{ form2.zipcode(type="text", maxlength="5", id="regCompZip", class="formInput", placeholder="Zipcode", required=True, **{"data-validation":"length", "data-validation-length":"5-5", "data-validation-error-msg":"Your Zipcode Must Be Exactly 5 Characters Long!"}) }}
+						</p>
+						<p>
+							{{ form2.city(type="text", id="regCompCity", class="formInput", placeholder="City", required=True, readonly=True) }}
+						</p>
+						<p>
+							{{ form2.state(type="text", id="regCompState", class="formInput", placeholder="State", required=True, readonly=True) }}
+						</p>
+						<p>
+							{{ form2.phone(type="tel", id="regCompPhone", class="formInput", placeholder="Phone Number", required=True, **{"data-validation":"length custom", "data-validation-length":"12-12", "data-validation-regexp":"(^[0-9]{3}-[0-9]{3}-[0-9]{4})$", "data-validation-error-msg":"Your Phone Number Must Be In The Form XXX-XXX-XXXX!", "data-validation-help":"Please Use Hyphen Seperation (e.g. 312-123-4567)"}) }}
+						</p>
+						<p>
+							{{ form2.email(type="email", id="regEmail", class="formInput", placeholder="Email Address", required=True, **{"data-validation":"email", "data-validation-error-msg":"Please Enter A Valid Email"}) }}
+						</p>
+						<p><input type="submit" class="formButton" value="Edit My Info!"></p>
+					</form>
+				</div>
+			</div>
+			<div class="companyEditLogo overlay">
+				<div class="overlaySolid">
+					<span class="overlayClose">X</span>
+					<h3>Add A New Logo</h3>
+					<img src="{{ g.company.logo }}" alt="{{ g.company.name}}'s Current Logo" width="125" />
+					<form action="" method="POST" enctype="multipart/form-data" name="imgUpload">
+						{{ form.hidden_tag() }}
+						<p>
+							{{ formImg.image }}
+							<input class="formButton" type="submit" value="Upload">
+						</p>
+					</form>
+				</div>
+			</div>
 		</div>
-		<div id="mapAddr" style="display:none;">
-			{{ g.company.address1 }} {% if g.company.address2 %} {{ g.company.address2 }} {% endif %} {{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}
+		<div id="pings" class="compContent box">
+			<h2>Manage Your Pings!</h2>
+			<div class="addPings box">
+				<h3>Add A Ping!</h3>
+				<form id="addPing" class="form box" action="" method="POST" role="form" name="addPing">
+					{{ form.hidden_tag() }}
+					<div class="pingsLeft box">
+						{{ form.message(maxlength="150", cols="50", rows="6", id="pingMessage", class="formInput", placeholder="Your Ping!", required=True, **{"data-validation":"length", "data-validation-length":"max150", "data-validation-error-msg":"Your Pings Must Be Less Than 150 Characters!"}) }}
+					</div>
+					<div class="pingsRight box">
+						Start Time: {{ form.start(id="pingStart", class="formInput", required=True, **{"type":"datetime-local"}) }}
+						End Time: {{ form.end(id="pingEnd", class="formInput", required=True, **{"type":"datetime-local"}) }}
+						<input type="submit" class="formButton" value="Add A Ping!" />
+					</div>
+				</form>
+			</div>
+			<div class="showPings box">
+				<span>Current Pings:</span>
+				{% for ping in g.company.current_pings()[::-1] %}
+					<p>{{ ping.message }} - from {{ ping.startTime }} to {{ ping.endTime }}</p>
+				{% endfor %}
+			</div>
+			<div class="showPings box">
+				<span class="showPings">Previous Pings:</span>
+				{% for ping in g.company.pings %}
+					<p>{{ ping.message }} - {{ ping.endTime }}</p>
+				{% endfor %}
+			</div>
 		</div>
-		<div class="googleMap" id="googleMap" style="height:200px;width:200px;"></div>
-	</p>
-	<div>
-		<form id="addPing" class="form" action="" method="POST" role="form" name="addPing">
-    	{{ form.hidden_tag() }}
-        <fieldset>
-            <legend>Add A Ping!</legend>
-            <p>
-            	Message: {{ form.message(type="text", maxlength="150", id="pingMessage", class="formInput", placeholder="Your Ping!", required=True, **{"data-validation":"length", "data-validation-length":"max150", "data-validation-error-msg":"Your Pings Must Be Less Than 150 Characters!"}) }}
-            </p>
-            <p>
-            	Start Time: {{ form.start(id="pingStart", class="formInput", required=True, **{"type":"datetime-local"}) }}
-            </p>
-            <p>
-            	End Time: {{ form.end(id="pingEnd", class="formInput", required=True, **{"type":"datetime-local"}) }}
-            </p>
-            <p><input type="submit" class="formButton" value="Add A Ping!"></p>
-        </fieldset>
+		<div id="analytics" class="compContent box">
+			<h2>Analytics To Come. Check Back Soon!</h2>
+		</div>
+		<div id="payments" class="compContent box">
+			<h2>Your Current Invoice and Past Receipts</h2>
+			<div>
+				<form action="/charge" method="POST">
+					<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}" data-description="Flask Test Charge" data-amount="2000" data-name="Demo Site"></script>
+				</form>
+			</div>
+		</div>
 	</div>
-	<div>
-		<strong>Pings:</strong>
-		{% for ping in g.company.current_pings()[::-1] %}
-			<p>{{ ping.message }} - from {{ ping.startTime }} to {{ ping.endTime }}</p>
-		{% endfor %}
-	</div>
-	<div>
-		<form action="/charge" method="POST">
-		  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}" data-description="Flask Test Charge" data-amount="2000" data-name="Demo Site" data-description="2 widgets ($5.00)">
-		  </script>
-		</form>
-	</div>
-	<a href="logout">Log Out?</a>
 
 {% endblock %}

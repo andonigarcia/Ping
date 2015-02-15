@@ -306,3 +306,251 @@ span.help {
     }
 }
 
+/* Tabs */
+.headingTabs{
+    font-family: 'Lobster Two', times, serif;
+    height: 50px;
+    width: 100%;
+}
+.headingTabs ul{
+    border-bottom: 1px solid #ac399d;
+    display: inline-block;
+    margin: 0;
+    padding: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+.headingTabs ul li{
+    background: #eee;
+    border: 1px solid #aaa;
+    border-bottom-color: #eee;
+    border-radius: 5px 5px 0 0;
+    display: inline-block;
+    list-style: none;
+    margin: 0 5px;
+    padding: 3px 0;
+    text-align: center;
+    width: 125px;
+}
+.headingTabs ul li.active{
+    background: white;
+    border-color: #ac399d;
+    border-bottom: 2px solid white;
+    margin-bottom: -1px;
+}
+.headingTabs ul li:hover{
+    border-color: #ac399d;
+    border-bottom-color: #eee;
+    cursor: pointer;
+}
+.headingTabs ul li.active:hover{
+    border-color: #ac399d;
+    border-bottom: 2px solid white;
+    cursor: default;
+}
+.headingTabs a, .headingTabs a:visited, .headingTabs a:hover, .headingTabs a:active{
+    color: #ac399d;
+    cursor: inherit;
+    text-decoration: none;
+}
+
+/* Company Page */
+.innerContent{
+    margin: 0 auto;
+    width: 90%;
+}
+.compContent{
+    display: none;
+    width: 100%;
+}
+#profile{
+    display: inline-block;
+}
+.compContent h2{
+    font-family: 'Lobster Two', times, serif;
+    font-size: 32px;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* Profile Tab */
+
+#profile .profileImg{
+    display: block;
+    float: left;
+    text-align: center;
+    padding: 0 auto;
+    width: 33.3%;
+}
+.profileImg img{
+    width: 100%;
+}
+#profile .profileAddr{
+    display: block;
+    float: left;
+    text-align: center;
+    padding: 0 auto;
+    width: 33.3%;
+}
+.profileAddr address{
+    font-style: normal;
+}
+.profileAddr span.name{
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 45px;
+}
+.profileAddr span.rest{
+    font-size: 16px;
+}
+#profile .googleMap{
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    display: block;
+    float: left;
+    padding: 0 auto;
+    min-height: 200px;
+        height: 100%;
+    width: 33.3%;
+}
+
+#profile .companyEditInfo{
+    display: none;
+}
+#profile .companyEditLogo{
+    display: none;
+}
+#profile #mapAddr{
+    display: none;
+}
+
+/* Pings Tab */
+
+#pings .addPings{
+    background: #eee;
+    border: 1px solid #ac399d;
+    border-radius: 6px;
+    padding: 0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+#pings .addPings h3{
+    text-align: center;
+}
+#pings .addPings form{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.addPings form .pingsLeft{
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 50%;
+}
+.addPings form .pingsLeft textarea{
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    margin: 9% 5px 0 40px;
+    padding: 6px 5px;
+    width: 100%;
+}
+.addPings form .pingsRight{
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 50%;
+}
+.addPings form .pingsRight .formInput{
+    min-width: 200px;
+}
+.showPings{
+    width: 90%
+}
+.showPings span{
+    font-family: 'Lobster Two', serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+.showPings p{
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Payments Tab */
+#payments{
+    text-align: center;
+}
+
+/* Overlay/Popups */
+
+.overlay{
+    background: rgba(0,0,0,0.8);
+    height: 100%;
+    left: 0;   
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.overlay .overlaySolid{
+    background: white;
+    border: 2px solid #888;
+    border-radius: 6px;
+    left: 33%;
+    padding: 0 0 15px 0;
+    position: fixed;
+    top: 15%;
+    width: 33%;
+    z-index: 101;
+}
+.overlaySolid h3{
+    text-align: center;
+    text-decoration: underline;
+}
+.overlaySolid .formInput{
+    width: 180px;
+}
+.overlayClose{
+    color: black;
+    position: relative;
+    top: 10px;
+    left: 92%;
+    margin: 5px 5px 0 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+.companyEditLogo .overlaySolid img{
+    border: 1px solid #ddd;
+    margin: 20px;
+    float: left;
+    height: auto;
+    width: 33%;
+}
+.companyEditLogo .overlaySolid form{
+    display: block;
+    float: left;
+    width: 45%;
+    padding-left: 5px;
+    text-align: center;
+}
+.companyEditLogo .overlaySolid form input[type="file"]{
+    width: 100%;
+}
+
+/* Flash Messages */
+.flashError{
+    background: #ff9e9e;
+    color: black;
+    font-family: 'Roboto', times, serif;
+    font-size: 16px;
+    margin: 10px auto 15px auto;
+    padding: 10px;
+    text-align: center;
+    width: 80%;
+}

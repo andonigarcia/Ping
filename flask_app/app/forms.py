@@ -21,7 +21,7 @@ class CompanyRegisterForm(Form):
 	pwd = StringField('CompanyPwd', validators = [DataRequired()])
 
 class PingForm(Form):
-	message = StringField('pingMessage', validators = [DataRequired()])
+	message = TextAreaField('pingMessage', validators = [DataRequired()])
 	start = StringField('pingStart', validators = [DataRequired()])
 	end = StringField('pingEnd', validators = [DataRequired()])
 
