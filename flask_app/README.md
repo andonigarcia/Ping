@@ -18,10 +18,10 @@ In order to set-up and run the Flask server:
 9. Navigate your browser to `localhost:5000`
 10. If you are testing the Stripe payments, the test credentials are: Credit card number: `4242 4242 4242 4242`, with any CVC and expiry date in the future.
 
-* Note, in order to deploy and run on a dedicated network, you must change line 3 of run.py to `app.run(debug = False, host='0.0.0.0')`
+* Note, in order to deploy and run on a dedicated network, either execute `runNet.py` or change the host of `runNet.py` to your desired host IP.
 
 ## Still Todo:
-Updated - 2/15/15 - Andoni Garcia
+Updated - 3/3/15 - Andoni Garcia
 
 1. Company Page:
   * Analytics and Payments tabs
@@ -30,7 +30,7 @@ Updated - 2/15/15 - Andoni Garcia
   * Make responsive
   * When uploading new logo, integrate a preview
   * Update/refine Pings models
-2. Errors:
+2. Errors:-+
   * Google Maps:
     Not found addresses/problems with Geocode are not handled
 3. CSS:
@@ -52,5 +52,17 @@ Updated - 2/15/15 - Andoni Garcia
   * Create a variable payment strucutre and really solidify the CSS/HTML for paying.
 7. Server:
   * Set up a LAMP stack. Deploy to a domain.
+8. From live test, check the following:
+  * Png and jpg image support.
+  * Registration corner cases
+  * Do not underline subheaders for the company page
+  * Switch Lobster Two to Philosopher
+
+---
+iOS Integration:
+
+1. Finish Views
+2. Make MVC comprehensive. Maybe seperate repositories.
+3. Attach MVC to swift files.
 
 -AMG

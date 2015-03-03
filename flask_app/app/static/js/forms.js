@@ -17,11 +17,7 @@ $("form").each(function(){
                         isEmpty = true;
                     }
                 });
-                if (!isEmpty) {
-                    $(this).add('.formButton').removeAttr('disabled');
-                } else {
-                    $(this).add('.formButton').attr('disabled', 'disabled');
-                }
+                $(this).add('.formButton').removeAttr('disabled');
             }
         }, 250);
     });

@@ -65,3 +65,42 @@ class Ping(db.Model):
 
 	def __repr__(self):
 		return '<Ping %r>' % (self.message)
+
+class User(db.Model):
+	id = db.Column(db.Integer, primary_key = True)
+	username = db.Column(db.String(150))
+	email = db.Column(db.String(150), index = True, unique = True)
+	password = db.Column(db.String(64))
+	timestamp = db.Column(db.DateTime)
+	
+	def is_authenticated(self):
+		return True
+
+	def is_active(self):
+		return True
+
+	def is_anonymous(self):
+		return False
+
+	def get_id(self):
+		try:
+			return unicode(self.id)  # for Python 2
+		except NameError:
+			return str(self.id)  # for Python 3
+
+	def check_password(self, string):
+		string += SALT
+		tmpCheck = sha256(string).hexdigest()
+		if tmpCheck == self.password:
+			return True
+		else:
+			return False
+
+	def add_password(self, string):
+		string += SALT
+		pwd = sha256(string).hexdigest()
+		self.password = pwd
+		return True
+
+	def __repr__(self):
+		return '<User %r>' % (self.email)

@@ -36,3 +36,13 @@ class CompanyEditForm(Form):
 
 class ImageUpload(Form):
 	image = FileField('companyLogo', validators = [DataRequired()])
+
+class UserLoginForm(Form):
+	email = StringField('Email', validators = [DataRequired()])
+	pwd = StringField('Password', validators = [DataRequired()])
+
+class UserRegisterForm(Form):
+	name = StringField('Username', validators = [DataRequired()])
+	email = StringField('Email', validators = [DataRequired()])
+	pwd = StringField('Password', validators = [DataRequired()])
+	pwd2 = StringField('RetypePassword', validators = [DataRequired()])
