@@ -240,8 +240,12 @@ There are eight core API endpoints. Most of these require authentication, and wi
 	}
 ```
 
+## Change Log
+
+**v0.1** - Initial release.
+
 ## Still Todo:
-Updated - 3/5/15 - Andoni Garcia
+Updated - 3/6/15 - Andoni Garcia
 
 ### Web App
 
@@ -292,7 +296,6 @@ Updated - 3/5/15 - Andoni Garcia
   * A LOT of company-pings relationship functionality
 3. iOS implementation
   * JSON responses, proper HTTP requests, handling
-4. Documentation!
-5. Testing!
+4. Testing!
 
 -AMG

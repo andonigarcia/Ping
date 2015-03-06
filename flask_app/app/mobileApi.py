@@ -1,7 +1,7 @@
 from app import app, db, auth
 from datetime import datetime
 import errno
-from flask import abort, flash, g, jsonify, redirect, render_template, request, session, url_for, send_from_directory
+from flask import abort, flash, g, jsonify, make_response, redirect, render_template, request, session, url_for, send_from_directory
 from flask.ext.login import current_user, login_required, login_user, logout_user
 from .forms import UserLoginForm, UserRegisterForm
 import os
@@ -15,25 +15,26 @@ def verify_register(name, email, age, email_check, password = True):
 	exp1 = re.compile(r"[^a-zA-Z\._\- ]")
 	match = re.search(exp1, name)
 	if match:
-		return "Your Name is invalid. We only allow letters, spaces and some punctuation."
+		return False
 	exp2 = re.compile(r"[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\.[a-zA-Z0-9_]+")
 	if age < 12 or age > 120:
-		return "Your Age is invalid. Must be older than 12 years old."
+		return False
 	if password != True:
 		if len(password) < 6:
-			return "Your Password must be at least 6 characters long."
+			return False
 	match = re.search(exp2, email)
 	if not match:
-		return "Your Email Address is invalid. Please check to make sure you entered it correctly."
+		return False
 	if email_check:
 		user = User.query.filter_by(email = email).first()
 		if user is not None:
-			return "This Email Address is already registered. Please register with a new one or login with this current one."
+			return False
 	return True
 
 def get_deals(latlong):
 	return None
 
+# Authentication Decorators
 @auth.verify_password
 def verify_password(email, password):
 	# Works because passwords must be 6 chars by client-side verification
@@ -49,6 +50,10 @@ def verify_password(email, password):
 			return False
 		g.user = user
 		return True
+
+@auth.error_handler
+def unauthorized():
+	return make_response(jsonify({'error': 'Unauthorized Access'}), 401)
 
 # Returns Current Version's URI
 @app.route('/mobile/api', methods = ['GET'])
@@ -69,9 +74,8 @@ def ApiRegister():
 	email = request.json.get('email')
 	age = request.json.get('age')
 	password = request.json.get('password')
-	error = verify_register(username, email, age, True, password)
-	if error != True:
-		abort(400, error)
+	if not verify_register(username, email, age, True, password):
+		return make_response(jsonify({'error':'Bad Request'}), 400)
 	user = User(username = username, email = email, age = age)
 	user.add_password(password)
 	db.session.add(user)
@@ -84,7 +88,7 @@ def ApiRegister():
 @auth.login_required
 def ApiGetUser(id):
 	if g.user.id != id:
-		abort(403)
+		return make_response(jsonify({'error':'Forbidden'}), 403)
 	username = g.user.username
 	email = g.user.email
 	age = g.user.age
@@ -95,17 +99,15 @@ def ApiGetUser(id):
 @auth.login_required
 def ApiUpdateUser(id):
 	if g.user.id != id:
-		print(g.user.id, id)
-		abort(403)
+		return make_response(jsonify({'error':'Forbidden'}), 403)
 	username = request.json.get('name')
 	email = request.json.get('email')
 	age = request.json.get('age')
 	email_check = True
 	if email == g.user.email:
 		email_check = False
-	error = verify_register(username, email, age, email_check)
-	if error != True:
-		abort(400, error)
+	if not verify_register(username, email, age, email_check):
+		return make_response(jsonify({'error':'Bad Request'}), 400)
 	g.user.username = username
 	g.user.email = email
 	g.user.age = age
@@ -122,10 +124,10 @@ def ApiUpdateUser(id):
 @auth.login_required
 def ApiUploadMap(id):
 	if g.user.id != id:
-		abort(403)
+		return make_response(jsonify({'error':'Forbidden'}), 403)
 	latlong = request.json.get('location')
 	if latlong is None or len(latlong) != 2:
-		abort(400)
+		return make_response(jsonify({'error':'Bad Request'}), 400)
 	deals = get_deals(latlong)
 	return jsonify({'deals': deals}), 200
 
@@ -134,18 +136,19 @@ def ApiUploadMap(id):
 @auth.login_required
 def ApiCompanyPage(id, companyid):
 	if g.user.id != id:
-		abort(403)
+		return make_response(jsonify({'error':'Forbidden'}), 403)
 	company = Company.query.get(companyid)
 	if not company:
-		abort(400)
+		return make_response(jsonify({'error':'Bad Request'}), 400)
 	deal = company.get_deal()
 	return jsonify({'deal': deal}), 200
 
+# Where Like/Dislike Deal Should Route To
 @app.route('/mobile/api/v0.1/users/<int:id>/map/<int:companyid>', methods = ['PUT'])
 @auth.login_required
 def ApiPreferenceUpdate(id, companyid):
 	if g.user.id != id:
-		abort(403)
+		return make_response(jsonify({'error':'Forbidden'}), 403)
 	like = request.json.get('relevant')
 	g.user.update_preference(companyid, like)
 	db.session.add(g.user)
