@@ -73,12 +73,6 @@ class User(db.Model):
 	age = db.Column(db.Integer, index = True)
 	timestamp = db.Column(db.DateTime)
 
-	def get_id(self):
-		try:
-			return unicode(self.id)  # for Python 2
-		except NameError:
-			return str(self.id)  # for Python 3
-
 	def check_password(self, string):
 		if pwd_context.verify(string, self.password):
 			return True
@@ -97,7 +91,7 @@ class User(db.Model):
 	def verify_token(token):
 		serial = Serializer(app.config['SECRET_KEY'])
 		try:
-			response = s.loads(token)
+			response = serial.loads(token)
 		except SignatureExpired:
 			return None
 		except BadSignature:
