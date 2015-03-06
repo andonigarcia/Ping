@@ -1,6 +1,7 @@
 import os
 from config import basedir, ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD, STRIPE_KEYS
 from flask import Flask
+from flask.ext.httpauth import HTTPBasicAuth
 from flask.ext.login import LoginManager
 from flask.ext.mail import Mail
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -10,6 +11,7 @@ import stripe
 # Basic Set-Up
 app = Flask(__name__)
 app.config.from_object('config')
+auth = HTTPBasicAuth()
 db = SQLAlchemy(app)
 lm = LoginManager()
 lm.init_app(app)

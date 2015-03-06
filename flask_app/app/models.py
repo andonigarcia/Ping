@@ -1,7 +1,7 @@
 from app import app, db
-from config import SALT
 from datetime import datetime
-from hashlib import sha256
+from itsdangerous import BadSignature, SignatureExpired, TimedJSONWebSignatureSerializer as Serializer
+from passlib.apps import custom_app_context as pwd_context
 import re
 import sys
 
@@ -38,18 +38,17 @@ class Company(db.Model):
 	def current_pings(self):
 		return Ping.query.filter(Ping.company_id == self.id).filter(Ping.endTime > datetime.utcnow())
 
+	def get_deal(self):
+		return None
+
 	def check_password(self, string):
-		string += SALT
-		tmpCheck = sha256(string).hexdigest()
-		if tmpCheck == self.password:
+		if pwd_context.verify(string, self.password):
 			return True
 		else:
 			return False
 
 	def add_password(self, string):
-		string += SALT
-		pwd = sha256(string).hexdigest()
-		self.password = pwd
+		self.password = pwd_context.encrypt(string)
 		return True
 
 	def __repr__(self):
@@ -71,16 +70,8 @@ class User(db.Model):
 	username = db.Column(db.String(150))
 	email = db.Column(db.String(150), index = True, unique = True)
 	password = db.Column(db.String(64))
+	age = db.Column(db.Integer, index = True)
 	timestamp = db.Column(db.DateTime)
-	
-	def is_authenticated(self):
-		return True
-
-	def is_active(self):
-		return True
-
-	def is_anonymous(self):
-		return False
 
 	def get_id(self):
 		try:
@@ -89,18 +80,39 @@ class User(db.Model):
 			return str(self.id)  # for Python 3
 
 	def check_password(self, string):
-		string += SALT
-		tmpCheck = sha256(string).hexdigest()
-		if tmpCheck == self.password:
+		if pwd_context.verify(string, self.password):
 			return True
 		else:
 			return False
 
 	def add_password(self, string):
-		string += SALT
-		pwd = sha256(string).hexdigest()
-		self.password = pwd
+		self.password = pwd_context.encrypt(string)
 		return True
+
+	def generate_token(self, expiration = 60 * 60 * 24 * 3):  # 3 Day Token
+		serial = Serializer(app.config['SECRET_KEY'], expires_in = expiration)
+		return serial.dumps({'id': self.id})
+
+	@staticmethod
+	def verify_token(token):
+		serial = Serializer(app.config['SECRET_KEY'])
+		try:
+			response = s.loads(token)
+		except SignatureExpired:
+			return None
+		except BadSignature:
+			return None
+		user = User.query.get(response['id'])
+		if user is None:
+			return None
+		else:
+			return user
+
+	def update_preference(self, companyid, like):
+		if like:
+			pass
+		else:
+			pass
 
 	def __repr__(self):
 		return '<User %r>' % (self.email)

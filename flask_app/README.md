@@ -21,7 +21,9 @@ In order to set-up and run the Flask server:
 * Note, in order to deploy and run on a dedicated network, either execute `runNet.py` or change the host of `runNet.py` to your desired host IP.
 
 ## Still Todo:
-Updated - 3/3/15 - Andoni Garcia
+Updated - 3/5/15 - Andoni Garcia
+
+### Web App
 
 1. Company Page:
   * Analytics and Payments tabs
@@ -30,7 +32,7 @@ Updated - 3/3/15 - Andoni Garcia
   * Make responsive
   * When uploading new logo, integrate a preview
   * Update/refine Pings models
-2. Errors:-+
+2. Errors:
   * Google Maps:
     Not found addresses/problems with Geocode are not handled
 3. CSS:
@@ -58,11 +60,19 @@ Updated - 3/3/15 - Andoni Garcia
   * Do not underline subheaders for the company page
   * Switch Lobster Two to Philosopher
 
----
-iOS Integration:
+### REST API
 
-1. Finish Views
-2. Make MVC comprehensive. Maybe seperate repositories.
-3. Attach MVC to swift files.
+1. API Functionality:
+  * Delete old tokens. Look into how to do this.
+  * get_deals implementation!
+  * Move most functionality to models (oops, breaking the MVC contract. Fuck you patriarchy!)
+2. Models Functionality:
+  * Users.update_preferences
+  * Company.get_deal
+  * A LOT of company-pings relationship functionality
+3. iOS implementation
+  * JSON responses, proper HTTP requests, handling
+4. Documentation!
+5. Testing!
 
 -AMG
