@@ -181,76 +181,96 @@ There are eight core API endpoints. Most of these require authentication, and wi
 
     Gets current deals to populate a map UI.  
     This endpoint requires the following JSON body: `{'location': {'lat':LATITUDE, 'lng':LONGITUDE}}`, and requires authentication in the header. The latlong should be the user's center coordinates.  
-    On success, it returns a status code of 200, with a JSON response of: `{'deal': LIST_OF_DEALS}`.  Each element in the LIST_OF_DEALS includes a JSON body, structured: `{'info':COMP_INFO, 'latlong':{'lat':LATITUDE, 'lng':LONGITUDE}}`.
+    On success, it returns a status code of 200, with a JSON response of: `{'deal': LIST_OF_DEALS}`.  Each element in the LIST_OF_DEALS includes a JSON body, structured: `{'deal':DEAL_MESSAGE, 'id':UNIQUE_COMPANY_ID, 'info':COMP_INFO, 'latlong':{'lat':LATITUDE, 'lng':LONGITUDE}}`.
     On failure, it returns either a status code 400 or a status code 403 depending on the failure.
 
 ```
 
-    $ curl -u andoni@uchicago.edu:password -i -X GET -H "Content-Type: application/json" -d '{"location":{"lat":41.78992, "lng":-87.59248}}' http://localhost:5000/mobile/api/v0.1/users/1/map
-    HTTP/1.0 200 OK
-    Content-Type: application/json
-    Content-Length: 813
-    Server: Werkzeug/0.10 Python/2.7.5
-    Date: Sat, 07 Mar 2015 01:58:12 GMT
+  $ curl -u eyJhbGciOiJIUzI1NiIsImV4cCI6MTQyNTk1Nzc1MSwiaWF0IjoxNDI1Njk4NTUxfQ.eyJpZCI6MX0.3rYg0g1sZLtwZkbbFImscmYz7UmvAS0dd1CEnVDUDOw:token -i -X GET -H "Content-Type: application/json" -d '{"location":{"lat":41.78992, "lng":-87.59248}}' http://localhost:5000/mobile/api/v0.1/users/1/map
+  HTTP/1.0 200 OK
+  Content-Type: application/json
+  Content-Length: 921
+  Server: Werkzeug/0.10 Python/2.7.5
+  Date: Sat, 07 Mar 2015 03:19:30 GMT
 
-    {
-      "deals": [
-        {
-          "info": {
-            "address1": "1358 E. 58th St.",
-            "address2": "Apt. #1",
-            "city": "Chicago",
-            "logo": "/static/img/companies/1/logo.jpg?v=5681",
-            "name": "Andoni Inc.",
-            "phone": "760-845-8667",
-            "state": "IL",
-            "zipcode": "60637"
-          },
-          "latlong": {
-            "lat": 41.789916,
-            "lng": -87.592457
-          }
+  {
+    "deals": [
+      {
+        "deal": "TEEESSSTTTTING!",
+        "id": 1,
+        "info": {
+          "address1": "1358 E. 58th St.",
+          "address2": "Apt. #1",
+          "city": "Chicago",
+          "logo": "/static/img/companies/1/logo.jpg?v=5681",
+          "name": "Andoni Inc.",
+          "phone": "760-845-8667",
+          "state": "IL",
+          "zipcode": "60637"
         },
-        {
-          "info": {
-            "address1": "1174 E 55th St.",
-            "address2": "",
-            "city": "Chicago",
-            "logo": "/static/img/companies/2/logo.png?v=1668",
-            "name": "Starbucks",
-            "phone": "111-222-3333",
-            "state": "IL",
-            "zipcode": "60615"
-          },
-          "latlong": {
-            "lat": 41.7951856,
-            "lng": -87.59674179999999
-          }
+        "latlong": {
+          "lat": 41.789916,
+          "lng": -87.592457
         }
-      ]
-    }
-
+      },
+      {
+        "deal": "50% Now until tomorrow!",
+        "id": 2,
+        "info": {
+          "address1": "1174 E 55th St.",
+          "address2": "",
+          "city": "Chicago",
+          "logo": "/static/img/companies/2/logo.png?v=1668",
+          "name": "Starbucks",
+          "phone": "111-222-3333",
+          "state": "IL",
+          "zipcode": "60615"
+        },
+        "latlong": {
+          "lat": 41.7951856,
+          "lng": -87.59674179999999
+        }
+      }
+    ]
+  }
 ```
 
   * **/mobile/api/v0.1/users/<int:id>/map/<int:companyid>** - GET
 
     Gets the information for a company's current deal. Meant to be used to populate a deal's page.  
     This endpoint does not require a body text, but does require authentication in the header.  
-    On success, it returns a status code of 200, with a JSON response of: `{'deal': DEAL}`, a DEAL consists of: `{'company_id': ID, 'logo': URI, 'address': ADDRESS, 'deal': DEAL, 'latlong': [latitude, longitude], 'phone': phone}`  
+    On success, it returns a status code of 200, with a JSON response of: `{'deal': DEAL}`, a DEAL consists of: `{'deal': DEAL_MESSAGE, 'id': UNIQUE_COMPANY_ID, 'info': COMPANY_INFO, 'latlong': {'lat': LATITUDE, 'lng': LONGITUDE}}`  
     On failure, it returns either a status code 400 or a status code 403 depending on the failure.
 
 ```
 
-	$ curl -u eyJhbGciOiJIUzI1NiIsImV4cCI6MTQyNTg5NzU2OCwiaWF0IjoxNDI1NjM4MzY4fQ.eyJpZCI6MX0.oMHHi1_7qFuOgQiYD6nhsOMRGNWHCX2E8shP1EVQcyI:token -i -X GET http://localhost:5000/mobile/api/v0.1/users/1/map/1
-	HTTP/1.0 200 OK
-	Content-Type: application/json
-	Content-Length: 18
-	Server: Werkzeug/0.10 Python/2.7.5
-	Date: Fri, 06 Mar 2015 10:47:10 GMT
-	
-	{
-	  "deal": null
-	}
+  $ curl -u eyJhbGciOiJIUzI1NiIsImV4cCI6MTQyNTk1Nzc1MSwiaWF0IjoxNDI1Njk4NTUxfQ.eyJpZCI6MX0.3rYg0g1sZLtwZkbbFImscmYz7UmvAS0dd1CEnVDUDOw:token -i -X GET -H "Content-Type: application/json" -d '{"location":{"lat":41.78992, "lng":-87.59248}}' http://localhost:5000/mobile/api/v0.1/users/1/map/2
+  HTTP/1.0 200 OK
+  Content-Type: application/json
+  Content-Length: 428
+  Server: Werkzeug/0.10 Python/2.7.5
+  Date: Sat, 07 Mar 2015 03:23:37 GMT
+
+  {
+    "deal": {
+      "deal": "50% Now until tomorrow!",
+      "id": 2,
+      "info": {
+        "address1": "1174 E 55th St.",
+        "address2": "",
+        "city": "Chicago",
+        "logo": "/static/img/companies/2/logo.png?v=1668",
+        "name": "Starbucks",
+        "phone": "111-222-3333",
+        "state": "IL",
+        "zipcode": "60615"
+      },
+      "latlong": {
+        "lat": 41.7951856,
+        "lng": -87.59674179999999
+      }
+    }
+  }
 ```
 
   * **/mobile/api/v0.1/users/<int:id>/map/<int:companyid>** - PUT
@@ -322,12 +342,10 @@ Updated - 3/6/15 - Andoni Garcia
 
 1. API Functionality:
   * Delete old tokens. Look into how to do this.
-  * get_deals implementation!
-  * Move most functionality to models (oops, breaking the MVC contract. Fuck you patriarchy!)
+  * Lat/long distance percision
 2. Models Functionality:
   * Users.update_preferences
-  * Company.get_deal
-  * A LOT of company-pings relationship functionality
+  * A lot of company-pings relationship functionality
 3. iOS implementation
   * JSON responses, proper HTTP requests, handling
 4. Testing!

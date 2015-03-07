@@ -27,7 +27,6 @@ def verifyRegistration(name, email, email_check, age, password = True):
 
 def get_deals(latlong, radius):
 	center = (latlong['lat'], latlong['lng'])
-	print(center)
 	return Company.nearby_companies(center, radius)
 
 # Authentication Decorators

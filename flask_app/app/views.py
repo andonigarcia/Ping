@@ -22,45 +22,31 @@ def try_login(email, password):
 		return False
 	if company.check_password(str(password)):
 		return True
-	else:
-		return False
+	return False
 
-def try_register(name, address1, address2, city, state, zipcode, phone, email, email_check):
-	if name is None or name == "" or address1 is None or address1 == "" or city is None or city == "" or state is None or state == "" or zipcode is None or zipcode == "" or phone is None or phone == "" or email is None or email == "":
-		return "One or more required fields is blank. Please check your responses and resubmit."
-	exp1 = re.compile(r"[^a-zA-Z0-9#'\._\-\,\\ ]")
-	match = re.search(exp1, name)
-	if match:
+def try_register(name, address1, address2, city, state, zipcode, phone, email, email_check, password = True):
+	if not Company.verify_name(name):
 		return "Your Company Name is invalid. We only allow numbers, letters, spaces and some punctuation."
-	match = re.search(exp1, address1)
-	if match:
+	if not Company.verify_addr1(address1):
 		return "Your Address 1 field is invalid. We only allow numbers, letters, spaces and some punctuation."
-	match = re.search(exp1, address2)
-	if match:
+	if not Company.verify_addr2(address2):
 		return "Your Address 2 field is invalid. We only allow numbers, letters, spaces and some punctuation."
-	exp2 = re.compile(r"[^a-zA-Z \-]")
-	match = re.search(exp2, city)
-	if match:
+	if not Company.verify_city(city):
 		return "Your City field is invalid. We only allow letters, spaces and hyphens. Please check your ZipCode."
-	match = re.search(exp2, state)
-	if match:
-		return "Your state field is invalid. We only allow letters, spaces and hyphens. Please check your ZipCode."
-	exp3 = re.compile(r"[^0-9]")
-	match = re.search(exp3, zipcode)
-	if match:
+	if not Company.verify_state(state):
+		return "Your state field is invalid. We only two letter State abbreviations. Please check your ZipCode."
+	if not Company.verify_zipcode(zipcode):
 		return "Your ZipCode is invalid. Please check to make sure you didn't enter the wrong Zip."
-	exp4 = re.compile(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}")
-	match = re.search(exp4, phone)
-	if not match:
+	if not Company.verify_phone(phone):
 		return "Your Phone Number does not match our specification. Please enter your 10 digit hyphenated Phone Number."
-	exp5 = re.compile(r"[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\.[a-zA-Z0-9_]+")
-	match = re.search(exp5, email)
-	if not match:
+	if not Company.verify_email(email):
 		return "Your Email Address is invalid. Please check to make sure you entered it correctly."
 	if email_check:
-		company = Company.query.filter_by(email = email).first()
-		if company is not None:
+		if not Company.verify_unique_email(email):
 			return "This Email Address is already registered. Please register with a new one or login with this current one."
+	if password != True:
+		if not Company.verify_password(password):
+			return "Your Password is invalid. Please make sure it is 6+ characters in length."
 	return True
 
 def try_post(message, start, end):
@@ -69,7 +55,6 @@ def try_post(message, start, end):
 	if end < start:
 		return "You can't have an End Time before your Start Time! Please correct this and resubmit your Ping!"
 	return True
-
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -144,17 +129,18 @@ def register():
 		zipcode = form.zipcode.data
 		phone = form.phone.data
 		email = form.email.data
-		isError = try_register(name, address1, address2, city, state, zipcode, phone, email, True)
+		password = form.pwd.data
+		isError = try_register(name, address1, address2, city, state, zipcode, phone, email, True, password)
 		if isError != True:
 			flash(isError)
 			return redirect(url_for('register'))
 		latlng = Company.verify_address(address1 + ', ' + city + ', ' + state + ' ' + zipcode)
 		if latlng == False:
-			flash("Address Could Not Be Google Maps Verified.")
+			flash("Address Could Not Be Verified via Google Maps.")
 			return redirect(url_for('register'))
 		else:
 			company = Company(name = name, address1 = address1, address2 = address2, city = city, state = state, zipcode = zipcode, phone = phone, email = email)
-			company.add_password(str(form.pwd.data))
+			company.add_password(password)
 			company.add_latlng(latlng)
 			company.timestamp = datetime.utcnow()
 			db.session.add(company)

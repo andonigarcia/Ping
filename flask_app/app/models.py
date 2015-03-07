@@ -27,6 +27,7 @@ class Company(db.Model):
 	logo = db.Column(db.String(100))
 	pings = db.relationship('Ping', backref = 'company', lazy = 'dynamic')
 
+	# Login Manager Initializations
 	def is_authenticated(self):
 		return True
 
@@ -36,18 +37,20 @@ class Company(db.Model):
 	def is_anonymous(self):
 		return False
 
+	# Generic Functionality
 	def get_id(self):
 		try:
 			return unicode(self.id)  # for Python 2
 		except NameError:
 			return str(self.id)  # for Python 3
 
-	def current_pings(self):
-		return Ping.query.filter(Ping.company_id == self.id).filter(Ping.endTime > datetime.utcnow())
+	def get_latlng(self):
+		return {'lat': self.latitude, 'lng':self.longitude}
 
-	def get_deal(self):
-		return None
+	def get_active_time(self):
+		return datetime.utcnow() - self.timestamp
 
+	# Password Functions
 	def check_password(self, string):
 		if pwd_context.verify(string, self.password):
 			return True
@@ -58,9 +61,105 @@ class Company(db.Model):
 		self.password = pwd_context.encrypt(string)
 		return True
 
+	# Ping Functionalities
+	def current_pings(self):
+		return Ping.query.filter(Ping.company_id == self.id).filter(Ping.endTime > datetime.utcnow())
+
+	def get_deal(self):
+		pings = self.current_pings().all()
+		print(pings)
+		if pings is None or not len(pings):
+			return False
+		deal = pings[0].message
+		return {'id': self.id, 'latlong': {'lat':self.latitude, 'lng':self.longitude}, 'info': {'name':self.name, 'address1':self.address1, 'address2':self.address2, 'city':self.city, 'state':self.state, 'zipcode':self.zipcode, 'phone':self.phone, 'logo':self.logo}, 'deal': deal}
+
 	def add_latlng(self, dic):
 		self.latitude = dic['lat']
 		self.longitude = dic['lng']
+		return True
+
+	# Center must be a tuple (lat, long) and radius be in miles
+	@staticmethod
+	def nearby_companies(center, radius):
+		latDist = float(radius) / 69
+		lngDist = abs(latDist / math.cos(center[0]))
+		arr = Company.query.filter(func.abs(Company.latitude - center[0]) < latDist).filter(func.abs(Company.longitude - center[1]) < lngDist).all()
+		return [x.get_deal() for x in arr if x.get_deal() is not False]
+
+	# Verification Functions
+	@staticmethod
+	def verify_name(name):
+		if name is None or len(name) < 3:
+			return False
+		if re.search(r"[^a-zA-Z0-9#'\._\-\,\\ ]", name):
+			return False
+		return True
+
+	@staticmethod
+	def verify_addr1(addr1):
+		if addr1 is None or len(addr1) < 3:
+			return False
+		if re.search(r"[^a-zA-Z0-9#'\._\-\,\\ ]", addr1):
+			return False
+		return True
+
+	@staticmethod
+	def verify_addr2(addr2):
+		if re.search(r"[^a-zA-Z0-9#'\._\-\,\\ ]", addr2):
+			return False
+		return True
+
+	@staticmethod
+	def verify_city(city):
+		if city is None or len(city) < 2:
+			return False
+		if re.search(r"[^a-zA-Z \-]", city):
+			return False
+		return True
+
+	@staticmethod
+	def verify_state(state):
+		if state is None or len(state) != 2:
+			return False
+		if re.search(r"[^A-Z]", state):
+			return False
+		return True
+
+	@staticmethod
+	def verify_zipcode(zipcode):
+		if zipcode is None or len(zipcode) != 5:
+			return False
+		if re.search(r"[^0-9]", zipcode):
+			return False
+		return True
+
+	@staticmethod
+	def verify_phone(phone):
+		if phone is None or len(phone) != 12:
+			return False
+		if not re.search(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}", phone):
+			return False
+		return True
+
+	@staticmethod
+	def verify_email(email):
+		if email is None or len(email) < 6:
+			return False
+		if not re.search(r"\S+@\S+\.[a-zA-Z]{2,}", email):
+			return False
+		return True
+
+	@staticmethod
+	def verify_unique_email(email):
+		company = Company.query.filter_by(email = email).first()
+		if company is not None:
+			return False
+		return True
+
+	@staticmethod
+	def verify_password(password):
+		if password is None or len(password) < 6:
+			return False
 		return True
 
 	@staticmethod
@@ -72,16 +171,6 @@ class Company(db.Model):
 		if response['status'] != "OK":
 			return False
 		return response['results'][0]['geometry']['location']
-
-	# Center must be a tuple (lat, long) and radius be in miles
-	@staticmethod
-	def nearby_companies(center, radius):
-		latDist = float(radius) / 69
-		lngDist = abs(latDist / math.cos(center[0]))
-		print(latDist, lngDist)
-		arr = Company.query.filter(func.abs(Company.latitude - center[0]) < latDist).filter(func.abs(Company.longitude - center[1]) < lngDist).all()
-		print(arr)
-		return [{'latlong': {'lat':x.latitude, 'lng':x.longitude}, 'info': 	{'name':x.name, 'address1':x.address1, 'address2':x.address2, 'city':x.city, 'state':x.state, 'zipcode':x.zipcode, 'phone':x.phone, 'logo':x.logo}} for x in arr]
 
 	def __repr__(self):
 		return '<Company %r>' % (self.email)
@@ -138,7 +227,7 @@ class User(db.Model):
 	def verify_email(email):
 		if email is None or len(email) < 6:
 			return False
-		if re.search(r"\S+@\S+\.[a-zA-Z]{2,}", email):
+		if not re.search(r"\S+@\S+\.[a-zA-Z]{2,}", email):
 			return False
 		return True
 
