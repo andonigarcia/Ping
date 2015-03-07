@@ -35,7 +35,7 @@
 				<button class="formButton" id="editInfo">Edit Info</button>
 			</div>
 			<div id="mapAddr">
-				{{ g.company.address1 }} {% if g.company.address2 %} {{ g.company.address2 }} {% endif %} {{ g.company.city }}, {{ g.company.state }} {{ g.company.zipcode }}
+				{{ g.company.latitude }} {{ g.company.longitude }}
 			</div>
 			<div class="googleMap box" id="googleMap"></div>
 			<div class="companyEditInfo overlay">

@@ -6,33 +6,29 @@ from flask.ext.login import current_user, login_required, login_user, logout_use
 from .forms import UserLoginForm, UserRegisterForm
 import os
 from .models import Company, User
+import math
 import random
 import re
 
-def verify_register(name, email, age, email_check, password = True):
-	if name is None or name == "" or email is None or email == "" or age is None or password is None or password == "":
-		return "One or more required fields is blank. Please check your responses and resubmit."
-	exp1 = re.compile(r"[^a-zA-Z\._\- ]")
-	match = re.search(exp1, name)
-	if match:
-		return False
-	exp2 = re.compile(r"[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\.[a-zA-Z0-9_]+")
-	if age < 12 or age > 120:
-		return False
-	if password != True:
-		if len(password) < 6:
-			return False
-	match = re.search(exp2, email)
-	if not match:
-		return False
+def verifyRegistration(name, email, email_check, age, password = True):
+	if not User.verify_username(name):
+		return "Name Must Include 2+ Letters, Spacing, or Punctuation."
+	if not User.verify_email(email):
+		return "Email Address Is Incorrect."
 	if email_check:
-		user = User.query.filter_by(email = email).first()
-		if user is not None:
-			return False
+		if not User.verify_unique_email(email):
+			return "Email Address Is Already Registered."
+	if not User.verify_age(age):
+		return "Users Must Be Older Than 12 Years Old."
+	if password != True:
+		if not User.verify_password(password):
+			return "Password Must Be 6+ Characters."
 	return True
 
-def get_deals(latlong):
-	return None
+def get_deals(latlong, radius):
+	center = (latlong['lat'], latlong['lng'])
+	print(center)
+	return Company.nearby_companies(center, radius)
 
 # Authentication Decorators
 @auth.verify_password
@@ -74,8 +70,9 @@ def ApiRegister():
 	email = request.json.get('email')
 	age = request.json.get('age')
 	password = request.json.get('password')
-	if not verify_register(username, email, age, True, password):
-		return make_response(jsonify({'error':'Bad Request'}), 400)
+	error = verifyRegistration(username, email, True, age, password)
+	if error != True:
+		return make_response(jsonify({'error':'Bad Request', 'message': error}), 400)
 	user = User(username = username, email = email, age = age)
 	user.add_password(password)
 	db.session.add(user)
@@ -106,13 +103,14 @@ def ApiUpdateUser(id):
 	email_check = True
 	if email == g.user.email:
 		email_check = False
-	if not verify_register(username, email, age, email_check):
-		return make_response(jsonify({'error':'Bad Request'}), 400)
+	error = verifyRegistration(username, email, email_check, age)
+	if error != True:
+		return make_response(jsonify({'error':'Bad Request', 'message':error}), 400)
 	g.user.username = username
 	g.user.email = email
 	g.user.age = age
 	password = request.json.get('password')
-	if password is not None and password != "" and len(password) >= 6:
+	if User.verify_password(password):
 		g.user.add_password(password)
 	db.session.add(g.user)
 	db.session.commit()
@@ -126,9 +124,9 @@ def ApiUploadMap(id):
 	if g.user.id != id:
 		return make_response(jsonify({'error':'Forbidden'}), 403)
 	latlong = request.json.get('location')
-	if latlong is None or len(latlong) != 2:
+	if latlong is None:
 		return make_response(jsonify({'error':'Bad Request'}), 400)
-	deals = get_deals(latlong)
+	deals = get_deals(latlong, 0.5)
 	return jsonify({'deals': deals}), 200
 
 # Where Company Page Should Route To

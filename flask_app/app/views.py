@@ -28,7 +28,7 @@ def try_login(email, password):
 def try_register(name, address1, address2, city, state, zipcode, phone, email, email_check):
 	if name is None or name == "" or address1 is None or address1 == "" or city is None or city == "" or state is None or state == "" or zipcode is None or zipcode == "" or phone is None or phone == "" or email is None or email == "":
 		return "One or more required fields is blank. Please check your responses and resubmit."
-	exp1 = re.compile(r"[^a-zA-Z0-9#\._\-\,\\ ]")
+	exp1 = re.compile(r"[^a-zA-Z0-9#'\._\-\,\\ ]")
 	match = re.search(exp1, name)
 	if match:
 		return "Your Company Name is invalid. We only allow numbers, letters, spaces and some punctuation."
@@ -148,9 +148,14 @@ def register():
 		if isError != True:
 			flash(isError)
 			return redirect(url_for('register'))
+		latlng = Company.verify_address(address1 + ', ' + city + ', ' + state + ' ' + zipcode)
+		if latlng == False:
+			flash("Address Could Not Be Google Maps Verified.")
+			return redirect(url_for('register'))
 		else:
 			company = Company(name = name, address1 = address1, address2 = address2, city = city, state = state, zipcode = zipcode, phone = phone, email = email)
 			company.add_password(str(form.pwd.data))
+			company.add_latlng(latlng)
 			company.timestamp = datetime.utcnow()
 			db.session.add(company)
 			db.session.commit()
@@ -192,12 +197,17 @@ def company():
 		if isError2 != True:
 			flash(isError2)
 			return redirect(url_for('company'))
+		latlng = Company.verify_address(address1 + ', ' + city + ', ' + state + ' ' + zipcode)
+		if latlng == False:
+			flash("Address Could Not Be Google Maps Verified.")
+			return redirect(url_for('register'))
 		else:
 			g.company.address1 = address1
 			g.company.address2 = address2
 			g.company.city = city
 			g.company.state = state
 			g.company.zipcode = zipcode
+			g.company.add_latlng(latlng)
 			g.company.phone = phone
 			g.company.email = email
 			db.session.add(g.company)
