@@ -63,6 +63,9 @@ class Company(db.Model):
 
 	# Ping Functionalities
 	def current_pings(self):
+		return Ping.query.filter(Ping.company_id == self.id).filter(Ping.endTime > datetime.utcnow()).filter(Ping.startTime < datetime.utcnow())
+
+	def active_pings(self):
 		return Ping.query.filter(Ping.company_id == self.id).filter(Ping.endTime > datetime.utcnow())
 
 	def get_deal(self):
@@ -181,6 +184,8 @@ class Ping(db.Model):
 	timestamp = db.Column(db.DateTime)
 	startTime = db.Column(db.DateTime)
 	endTime = db.Column(db.DateTime)
+	impressions = db.Column(db.Integer)
+	engagements = db.Column(db.Integer)
 	company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
 
 	def __repr__(self):

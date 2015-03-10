@@ -4,9 +4,10 @@ This is the private repository for working on the Flask App of Ping.
 ## Installation/Setup
 
 1. Install the newest version of [Python 2.7](https://www.python.org/downloads/).
-2. Download this source code and unzip it.
-3. In your terminal, change directories to the Ping root
-3. Run `setup.sh` to install the needed dependencies and virtualenv the application.
+2. Make sure [Pip](https://pip.pypa.io/en/latest/installing.html) is installed, by checking `pip --help`.
+3. `git clone https://github.com/andonigarcia/Ping.git`
+4. `cd Ping/flask_app`
+5. Run `setup.sh` to install the needed dependencies and virtualenv the application.
   * If you get an error on this step, you might have to manually install [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html).
 
 ## Running the Server
@@ -345,7 +346,6 @@ Updated - 3/6/15 - Andoni Garcia
   * Lat/long distance percision
 2. Models Functionality:
   * Users.update_preferences
-  * A lot of company-pings relationship functionality
 3. iOS implementation
   * JSON responses, proper HTTP requests, handling
 4. Testing!

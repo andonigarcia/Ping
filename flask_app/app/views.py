@@ -165,7 +165,7 @@ def company():
 			flash(isError)
 			return redirect(url_for('company'))
 		else:
-			ping = Ping(message = message, startTime = start, endTime = end)
+			ping = Ping(message = message, startTime = start, endTime = end, impressions = 0, engagements = 0)
 			ping.timestamp = datetime.utcnow()
 			ping.company = g.company
 			db.session.add(ping)
