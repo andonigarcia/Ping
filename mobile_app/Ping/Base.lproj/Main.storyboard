@@ -7,7 +7,7 @@
         <!--Navigation Controller-->
         <scene sceneID="R1w-DW-RJO">
             <objects>
-                <navigationController modalTransitionStyle="flipHorizontal" id="pGB-GY-GIk" customClass="NavigationController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="pGB-GY-GIk" customClass="NavigationController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHu-iE-RtK">
@@ -18,12 +18,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="Rd3-5B-MZt" kind="relationship" relationship="rootViewController" id="eVM-6T-2rl"/>
+                        <segue destination="ZHO-0w-iSM" kind="relationship" relationship="rootViewController" id="YgL-bD-t4C"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cic-X1-d62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-493.5" y="-805.5"/>
+            <point key="canvasLocation" x="-2834.5" y="71.5"/>
         </scene>
         <!--Landing-->
         <scene sceneID="1Wb-JS-FDP">
@@ -37,12 +37,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ping!" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Z8f-6c-eCT">
-                                <rect key="frame" x="19" y="146" width="336" height="144"/>
-                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="115"/>
-                                <color key="textColor" red="0.74994297450000003" green="0.076765818309999997" blue="0.66727210530000003" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Custom Deals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJA-xM-yI0">
                                 <rect key="frame" x="86" y="252" width="203" height="44"/>
                                 <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="28"/>
@@ -73,6 +67,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ping!" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Z8f-6c-eCT">
+                                <rect key="frame" x="19" y="152" width="336" height="144"/>
+                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="115"/>
+                                <color key="textColor" red="0.74994297450000003" green="0.076765818309999997" blue="0.66727210530000003" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -81,16 +81,17 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="KMn-RO-LIi"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYE-TD-ZXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="up" id="PQ7-ZD-Ftb">
                     <connections>
-                        <segue destination="ZHO-0w-iSM" kind="showDetail" id="XNg-s8-b5p"/>
+                        <segue destination="pGB-GY-GIk" kind="show" id="h7p-pa-G2d"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1485.5" y="27.5"/>
+            <point key="canvasLocation" x="-3303.5" y="71.5"/>
         </scene>
         <!--Login-->
         <scene sceneID="Ler-0a-Nu3">
@@ -104,19 +105,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Username" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Cms-fA-Zc1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Cms-fA-Zc1">
                                 <rect key="frame" x="89" y="191" width="197" height="30"/>
                                 <color key="tintColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HfP-1y-2pN">
-                                <rect key="frame" x="89" y="229" width="197" height="30"/>
-                                <color key="tintColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uh-1p-cJj">
                                 <rect key="frame" x="103" y="611" width="169" height="36"/>
@@ -126,7 +120,7 @@
                                     <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hb1-0s-qLy" kind="presentation" modalTransitionStyle="flipHorizontal" id="TYj-uP-QGH"/>
+                                    <segue destination="hb1-0s-qLy" kind="presentation" modalTransitionStyle="flipHorizontal" id="JD0-Sy-Wf8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="uuj-aM-3gI">
@@ -142,24 +136,35 @@
                                 <state key="normal" title="submit">
                                     <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <segue destination="pGB-GY-GIk" kind="showDetail" id="bd0-aw-Cc2"/>
-                                </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nPI-XV-pKh">
+                                <rect key="frame" x="177" y="324" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HfP-1y-2pN">
+                                <rect key="frame" x="89" y="229" width="197" height="30"/>
+                                <color key="tintColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="E1D-Ur-wnC"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="nPI-XV-pKh" id="q93-0m-fic"/>
+                        <outlet property="emailField" destination="Cms-fA-Zc1" id="qWg-yU-S9k"/>
                         <outlet property="newmemberButton" destination="5uh-1p-cJj" id="Dc5-T3-1CL"/>
                         <outlet property="passwordField" destination="HfP-1y-2pN" id="qNv-uP-eBR"/>
                         <outlet property="submitButton" destination="Kjt-hn-JmW" id="g8E-OW-Os7"/>
-                        <outlet property="usernameField" destination="Cms-fA-Zc1" id="737-9h-UCj"/>
+                        <segue destination="Rd3-5B-MZt" kind="show" identifier="submit" id="9rM-fP-nLv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIE-HO-xx1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-968.5" y="27.5"/>
+            <point key="canvasLocation" x="-2380.5" y="71.5"/>
         </scene>
         <!--Registration-->
         <scene sceneID="k9J-ZW-bTD">
@@ -179,56 +184,13 @@
                                 <color key="textColor" red="0.74994297450000003" green="0.076765818309999997" blue="0.66727210530000003" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="spE-Hx-eQu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="spE-Hx-eQu">
                                 <rect key="frame" x="89" y="191" width="197" height="30"/>
                                 <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Username" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2Kg-GI-ur2">
-                                <rect key="frame" x="89" y="229" width="197" height="30"/>
-                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yl1-fH-Prc">
-                                <rect key="frame" x="89" y="343" width="197" height="30"/>
-                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Age" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="A0z-Tc-Wi6">
-                                <rect key="frame" x="89" y="381" width="197" height="30"/>
-                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-gu-TbF">
-                                <rect key="frame" x="89" y="267" width="197" height="30"/>
-                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8gw-Hz-xe5">
-                                <rect key="frame" x="89" y="305" width="197" height="30"/>
-                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVR-1N-pdk">
-                                <rect key="frame" x="231" y="419" width="55" height="36"/>
-                                <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="24"/>
-                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <state key="normal" title="submit">
-                                    <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-vc-ikb">
                                 <rect key="frame" x="16" y="20" width="55" height="36"/>
                                 <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="24"/>
@@ -237,11 +199,52 @@
                                     <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fOK-Dy-YqH">
+                                <rect key="frame" x="177" y="324" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yl1-fH-Prc">
+                                <rect key="frame" x="89" y="305" width="197" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="A0z-Tc-Wi6">
+                                <rect key="frame" x="89" y="343" width="197" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-gu-TbF">
+                                <rect key="frame" x="89" y="229" width="197" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8gw-Hz-xe5">
+                                <rect key="frame" x="89" y="267" width="197" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVR-1N-pdk">
+                                <rect key="frame" x="231" y="381" width="55" height="36"/>
+                                <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="24"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="submit">
+                                    <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="fOK-Dy-YqH" id="a2I-J7-h6K"/>
                         <outlet property="ageField" destination="A0z-Tc-Wi6" id="Ie0-dH-oQK"/>
                         <outlet property="cancelButton" destination="4yf-vc-ikb" id="4xc-76-nrO"/>
                         <outlet property="emailField" destination="yl1-fH-Prc" id="eD2-ye-GXe"/>
@@ -249,18 +252,16 @@
                         <outlet property="passwordField" destination="Imd-gu-TbF" id="6vn-4w-W5h"/>
                         <outlet property="passwordreentryField" destination="8gw-Hz-xe5" id="Zma-2m-Z7U"/>
                         <outlet property="submitButton" destination="DVR-1N-pdk" id="pcG-gJ-2Rc"/>
-                        <outlet property="usernameField" destination="2Kg-GI-ur2" id="kgc-Pb-JMG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iML-t4-gWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-968.5" y="789.5"/>
+            <point key="canvasLocation" x="-2380.5" y="901.5"/>
         </scene>
         <!--Map-->
         <scene sceneID="iEO-pu-jpq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x60-2f-0f4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="Rd3-5B-MZt" customClass="Map" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="Rd3-5B-MZt" customClass="Map" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sei-j3-cx2"/>
                         <viewControllerLayoutGuide type="bottom" id="9fa-0q-tux"/>
@@ -269,98 +270,255 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Iso-Vo-RVe">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iso-Vo-RVe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Rd3-5B-MZt" id="f8s-1k-q1W"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="DP1-ur-ebQ">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="2i7-e9-Dbs">
-                            <color key="tintColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Ping!" id="DP1-ur-ebQ">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="2i7-e9-Dbs"/>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="C6V-8f-2uo">
                             <connections>
-                                <segue destination="ZHO-0w-iSM" kind="showDetail" id="zeN-z1-EGM"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="QZx-Xs-a4r">
-                            <color key="tintColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
-                            <connections>
-                                <segue destination="5pP-Wf-nzz" kind="show" id="shG-SP-cdX"/>
+                                <segue destination="lNL-8g-0Po" kind="show" id="yAF-h1-vkd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="logoutButton" destination="2i7-e9-Dbs" id="rFy-Pa-90K"/>
                         <outlet property="mapView" destination="Iso-Vo-RVe" id="AQl-Wx-04e"/>
+                        <outlet property="settingsButton" destination="C6V-8f-2uo" id="IZB-GI-Qag"/>
+                        <segue destination="oBg-8j-3pT" kind="show" identifier="toStore" id="bzC-9Z-Xwi"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x60-2f-0f4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-493.5" y="27.5"/>
+            <point key="canvasLocation" x="-1905.5" y="71.5"/>
         </scene>
-        <!--Filter-->
-        <scene sceneID="cih-Xk-Gkj">
+        <!--Store-->
+        <scene sceneID="LmO-Ry-Pwv">
             <objects>
-                <viewController title="Filter" id="5pP-Wf-nzz" customClass="Filter" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Store" id="oBg-8j-3pT" customClass="StoreView" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="H0C-4z-X2Z"/>
-                        <viewControllerLayoutGuide type="bottom" id="xLA-be-X9Y"/>
+                        <viewControllerLayoutGuide type="top" id="WfZ-S6-tbc"/>
+                        <viewControllerLayoutGuide type="bottom" id="AdX-ms-qG6"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8xq-Qc-9mN">
+                    <view key="view" contentMode="scaleToFill" id="S5c-kS-jGj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deal type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiV-au-noo">
-                                <rect key="frame" x="16" y="125" width="101" height="44"/>
-                                <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="28"/>
-                                <color key="textColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOi-e3-pDQ">
+                                <rect key="frame" x="151" y="72" width="224" height="50"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.74901960784313726" green="0.078431372549019607" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yzj-Yy-b2D">
-                                <rect key="frame" x="16" y="177" width="343" height="29"/>
-                                <segments>
-                                    <segment title="% Off"/>
-                                    <segment title="BOGO"/>
-                                    <segment title="$$$ Off"/>
-                                </segments>
-                                <color key="tintColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGi-Mc-I5e">
-                                <rect key="frame" x="16" y="267" width="101" height="44"/>
-                                <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="28"/>
-                                <color key="textColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWI-k7-rlG">
+                                <rect key="frame" x="25" y="205" width="343" height="54"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.49411764705882355" green="0.047058823529411764" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YGv-bn-1Co">
-                                <rect key="frame" x="14" y="319" width="347" height="31"/>
-                                <color key="tintColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tf-ch-CzD">
-                                <rect key="frame" x="16" y="427" width="101" height="44"/>
-                                <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="28"/>
-                                <color key="textColor" red="0.67450982329999998" green="0.2196078598" blue="0.61960786580000005" alpha="1" colorSpace="deviceRGB"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="upW-DM-WCv">
+                                <rect key="frame" x="25" y="267" width="325" height="300"/>
+                            </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wuj-Xf-VdU">
+                                <rect key="frame" x="25" y="72" width="125" height="125"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQx-bb-qQ6">
+                                <rect key="frame" x="25" y="575" width="343" height="72"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Relevant?">
+                                        <attributes>
+                                            <color key="NSColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="28" name="Marion-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3j-7M-dkQ">
-                                <rect key="frame" x="0.0" y="427" width="375" height="162"/>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Filter" id="IgV-LW-6hP"/>
+                    <navigationItem key="navigationItem" id="qla-BI-6rp"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="dealtypeControl" destination="Yzj-Yy-b2D" id="7ZE-fO-nh8"/>
-                        <outlet property="distanceSlider" destination="YGv-bn-1Co" id="PiU-fH-AJZ"/>
-                        <outlet property="sortPicker" destination="I3j-7M-dkQ" id="MYH-cD-JKd"/>
+                        <outlet property="dealLabel" destination="WWI-k7-rlG" id="ScU-2M-Rv6"/>
+                        <outlet property="infoLabel" destination="eOi-e3-pDQ" id="RI7-1F-dqD"/>
+                        <outlet property="mapView" destination="upW-DM-WCv" id="Hiz-4q-cBz"/>
+                        <outlet property="navItem" destination="qla-BI-6rp" id="CiP-s4-YYv"/>
+                        <outlet property="relevantLabel" destination="IQx-bb-qQ6" id="hNY-mV-MXF"/>
+                        <outlet property="storeImage" destination="wuj-Xf-VdU" id="Ny4-G6-wuP"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dSd-oK-KLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cnm-vS-02n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="55.5" y="27.5"/>
+            <point key="canvasLocation" x="-1396.5" y="71.5"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="RF5-nf-6oc">
+            <objects>
+                <viewController title="Settings" id="lNL-8g-0Po" customClass="Settings" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HYL-qM-Kst"/>
+                        <viewControllerLayoutGuide type="bottom" id="yWG-0V-OZg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0t2-nY-YvE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="oFv-3Q-gBa">
+                                <rect key="frame" x="57" y="77" width="261" height="144"/>
+                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="80"/>
+                                <color key="textColor" red="0.74994297450000003" green="0.076765818309999997" blue="0.66727210530000003" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qgt-dW-xj8">
+                                <rect key="frame" x="141" y="229" width="145" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Q2M-oK-Rs1">
+                                <rect key="frame" x="141" y="350" width="145" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="373-9f-yQF">
+                                <rect key="frame" x="141" y="388" width="145" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3a6-Ij-vEo">
+                                <rect key="frame" x="141" y="274" width="145" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhu-Ih-MnA">
+                                <rect key="frame" x="231" y="426" width="55" height="36"/>
+                                <fontDescription key="fontDescription" name="Marion-Italic" family="Marion" pointSize="24"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="submit">
+                                    <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-jZ-aP1">
+                                <rect key="frame" x="49" y="165" width="277" height="33"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Any field that remains empty">
+                                        <attributes>
+                                            <color key="NSColor" red="0.49411764705882355" green="0.047058823529411764" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oC-sh-QEn">
+                                <rect key="frame" x="49" y="188" width="277" height="33"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="will not be changed">
+                                        <attributes>
+                                            <color key="NSColor" red="0.49411764705882355" green="0.047058823529411764" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jOW-7M-9cV">
+                                <rect key="frame" x="141" y="312" width="145" height="30"/>
+                                <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iI-rT-pPI">
+                                <rect key="frame" x="16" y="222" width="117" height="44"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-He-LUx">
+                                <rect key="frame" x="16" y="267" width="117" height="44"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwJ-Yg-2bb">
+                                <rect key="frame" x="16" y="343" width="117" height="44"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="age" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ril-OK-SsY">
+                                <rect key="frame" x="16" y="381" width="117" height="44"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="re-enter pw" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFm-Pm-EQo">
+                                <rect key="frame" x="16" y="305" width="117" height="44"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XJL-Wb-JZa">
+                                <rect key="frame" x="177" y="324" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="XJL-Wb-JZa" id="hT4-KL-A8g"/>
+                        <outlet property="ageField" destination="373-9f-yQF" id="BcF-kJ-VaM"/>
+                        <outlet property="ageLabel" destination="ril-OK-SsY" id="bKO-Zt-KHt"/>
+                        <outlet property="emailLabel" destination="QwJ-Yg-2bb" id="7g9-lV-QgK"/>
+                        <outlet property="nameField" destination="qgt-dW-xj8" id="58v-AG-vEI"/>
+                        <outlet property="nameLabel" destination="2iI-rT-pPI" id="6gR-dR-bSB"/>
+                        <outlet property="passwordField" destination="3a6-Ij-vEo" id="xrL-2h-g9H"/>
+                        <outlet property="passwordLabel" destination="Yd8-He-LUx" id="UoA-Mg-gfK"/>
+                        <outlet property="passwordreentryField" destination="jOW-7M-9cV" id="kXp-bf-VF7"/>
+                        <outlet property="passwordreentryLabel" destination="SFm-Pm-EQo" id="bov-h3-wtp"/>
+                        <outlet property="submitButton" destination="zhu-Ih-MnA" id="Ygc-Gl-VxM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6AD-Zn-niQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1396.5" y="-714.5"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="zeN-z1-EGM"/>
-    </inferredMetricsTieBreakers>
 </document>
