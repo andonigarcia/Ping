@@ -52,8 +52,11 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
             //HTTP request to get map information
             let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users/\(user.user_id)/map".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
             var request = NSMutableURLRequest(URL: url!)
+            request.setValue("Basic \(user.token):token", forHTTPHeaderField: "Authentication")
             request.HTTPMethod = "GET"
-            request.HTTPBody = ""
+            //Dictionary to be converted to JSON
+            var dict = ["location":["lat":locationManager.location.coordinate.latitude, "lng":locationManager.location.coordinate.longitude]]
+            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(NSDictionary(dictionary: dict), options: nil, error: nil)
             var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
         }
     }
@@ -88,11 +91,6 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
         let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.01 , 0.01)
         let theRegion:MKCoordinateRegion = MKCoordinateRegionMake(locationManager.location.coordinate, theSpan)
         mapView.setRegion(theRegion, animated: true)
-    }
-    
-    func addStoreAnnotation(store: Store)    {
-        let annotation = StoreAnnotation(store: store, coordinate: store.coordinate)
-        mapView.addAnnotation(annotation)
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -144,22 +142,34 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection!)   {
-        var dict = parseJSON(self.data)
-        
-        self.navigationController?.popViewControllerAnimated(true)
+        var deals = parseJSON(self.data).valueForKey("deals") as NSArray
+        for deal in deals as [NSDictionary]   {
+            let id = deal.valueForKey("id") as String
+            let name = (deal.valueForKey("info") as NSDictionary).valueForKey("name") as String
+            let latlong = deal.valueForKey("latlong") as NSDictionary
+            let lat = (deal.valueForKey("lat") as NSString).doubleValue
+            let lng = (deal.valueForKey("lng") as NSString).doubleValue
+            let annotation = StoreAnnotation(name: name, id: id, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng))
+            mapView.addAnnotation(annotation)
+        }
     }
     
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
         if (response as? NSHTTPURLResponse)?.statusCode == 400  {
-            var alert = UIAlertController(title: "Failed Register", message: "Registration failed", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Invalid Location", message: "Locational input invalid", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else if (response as? NSHTTPURLResponse)?.statusCode == 200 {
             self.data = NSMutableData()
         }
+        else if (response as? NSHTTPURLResponse)?.statusCode == 403  {
+            var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
         else    {
-            var alert = UIAlertController(title: "Error", message: "Error registering", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Error", message: "Error loading map content", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }

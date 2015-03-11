@@ -91,15 +91,19 @@ class Settings: UIViewController, NSURLConnectionDataDelegate   {
     
     func pressed(sender: UIButton)  {
         activityIndicator.startAnimating()
-        let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         var request = NSMutableURLRequest(URL: url!)
+        request.setValue("Basic \(user.token):token", forHTTPHeaderField: "Authentication")
         //TO ENCRYPT PASSWORD
+        //SET BODYDATA TO JSON FROM NSDICTIONARY
         let name = (nameField.text != "" ? nameField.text : user.name)
         let email = (emailField.text != "" ? emailField.text : user.email)
         let age = (ageField.text != "" ? ageField.text : String(user.age))
-        var bodyData = "name=\(name)&email=\(email)&age=\(age)" + (passwordField.text != "" ? "&password=\(passwordField.text)" : "")
+        var dict = ["name":name, "email":email, "age":age]
+        if passwordField.text != "" {   dict["password"] = passwordField.text   }
+        var bodyData = NSDictionary(dictionary: dict)
         request.HTTPMethod = "PUT"
-        request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(bodyData, options: nil, error: nil)
         var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
     }
     
@@ -119,7 +123,7 @@ class Settings: UIViewController, NSURLConnectionDataDelegate   {
     func connectionDidFinishLoading(connection: NSURLConnection!)   {
         activityIndicator.stopAnimating()
         var dict = parseJSON(self.data)
-        let token:String = dict.objectForKey("token") as String
+        let token:String = dict.valueForKey("token") as String
         user.token = token
         (delegate as? Map)?.user = user
         self.navigationController?.popViewControllerAnimated(true)
@@ -128,16 +132,22 @@ class Settings: UIViewController, NSURLConnectionDataDelegate   {
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
         if (response as? NSHTTPURLResponse)?.statusCode == 400  {
             activityIndicator.stopAnimating()
-            var alert = UIAlertController(title: "Failed Register", message: "Registration failed", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Invalid Settings", message: "Input for settings invalid", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else if (response as? NSHTTPURLResponse)?.statusCode == 200 {
             self.data = NSMutableData()
         }
+        else if (response as? NSHTTPURLResponse)?.statusCode == 403  {
+            activityIndicator.stopAnimating()
+            var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
         else    {
             activityIndicator.stopAnimating()
-            var alert = UIAlertController(title: "Error", message: "Error", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Error", message: "Error updating settings", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }

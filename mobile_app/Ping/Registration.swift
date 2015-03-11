@@ -42,9 +42,9 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
             let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
             var request = NSMutableURLRequest(URL: url!)
             //TO ENCRYPT PASSWORD
-            var bodyData = "name=\(nameField.text)&email=\(emailField.text)&age=\(ageField.text)&password=\(passwordField.text)"
+            var dict = ["name":nameField.text, "email":emailField.text, "age":ageField.text, "password":passwordField.text]
             request.HTTPMethod = "POST"
-            request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(NSDictionary(dictionary: dict), options: nil, error: nil)
             var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
         }
         else if(sender == cancelButton) {
@@ -68,8 +68,8 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
     func connectionDidFinishLoading(connection: NSURLConnection!)   {
         activityIndicator.stopAnimating()
         var dict = parseJSON(self.data)
-        let token:String = dict.objectForKey("token") as String
-        let user_id:String = dict.objectForKey("user_id") as String
+        let token:String = dict.valueForKey("token") as String
+        let user_id:String = dict.valueForKey("user_id") as String
         user = User(name: nameField.text, user_id: user_id, token: token, age: ageField.text.toInt()!, email: emailField.text)
         (delegate as? Login)?.user = user
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -78,7 +78,7 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
         if (response as? NSHTTPURLResponse)?.statusCode == 400  {
             activityIndicator.stopAnimating()
-            var alert = UIAlertController(title: "Failed Register", message: "Registration failed", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Registration Failed", message: "Invalid input in registration", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }

@@ -314,27 +314,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOi-e3-pDQ">
-                                <rect key="frame" x="151" y="72" width="224" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOi-e3-pDQ">
+                                <rect key="frame" x="151" y="82" width="200" height="25"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
                                         <attributes>
                                             <color key="NSColor" red="0.74901960784313726" green="0.078431372549019607" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="22" name="Marion-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWI-k7-rlG">
-                                <rect key="frame" x="25" y="205" width="343" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWI-dp-dlC">
+                                <rect key="frame" x="151" y="102" width="200" height="25"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
                                         <attributes>
-                                            <color key="NSColor" red="0.49411764705882355" green="0.047058823529411764" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="22" name="Marion-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                            <color key="NSColor" red="0.74901960784313726" green="0.078431372549019607" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCR-NZ-Qg3">
+                                <rect key="frame" x="151" y="122" width="200" height="25"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.74901960784313726" green="0.078431372549019607" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eN-St-Rel">
+                                <rect key="frame" x="151" y="142" width="200" height="25"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.74901960784313726" green="0.078431372549019607" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaP-8o-tP9">
+                                <rect key="frame" x="151" y="162" width="200" height="25"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.74901960784313726" green="0.078431372549019607" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -359,6 +398,19 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWI-k7-rlG">
+                                <rect key="frame" x="25" y="205" width="343" height="54"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.49411764705882355" green="0.047058823529411764" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="Marion-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -367,7 +419,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="dealLabel" destination="WWI-k7-rlG" id="ScU-2M-Rv6"/>
-                        <outlet property="infoLabel" destination="eOi-e3-pDQ" id="RI7-1F-dqD"/>
+                        <outlet property="infoLabel1" destination="eOi-e3-pDQ" id="6HB-Hs-dUM"/>
+                        <outlet property="infoLabel2" destination="RWI-dp-dlC" id="FW5-oJ-WcP"/>
+                        <outlet property="infoLabel3" destination="lCR-NZ-Qg3" id="nhQ-xg-1jI"/>
+                        <outlet property="infoLabel4" destination="8eN-St-Rel" id="Xdg-UL-u2i"/>
+                        <outlet property="infoLabel5" destination="EaP-8o-tP9" id="WlP-Je-iLE"/>
                         <outlet property="mapView" destination="upW-DM-WCv" id="Hiz-4q-cBz"/>
                         <outlet property="navItem" destination="qla-BI-6rp" id="CiP-s4-YYv"/>
                         <outlet property="relevantLabel" destination="IQx-bb-qQ6" id="hNY-mV-MXF"/>

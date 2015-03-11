@@ -35,8 +35,8 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
         super.viewDidAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
-        if user.username != "" {
-            emailField.text = user.username
+        if user.name != "" {
+            emailField.text = user.name
             passwordField.text = ""
         }
     }
@@ -65,8 +65,9 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
         activityIndicator.startAnimating()
         //HTTP request to login with given username and password
         //SHOULD ENCRYPT PASSWORD FIRST!!!!!!!!
-        let url = NSURL(string: "http://\(emailField.text):\(passwordField.text)@localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        var request = NSURLRequest(URL: url!)
+        let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        var request = NSMutableURLRequest(URL: url!)
+        request.setValue("Basic \(emailField.text):\(passwordField.text)", forHTTPHeaderField: "Authorization")
         var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
     }
     
@@ -85,24 +86,25 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
     
     func connectionDidFinishLoading(connection: NSURLConnection!)   {
         //If the data is from logging in
-        if connection.currentRequest.URL == NSURL(string: "http://\(emailField.text):\(passwordField.text)@localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)   {
+        if connection.currentRequest.URL == NSURL(string: "http://localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)   {
             activityIndicator.stopAnimating()
             var dict = parseJSON(self.data)
-            let token:String = dict.objectForKey("token") as String
-            let user_id:String = dict.objectForKey("user_id") as String
+            let token:String = dict.valueForKey("token") as String
+            let user_id:String = dict.valueForKey("user_id") as String
             user = User(user_id: user_id, token: token)
             
             //HTTP request to get user information
-            let url = NSURL(string: "http://\(user.token):token@localhost:5000/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-            var request = NSURLRequest(URL: url!)
+            let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+            var request = NSMutableURLRequest(URL: url!)
+            request.setValue("Basic \(user.token):token", forHTTPHeaderField: "Authorization")
             var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
         }
         //If the data is from getting the user infomration
-        else if connection.currentRequest.URL == NSURL(string: "http://\(user.token):token@localhost:5000/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)    {
+        else if connection.currentRequest.URL == NSURL(string: "http://localhost:5000/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)    {
             var dict = parseJSON(self.data)
-            user.name = dict.objectForKey("username") as String
-            user.age = (dict.objectForKey("age") as String).toInt()!
-            user.email = dict.objectForKey("email") as String
+            user.name = dict.valueForKey("username") as String
+            user.age = (dict.valueForKey("age") as String).toInt()!
+            user.email = dict.valueForKey("email") as String
             performSegueWithIdentifier("submit", sender: submitButton)
         }
     }
