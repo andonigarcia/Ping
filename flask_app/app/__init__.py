@@ -21,7 +21,7 @@ stripe.api_key = STRIPE_KEYS['secret_key']
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'tiff'])
 
 # Setting up Mail Server
-if not app.debug:
+if not app.debug and MAIL_SERVER != '':
 	import logging
 	from logging.handlers import SMTPHandler
 	credentials = None
