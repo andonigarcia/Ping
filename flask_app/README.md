@@ -300,7 +300,7 @@ There are eight core API endpoints. Most of these require authentication, and wi
 **v0.1** - Initial release.
 
 ## Still Todo:
-Updated - 3/6/15 - Andoni Garcia
+Updated - 3/12/15 - Andoni Garcia
 
 ### Web App
 
@@ -346,8 +346,5 @@ Updated - 3/6/15 - Andoni Garcia
   * Lat/long distance percision
 2. Models Functionality:
   * Users.update_preferences
-3. iOS implementation
-  * JSON responses, proper HTTP requests, handling
-4. Testing!
 
 -AMG
