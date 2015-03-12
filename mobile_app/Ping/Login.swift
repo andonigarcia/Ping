@@ -17,6 +17,7 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var newmemberButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var data:NSMutableData = NSMutableData()
     var user:User = User()
@@ -25,14 +26,13 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
         
-        submitButton.enabled = false
+        errorLabel.text = ""
         submitButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-        emailField.addTarget(self, action: "valueChanged:", forControlEvents: .EditingChanged)
-        passwordField.addTarget(self, action: "valueChanged:", forControlEvents: .EditingChanged)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        errorLabel.text = ""
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
         if user.name != "" {
@@ -52,23 +52,23 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
         }
     }
     
-    func valueChanged(sender: UITextField!)   {
-        if emailField.text != nil && emailField.text != "" && passwordField.text != nil && passwordField.text != ""   {
-            submitButton.enabled = true
+    func pressed(sender: UIButton!) {
+        if emailField.text == nil || emailField.text.rangeOfString("@") == nil && emailField.text.rangeOfString(".") == nil {
+            errorLabel.text = "Please enter a valid email"
+        }
+        else if passwordField.text == nil || passwordField.text.utf16Count < 6   {
+            errorLabel.text = "Password must have at least 6 characters"
         }
         else    {
-            submitButton.enabled = false
+            errorLabel.text = ""
+            activityIndicator.startAnimating()
+            //HTTP request to login with given username and password
+            //SHOULD ENCRYPT PASSWORD FIRST!!!!!!!!
+            let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+            var request = NSMutableURLRequest(URL: url!)
+            request.setValue("Basic \(emailField.text):\(passwordField.text)", forHTTPHeaderField: "Authorization")
+            var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
         }
-    }
-    
-    func pressed(sender: UIButton!) {
-        activityIndicator.startAnimating()
-        //HTTP request to login with given username and password
-        //SHOULD ENCRYPT PASSWORD FIRST!!!!!!!!
-        let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        var request = NSMutableURLRequest(URL: url!)
-        request.setValue("Basic \(emailField.text):\(passwordField.text)", forHTTPHeaderField: "Authorization")
-        var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
     }
     
     //INTERNET FUNCTIONALITIES

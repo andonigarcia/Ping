@@ -37,7 +37,7 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.activityType = .Other
         
-        if(CLLocationManager.authorizationStatus() != .Authorized)  {
+        if(CLLocationManager.authorizationStatus() != .AuthorizedAlways)  {
             locationManager.requestAlwaysAuthorization()
         }
         if(CLLocationManager.locationServicesEnabled() == true) {
@@ -122,7 +122,7 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
     }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if(status == .Authorized)   {
+        if(status == .AuthorizedAlways)   {
             NSLog("Started updating locaiton (Map)")
             locationManager.startUpdatingLocation()
         }

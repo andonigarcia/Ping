@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RPD-nN-lF8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RPD-nN-lF8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -147,6 +147,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDy-nu-1Da">
+                                <rect key="frame" x="89" y="267" width="134" height="34"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Label
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -156,6 +171,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="nPI-XV-pKh" id="q93-0m-fic"/>
                         <outlet property="emailField" destination="Cms-fA-Zc1" id="qWg-yU-S9k"/>
+                        <outlet property="errorLabel" destination="MDy-nu-1Da" id="uFl-KE-E3D"/>
                         <outlet property="newmemberButton" destination="5uh-1p-cJj" id="Dc5-T3-1CL"/>
                         <outlet property="passwordField" destination="HfP-1y-2pN" id="qNv-uP-eBR"/>
                         <outlet property="submitButton" destination="Kjt-hn-JmW" id="g8E-OW-Os7"/>
@@ -238,6 +254,21 @@
                                     <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aV1-cR-8fC">
+                                <rect key="frame" x="89" y="381" width="134" height="34"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Label
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Marion-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -248,6 +279,7 @@
                         <outlet property="ageField" destination="A0z-Tc-Wi6" id="Ie0-dH-oQK"/>
                         <outlet property="cancelButton" destination="4yf-vc-ikb" id="4xc-76-nrO"/>
                         <outlet property="emailField" destination="yl1-fH-Prc" id="eD2-ye-GXe"/>
+                        <outlet property="errorLabel" destination="aV1-cR-8fC" id="eBZ-eS-dVQ"/>
                         <outlet property="nameField" destination="spE-Hx-eQu" id="pzl-yB-BzC"/>
                         <outlet property="passwordField" destination="Imd-gu-TbF" id="6vn-4w-W5h"/>
                         <outlet property="passwordreentryField" destination="8gw-Hz-xe5" id="Zma-2m-Z7U"/>

@@ -11,11 +11,6 @@ import UIKit
 
 class Registration: UIViewController, NSURLConnectionDataDelegate    {
     
-    //PASSWROD
-    //6
-    //CHARACTERS
-    //REMEMBER!!!
-    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordreentryField: UITextField!
@@ -25,6 +20,7 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var data = NSMutableData()
     var user = User()
@@ -38,18 +34,40 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
     
     func pressed(sender: UIButton!)  {
         if(sender == submitButton)  {
-            activityIndicator.startAnimating()
-            let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-            var request = NSMutableURLRequest(URL: url!)
-            //TO ENCRYPT PASSWORD
-            var dict = ["name":nameField.text, "email":emailField.text, "age":ageField.text, "password":passwordField.text]
-            request.HTTPMethod = "POST"
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(NSDictionary(dictionary: dict), options: nil, error: nil)
-            var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+            if nameField.text == nil || nameField.text == "" {
+                errorLabel.text = "Please enter a name"
+            }
+            else if passwordField.text == nil || passwordField.text.utf16Count < 6   {
+                errorLabel.text = "Password must have at least 6 characters"
+            }
+            else if passwordreentryField.text == nil || passwordreentryField.text != passwordField.text {
+                errorLabel.text = "Passwords must match"
+            }
+            else if emailField.text == nil || emailField.text.rangeOfString("@") == nil && emailField.text.rangeOfString(".") == nil    {
+                errorLabel.text = "Please enter a valid email"
+            }
+            else if ageField.text == nil || ageField.text == "" || ageField.text.toInt() <= 0   {
+                errorLabel.text = "Please enter a valid age"
+            }
+            else    {
+                errorLabel.text = ""
+                activityIndicator.startAnimating()
+                let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                var request = NSMutableURLRequest(URL: url!)
+                //TO ENCRYPT PASSWORD
+                var dict = ["name":nameField.text, "email":emailField.text, "age":ageField.text, "password":passwordField.text]
+                request.HTTPMethod = "POST"
+                request.HTTPBody = NSJSONSerialization.dataWithJSONObject(NSDictionary(dictionary: dict), options: nil, error: nil)
+                var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+            }
         }
         else if(sender == cancelButton) {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    func valueChanged(sender: UITextField!) {
+        
     }
     
     //INTERNET FUNCTIONALITIES

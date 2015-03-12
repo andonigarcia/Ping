@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if(status == .Authorized)   {
+        if(status == .AuthorizedAlways)   {
             NSLog("Started updating locaiton")
             locationManager.startUpdatingLocation()
         }
