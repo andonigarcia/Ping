@@ -7,5 +7,5 @@ The `mobile_app` directory contains everything necessary to run our iOS applicat
 **NOTE:** The `static_websites` directory is deprecated. It will be removed very soon.
 
 ## Contact
-[Andoni Garcia](mailto:andoni@uchicago.edu) - Lead Web Developer
+[Andoni Garcia](mailto:andoni@uchicago.edu) - Lead Web Developer  
 [Noah Krim](mailto:nkrim@uchicago.edu) - Lead iOS Developer
