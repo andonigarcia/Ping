@@ -22,7 +22,7 @@ class Company(db.Model):
 	latitude = db.Column(db.Float)
 	phone = db.Column(db.String(10), index = True)
 	email = db.Column(db.String(150), index = True, unique = True)
-	password = db.Column(db.String(64))
+	password = db.Column(db.String(120))
 	timestamp = db.Column(db.DateTime)
 	logo = db.Column(db.String(100))
 	pings = db.relationship('Ping', backref = 'company', lazy = 'dynamic')
@@ -195,7 +195,7 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	username = db.Column(db.String(150))
 	email = db.Column(db.String(150), index = True, unique = True)
-	password = db.Column(db.String(64))
+	password = db.Column(db.String(120))
 	age = db.Column(db.Integer, index = True)
 	timestamp = db.Column(db.DateTime)
 
