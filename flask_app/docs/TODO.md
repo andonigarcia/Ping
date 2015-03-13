@@ -9,7 +9,6 @@ Updated - 13 March 2015 - Andoni Garcia
   * Forms.js is acting funny -- See line 13
   * When Submitting a Ping, try to refresh to ping tab
   * Make responsive
-  * When uploading new logo, integrate a preview
   * Update/refine Pings models
 2. Errors:
   * Google Maps:
@@ -18,8 +17,6 @@ Updated - 13 March 2015 - Andoni Garcia
   * Forms:
   	- **Bug**: Click between help fields leads to build up of <br /> tags
     - **Bug**: First click/offclick on a help field doesn't <br /> the two notifications
-  * Pings:
-    - JQuery Datetime plugin
   * Everywhere:
     - Make the site mobile friendly (if not mobile first)
 4. Design:
@@ -31,9 +28,7 @@ Updated - 13 March 2015 - Andoni Garcia
   * We should open up a new html tab with a receipt after paying
   * Integrate our keys and stuff (account is under my email and password)
   * Create a variable payment strucutre and really solidify the CSS/HTML for paying.
-7. Server:
-  * Set up a LAMP stack. Deploy to a domain.
-8. From live test, check the following:
+7. From live test, check the following:
   * Png and jpg image support.
   * Registration corner cases
   * Do not underline subheaders for the company page
@@ -46,6 +41,6 @@ Updated - 13 March 2015 - Andoni Garcia
   * Lat/long distance percision
 2. Models Functionality:
   * Users.update_preferences
-3. SSL Server
+3. SSL Cert
 
 -AMG

@@ -158,8 +158,10 @@ def company():
 	formImg = ImageUpload()
 	if form.validate_on_submit():
 		message = form.message.data
-		start = datetime.strptime(form.start.data, "%Y-%m-%dT%H:%M")
-		end = datetime.strptime(form.end.data, "%Y-%m-%dT%H:%M")
+		startTime = form.start.data
+		endTime = form.end.data
+		start = datetime.strptime(startTime, "%Y-%m-%dT%H:%M")
+		end = datetime.strptime(endTime, "%Y-%m-%dT%H:%M")
 		isError = try_post(message, start, end)
 		if isError != True:
 			flash(isError)

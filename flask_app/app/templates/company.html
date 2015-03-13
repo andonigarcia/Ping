@@ -73,11 +73,11 @@
 				<div class="overlaySolid">
 					<span class="overlayClose">X</span>
 					<h3>Add A New Logo</h3>
-					<img src="{{ g.company.logo }}" alt="{{ g.company.name}}'s Current Logo" width="125" />
+					<img id="tmpUploadPrev" src="{{ g.company.logo }}" alt="{{ g.company.name}}'s Current Logo" width="125" />
 					<form action="" method="POST" enctype="multipart/form-data" name="imgUpload">
 						{{ form.hidden_tag() }}
 						<p>
-							{{ formImg.image }}
+							{{ formImg.image(id="userUpload") }}
 							<input class="formButton" type="submit" value="Upload">
 						</p>
 					</form>
@@ -94,8 +94,18 @@
 						{{ form.message(maxlength="150", cols="50", rows="6", id="pingMessage", class="formInput", placeholder="Your Ping!", required=True, **{"data-validation":"length", "data-validation-length":"max150", "data-validation-error-msg":"Your Pings Must Be Less Than 150 Characters!"}) }}
 					</div>
 					<div class="pingsRight box">
-						Start Time: {{ form.start(id="pingStart", class="formInput", required=True, **{"type":"datetime-local"}) }}
-						End Time: {{ form.end(id="pingEnd", class="formInput", required=True, **{"type":"datetime-local"}) }}
+						<p>
+							Start Time: <input id="pingStartDate" class="formInput datetimechange date start" required />
+							<input id="pingStartTime" class="formInput datetimechange time start" required=True />
+						</p>
+						<p>
+							End Time: <input id="pingEndDate" class="formInput datetimechange date end" required />
+							<input id="pingEndTime" class="formInput datetimechange time end" required />
+						</p>
+						<p style="display:none;">
+							{{ form.start(id="pingStart", class="formInput") }}
+							{{ form.end(id="pingEnd", class="formInput") }}
+						</p>
 						<input type="submit" class="formButton" value="Add A Ping!" />
 					</div>
 				</form>

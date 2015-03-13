@@ -465,8 +465,13 @@ span.help {
     padding: 0;
     width: 50%;
 }
-.addPings form .pingsRight .formInput{
-    min-width: 200px;
+.addPings form .pingsRight p .formInput{
+    display: inline;
+    width: 20%;
+}
+.ui-timepicker-list{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
 }
 .showPings{
     width: 90%
