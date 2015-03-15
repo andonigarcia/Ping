@@ -559,3 +559,71 @@ span.help {
     text-align: center;
     width: 80%;
 }
+
+/* Landing Page */
+#landingPage{
+    margin: 0 auto 0 auto;
+    display: inline-block;
+}
+#landingPage h3{
+    text-align: center;
+    margin-bottom: 50px;
+}
+#landingPage .iconContent{
+    clear: both;
+    font-family: 'Philosopher', times, serif;
+    font-size: 16px;
+    margin: 0 auto 35px auto;
+    position: relative;
+    width: 80%;
+}
+#landingPage .iconContent img{
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    width: 52px;
+}
+#landingPage .left p{
+    margin-left: 52px;
+    margin-right: 52px;
+    padding-left: 15px;
+    padding-right: 10px;
+    text-align: left;
+}
+#landingPage .right p{
+    margin-left: 52px;
+    margin-right: 52px;
+    padding-left: 5px;
+    padding-right: 15px;
+    text-align: right;
+}
+#landingPage #business .left p{
+    margin-right: 48px;
+}
+#landingPage #business .right p{
+    margin-left: 48px;
+}
+#landingPage .right img{
+    left: 92%;
+}
+#landingPage .landingBottom{
+    margin: 40px auto 50px auto;
+    text-align: center;
+    width: 80%;
+}
+#landingPage .landingBottomP{
+    font-family: 'Roboto', times, serif;
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+}
+#landingPage a, #landingPage a:visited, #landingPage a:hover, #landingPage a:active{
+    color: #ac399d;
+    text-decoration: underline;
+}
+#landingPage .landingQuote{
+    font-family: 'Playball', times, serif;
+    font-size: 16px;
+}

@@ -81,7 +81,7 @@ def before_request():
 def index():
 	if g.company is not None and g.company.is_authenticated():
 		return redirect(url_for('company'))
-	return render_template('about.html', title = "About Ping!")
+	return render_template('landing.html')
 
 @app.route('/team', methods = ['GET','POST'])
 def team():
@@ -90,6 +90,10 @@ def team():
 @app.route('/about', methods = ['GET','POST'])
 def about():
 	return render_template('about.html', title = "About Ping!")
+
+@app.route('/landing', methods = ['GET', 'POST'])
+def landing():
+	return render_template('landing.html')
 
 @app.route('/login', methods = ['GET','POST'])
 def login():

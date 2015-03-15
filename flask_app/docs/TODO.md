@@ -17,13 +17,15 @@ Updated - 13 March 2015 - Andoni Garcia
   * Forms:
   	- **Bug**: Click between help fields leads to build up of <br /> tags
     - **Bug**: First click/offclick on a help field doesn't <br /> the two notifications
+  * About:
+    - In any founder's page, if you click it will underline everything
   * Everywhere:
     - Make the site mobile friendly (if not mobile first)
 4. Design:
   * Ping! Logo.
   * iPhone icons
 5. Landing Page:
-  * Interactive wireframe? More Pictures, Less Words.
+  * Interactive wireframe?
 6. Stripe:
   * We should open up a new html tab with a receipt after paying
   * Integrate our keys and stuff (account is under my email and password)

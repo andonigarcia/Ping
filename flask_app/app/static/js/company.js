@@ -1,3 +1,5 @@
+$("div#" + $(".active").children('a').attr('href').substr(1)).show();
+
 $(".headingTabs ul li").each(function(){
     $(this).click(function(){
        if(!$(this).hasClass('active')){

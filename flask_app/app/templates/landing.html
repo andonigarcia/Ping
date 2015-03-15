@@ -1,0 +1,93 @@
+<!-- Extends Base Layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="headingTabs box">
+		<ul class="box">
+			<li class="active"><a href="#customer">Customers</a></li>
+			<li class=""><a href="#business">Businesses</a></li>
+		</ul>
+	</div>
+	<div id="landingPage" class="innerContent box">
+		<div id="customer" class="compContent box">
+			<h3>
+				<span class="lilLogo">Ping!</span> - What is it? Why do I <em>need</em> it? And how do I benefit?
+			</h3>
+			<div class="iconContent left box">
+				<img src="/static/icons/pin_3-64.png" alt="Map Pin Icon" width="64" />
+				<p>
+					Find the best deals, that are within walking distance of you! We use emerging geofencing technologies to pinpoint the nearest and most relevant deals for you.
+				</p>
+			</div>
+			<div class="iconContent right box">
+				<img src="/static/icons/money_1-64.png" alt="Money Bag Icon" width="64" />
+				<p>
+					Save money without the hassle! We send you custom deals that are happening right now. No more saving cupons, printing promotions or remembering dates. We take care of all the overhead for you.
+				</p>
+			</div>
+			<div class="iconContent left box">
+				<img src="/static/icons/network_2-64.png" alt="Individual User Icon" width="64" />
+				<p>
+					Our proprietary user prefencing custom tailors deals to your interests. Say goodbye to the irrellevant and spammy emails, and say hello to deals that suit you. The more you engage, the better tuned our promotions will be. We take into account everything from locations and store genres to time of day and week. Maybe you like to eat lunch near your workplace, but on weekends you like to explore. We've got you covered.
+				</p>
+			</div>
+			<div class="iconContent right box">
+				<img src="/static/icons/phone_map_1-64.png" alt="Phone Map Icon" width="64" />
+				<p>
+					Find deals on our in-app database or get push notifications on the go! We send you minimal push notifications each day, in order to spark the spontaneity of finding killer deals. But if that isn't your cup of tea, no worries. You can adjust the amount of daily notifications and just pull up our map when you're looking for deals in your area.
+				</p>
+			</div>
+			<h3 class="landingBottom">
+				If you're a customer, feel free to download the app <a href="">here!</a>
+			</h3>
+			<p class="landingBottomP">
+				If you're a business client interested in partnering with us, check out the <a href="">business information</a> tab. You can also start your registration <a href="/register">here</a> in order to jumpstart the process. Please call our team at <a href="tel:">XXX-YYY-ZZZZ</a> if you have any questions.
+			</p>
+		</div>
+		<div id="business" class="compContent box">
+			<h3>
+				<span class="lilLogo">Ping!</span> - What is it? Why do I <em>need</em> it? And how do I benefit?
+			</h3>
+			<div class="iconContent left box">
+				<img src="/static/icons/phone_message_2-64.png" alt="Push Notification Icon" width="64" />
+				<p>
+					Traditional email, print, and television advertisments have extremely poor engagement rates. While you might have an enormous amount of impressions, the follow-through per user is atrociously low. Online advertisements are shown to boost this rate through a more personal engagement. <span class="lilLogo">Ping!</span> takes this even further. Push notificaitons have the <strong>largest</strong> engagement rates out of any form of advertising. As such, our interface allows you to tap into your target audience with greater success.
+				</p>
+			</div>
+			<div class="iconContent right box">
+				<img src="/static/icons/text_message_1-64.png" alt="Text Message Icon" width="64" />
+				<p>
+					Our platform sidesteps lengthy marketing campaigns and high-profile advertisements. Traditional forms of advertising are very expensive, both financially and time-wise. Our quick 150 character, call-to-action <span class="lilLogo">Ping!</span>s, allow you to easily and cheaply push your message out to a large audience.
+				</p>
+			</div>
+			<div class="iconContent left box">
+				<img src="/static/icons/calendar_2-64.png" alt="Calendar Icon" width="64" />
+				<p>
+					We have a user-friendly interface that allows you to easily plan out your <span class="lilLogo">Ping!</span>s well in advance. Weeks ahead, you can schedule what to say and when to say it so you have more time to focus on what matters most: <strong>Your business</strong>!
+				</p>
+			</div>
+			<div class="iconContent right box">
+				<img src="/static/icons/analytics_5-64.png" alt="Analytics Icon" width="64" />
+				<p>
+					A problem most businesses face, is finding out the effectiveness of their ad campaigns. You never know your impressions, and rarely know your engagements from traditional ads. This is is a major problem that we here at <span class="lilLogo">Ping!</span> won't tolerate! We provide extensive and powerful analytics <em>FOR FREE</em>.
+				</p>
+			</div>
+			<div class="iconContent left box">
+				<img src="/static/icons/analytics_1-64.png" alt="Another Analytics Icon" width="64" />
+				<p>
+					We track impression and engagements rates like every other online advertiser. But that's chump change. We are interested in the finer - and more relevant - details. We tell you, how many engagements turn into customers walking through your door. We're working with POS systems to tell you out of those that actually entered, how many purchased an item. You want to know more than just engagement rates, you want to know: Turn-over. Sales. Revenue generated. The true effectiveness of our platform. And we want to show it to you! We want to inform you of which times of day are most effective for your <span class="lilLogo">Ping!</span>s, which types of promotions drive the most sales, and all together how to best profit from our product.
+				</p>
+			</div>
+			<div class="iconContent right box">
+				<img src="/static/icons/wine_1-64.png" alt="Wine Icon" width="64" />
+				<p>
+					While our platform is aimed for hosting deals, we understand that many of our business clients do not hold a myriad of discounts. No worries, our system allows you to push out notifications for any type of promotion. <span class="lilLogo">Ping!</span> is a platform to host deals, discounts, and promotions. We just request that you frame it in a way that entices users through a call-to-action. Maybe say something like <span class="landingQuote">"It's 5 O'Clock somewhere! Come on down to start your Happy Hour"</span>, or <span class="landingQuote">"Begin your morning with the perfect latte"</span>.
+				</p>
+			</div>
+			<h3 class="landingBottom">
+				Currently we are in our Beta Testing phase. As such, we are only live in the Hyde Park neighborhood of Chicago, but we plan to expand with a full Chicago-wide deployment starting on July 1st 2015. If you are in Hyde Park and interested in trying out our product, feel free to register <a href="/register">here</a>.
+			</h3>
+		</div>
+
+{% endblock %}
