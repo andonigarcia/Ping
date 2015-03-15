@@ -1,29 +1,38 @@
-$("div#" + $(".active").children('a').attr('href').substr(1)).show();
+// Tab Functionality
+hash = location.hash;
+if(hash == "" || $(hash).length == 0){
+  $("div#" + $(".active").children('a').attr('href').substr(1)).show();
+} else {
+  $($(".active").children('a').attr("href")).hide();
+  $(hash).show();
+  $(".active").removeClass("active");
+  $(".headingTabs ul li a[href=" + hash + "]").parent().addClass("active");
+  window.scrollTo(0, 0);
+}
 
 $(".headingTabs ul li").each(function(){
     $(this).click(function(){
-       if(!$(this).hasClass('active')){
-           currid = $('.active').children('a').attr('href').substr(1);
-           nextid = $(this).children('a').attr('href').substr(1);
-           $('.active').removeClass('active');
-           $(this).addClass('active');
-           $("div#"+currid).hide();
-           $("div#"+nextid).show();
-       }
-    });
-    $(this).children('a').click(function(){
-        anchorsLi = $(this).parent();
-        if(!anchorsLi.hasClass('active')){
-           currid = $('.active').children('a').attr('href').substr(1);
-           nextid = anchorsLi.children('a').attr('href').substr(1);
-           $('.active').removeClass('active');
-           anchorsLi.addClass('active');
-           $("div#"+currid).hide();
-           $("div#"+nextid).show();
-       }
-       return false;
+      $(this).children('a')[0].click();
     });
 });
+
+$(window).on('hashchange', function(){
+  hash = location.hash;
+  if(hash){
+    window.scrollTo(0, 0);
+  }
+  if(hash != ""){
+    if($(hash).length){
+      currid = $(".active").children('a').attr("href");
+      $(".active").removeClass("active");
+      $(".headingTabs ul li a[href=" + hash + "]").parent().addClass("active");
+      $(currid).hide();
+      $(hash).show();
+    }
+  }
+});
+
+// Overlay Functionality
 $('#editInfo').click(function(){
    $(".companyEditInfo").show();
    $(".overlayClose").click(function(){
@@ -70,6 +79,7 @@ $(".pingsRight .date").datepicker({
   "format": "m-d-yyyy",
   "autoclose": true
 });
+$("#pingMessage").val("");
 $(".pingsRight").datepair();
 $(".pingsRight .formButton").click(function(){
   function sanitizeTime(datestr, timestr){
@@ -90,7 +100,6 @@ $(".pingsRight .formButton").click(function(){
     d.setSeconds(0);
     return d
   }
-
   $("#pingStart").val(sanitizeTime($("#pingStartDate").val(), $("#pingStartTime").val()).toISOString().replace(/.{8}$/, ""));
   $("#pingEnd").val(sanitizeTime($("#pingEndDate").val(), $("#pingEndTime").val()).toISOString().replace(/.{8}$/, ""));
   return true;

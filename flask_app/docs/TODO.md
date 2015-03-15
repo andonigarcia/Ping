@@ -7,12 +7,13 @@ Updated - 13 March 2015 - Andoni Garcia
 1. Company Page:
   * Analytics and Payments tabs
   * Forms.js is acting funny -- See line 13
-  * When Submitting a Ping, try to refresh to ping tab
   * Make responsive
   * Update/refine Pings models
 2. Errors:
   * Google Maps:
     Not found addresses/problems with Geocode are not handled
+  * Pings Tab:
+    I hacked out the refresh to same tab function. Reloading no longer works if you've already submit a Ping.
 3. CSS:
   * Forms:
   	- **Bug**: Click between help fields leads to build up of <br /> tags
@@ -31,7 +32,6 @@ Updated - 13 March 2015 - Andoni Garcia
   * Integrate our keys and stuff (account is under my email and password)
   * Create a variable payment strucutre and really solidify the CSS/HTML for paying.
 7. From live test, check the following:
-  * Png and jpg image support.
   * Registration corner cases
   * Do not underline subheaders for the company page
   * Switch Lobster Two to Philosopher

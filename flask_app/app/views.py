@@ -156,7 +156,7 @@ def register():
 
 @app.route('/company', methods = ['GET', 'POST'])
 @login_required
-def company():
+def company(active = ""):
 	form = PingForm()
 	form2 = CompanyEditForm()
 	formImg = ImageUpload()
@@ -176,7 +176,7 @@ def company():
 			ping.company = g.company
 			db.session.add(ping)
 			db.session.commit()
-			return redirect(url_for('company'))
+			
 	if form2.validate_on_submit():
 		address1 = form2.addr1.data
 		address2 = form2.addr2.data
@@ -239,7 +239,7 @@ def company():
 		form2.zipcode.data = g.company.zipcode
 		form2.phone.data = g.company.phone
 		form2.email.data = g.company.email
-	return render_template('company.html', title = g.company.name, form = form, form2 = form2, formImg = formImg, key = STRIPE_KEYS['publishable_key'])
+	return render_template('company.html', active=active, title = g.company.name, form = form, form2 = form2, formImg = formImg, key = STRIPE_KEYS['publishable_key'])
 
 @app.route('/charge', methods = ['POST'])
 @login_required

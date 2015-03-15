@@ -4,8 +4,8 @@
 {% block content %}
 	<div class="headingTabs box">
 		<ul class="box">
-			<li class="active"><a href="#profile">Profile</a></li>
-			<li class=""><a href="#pings">Pings</a></li>
+			<li {% if active == "" %} class="active" {% endif %}><a href="#profile">Profile</a></li>
+			<li {% if active == "#pings" %} class="active" {% endif %}><a href="#pings">Pings</a></li>
 			<li class=""><a href="#analytics">Analytics</a></li>
 			<li class=""><a href="#payments">Payments</a></li>
 		</ul>
