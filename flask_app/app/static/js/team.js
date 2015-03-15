@@ -18,8 +18,6 @@ function mttHome(){
         var img = $("<img />").attr({class:"mttPic",src:imgName,alt:textName});
         div.append(img);
         content.append(div);
-        console.log(img);
-        console.log(imgName);
     }
     $("#andoni").click(function(){
         mttIndiv("andoni");

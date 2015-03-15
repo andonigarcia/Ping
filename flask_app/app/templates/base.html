@@ -36,6 +36,7 @@
         <header class="header box">
             <div class="headerBorder">
                 <h1 class="logo"><a href='index'>Ping!</a></h1>
+                <img id="menuIcon" class="svg" src="/static/icons/menu_1-128.png" alt="Menu Icon" size="128" />
             </div>
         </header>
         <div class="body box">
@@ -43,14 +44,14 @@
                 <nav class="sideNav">
                     <ul class="sideNavList">
                         {% if g.company.is_authenticated() %}
-                            <li><a href="index">Home</a></li>
-                            <li><a href="logout">Logout</a></li>
+                            <a href="index"><li>Home</li></a>
+                            <a href="logout"><li>Logout</li></a>
                         {% else %}
-                            <li><a href="login">Log In</a></li>
-                            <li><a href="register">Register</a></li>
+                            <a href="login"><li>Log In</li></a>
+                            <a href="register"><li>Register</li></a>
                         {% endif %}
-                        <li><a href="about">About Ping!</a></li>
-                        <li><a href="team">Meet The Crew</a></li>
+                        <a href="about"><li>About Ping!</li></a>
+                        <a href="team"><li>Meet The Crew</li></a>
                     </ul>
                 </nav>
             </div>
@@ -75,6 +76,7 @@
         <script src="/static/js/datepair.js"></script>
         <script src="/static/js/jquery.datepair.js"></script>
         <!-- In-House Scripts -->
+        <script src="/static/js/main.js"></script>
         <script src="/static/js/forms.js"></script>
         <script src="/static/js/team.js"></script>
         <script src="/static/js/map.js"></script>
