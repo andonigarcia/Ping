@@ -22,12 +22,14 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
-    var data = NSMutableData()
+    var data:NSMutableData? = nil
     var user = User()
     var delegate:UIViewController? = nil
+    var response:NSHTTPURLResponse? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        errorLabel.text = ""
         submitButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         cancelButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
     }
@@ -52,10 +54,15 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
             else    {
                 errorLabel.text = ""
                 activityIndicator.startAnimating()
-                let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                let url = NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/users".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
                 var request = NSMutableURLRequest(URL: url!)
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
                 //TO ENCRYPT PASSWORD
-                var dict = ["name":nameField.text, "email":emailField.text, "age":ageField.text, "password":passwordField.text]
+                var dict:[NSString:NSObject] = Dictionary()
+                dict["name"] = nameField.text as NSString
+                dict["email"] = emailField.text as NSString
+                dict["age"] = NSNumber(integer: ageField.text.toInt()!)
+                dict["password"] = passwordField.text as NSString
                 request.HTTPMethod = "POST"
                 request.HTTPBody = NSJSONSerialization.dataWithJSONObject(NSDictionary(dictionary: dict), options: nil, error: nil)
                 var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
@@ -80,25 +87,37 @@ class Registration: UIViewController, NSURLConnectionDataDelegate    {
     }
     
     func connection(connection: NSURLConnection!, didReceiveData _data: NSData!)    {
-        self.data.appendData(_data)
+        self.data?.appendData(_data)
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection!)   {
-        activityIndicator.stopAnimating()
-        var dict = parseJSON(self.data)
-        let token:String = dict.valueForKey("token") as String
-        let user_id:String = dict.valueForKey("user_id") as String
-        user = User(name: nameField.text, user_id: user_id, token: token, age: ageField.text.toInt()!, email: emailField.text)
-        (delegate as? Login)?.user = user
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if self.data != nil  {
+            activityIndicator.stopAnimating()
+            if response?.statusCode == 400  {
+                var dict = parseJSON(self.data!)
+                var alert = UIAlertController(title: "Registration Failed", message: dict.valueForKey("message") as? String, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            var dict = parseJSON(self.data!)
+            let token:String = dict.valueForKey("token") as String
+            let user_id:Int = (dict.valueForKey("user_id") as NSNumber).integerValue
+            user = User(name: nameField.text, user_id: user_id, token: token, age: ageField.text.toInt()!, email: emailField.text)
+            (delegate as? Login)?.user = user
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.data = nil
+        }
     }
     
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+        NSLog("\((response as? NSHTTPURLResponse)!.statusCode)")
+        self.response = response as? NSHTTPURLResponse
         if (response as? NSHTTPURLResponse)?.statusCode == 400  {
-            activityIndicator.stopAnimating()
-            var alert = UIAlertController(title: "Registration Failed", message: "Invalid input in registration", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            //activityIndicator.stopAnimating()
+            //var alert = UIAlertController(title: "Registration Failed", message: "Invalid input in registration", preferredStyle: UIAlertControllerStyle.Alert)
+            //alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
+            //self.presentViewController(alert, animated: true, completion: nil)
+            self.data = NSMutableData()
         }
         else if (response as? NSHTTPURLResponse)?.statusCode == 201 {
             self.data = NSMutableData()

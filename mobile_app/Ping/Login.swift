@@ -19,7 +19,7 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorLabel: UILabel!
     
-    var data:NSMutableData = NSMutableData()
+    var data:NSMutableData? = nil
     var user:User = User()
     
     override func viewDidLoad() {
@@ -35,16 +35,13 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
         errorLabel.text = ""
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
-        if user.name != "" {
-            emailField.text = user.name
-            passwordField.text = ""
-        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if sender as? UIButton == submitButton  {
             var dvc:Map = segue.destinationViewController as Map
             dvc.user = user
+            dvc.delegate = self
         }
         else if sender as? UIButton == newmemberButton  {
             var dvc:Registration = segue.destinationViewController as Registration
@@ -64,9 +61,13 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
             activityIndicator.startAnimating()
             //HTTP request to login with given username and password
             //SHOULD ENCRYPT PASSWORD FIRST!!!!!!!!
-            let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+            let url = NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
             var request = NSMutableURLRequest(URL: url!)
-            request.setValue("Basic \(emailField.text):\(passwordField.text)", forHTTPHeaderField: "Authorization")
+            request.HTTPMethod = "POST"
+            let loginString = "\(emailField.text):\(passwordField.text)"
+            let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+            let base64LoginString = loginData.base64EncodedStringWithOptions(nil)
+            request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
             var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
         }
     }
@@ -81,42 +82,50 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
     }
     
     func connection(connection: NSURLConnection!, didReceiveData _data: NSData!)    {
-        self.data.appendData(_data)
+        self.data?.appendData(_data)
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection!)   {
-        //If the data is from logging in
-        if connection.currentRequest.URL == NSURL(string: "http://localhost:5000/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)   {
-            activityIndicator.stopAnimating()
-            var dict = parseJSON(self.data)
-            let token:String = dict.valueForKey("token") as String
-            let user_id:String = dict.valueForKey("user_id") as String
-            user = User(user_id: user_id, token: token)
+        if self.data != nil  {
+            //If the data is from logging in
+            if connection.currentRequest.URL == NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)   {
+                activityIndicator.stopAnimating()
+                var dict = parseJSON(self.data!)
+                let token:String = dict.valueForKey("token") as String
+                let user_id:Int = (dict.valueForKey("user_id") as NSNumber).integerValue
+                user = User(user_id: user_id, token: token)
             
-            //HTTP request to get user information
-            let url = NSURL(string: "http://localhost:5000/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-            var request = NSMutableURLRequest(URL: url!)
-            request.setValue("Basic \(user.token):token", forHTTPHeaderField: "Authorization")
-            var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
-        }
-        //If the data is from getting the user infomration
-        else if connection.currentRequest.URL == NSURL(string: "http://localhost:5000/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)    {
-            var dict = parseJSON(self.data)
-            user.name = dict.valueForKey("username") as String
-            user.age = (dict.valueForKey("age") as String).toInt()!
-            user.email = dict.valueForKey("email") as String
-            performSegueWithIdentifier("submit", sender: submitButton)
+                //HTTP request to get user information
+                let url = NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                var request = NSMutableURLRequest(URL: url!)
+                let loginString = "\(token):token"
+                let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+                let base64LoginString = loginData.base64EncodedStringWithOptions(nil)
+                request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+                var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+            }
+            //If the data is from getting the user infomration
+            else if connection.currentRequest.URL == NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)    {
+                var dict = parseJSON(self.data!)
+                user.name = dict.valueForKey("username") as String
+                user.age = (dict.valueForKey("age") as NSNumber).integerValue
+                user.email = dict.valueForKey("email") as String
+                performSegueWithIdentifier("submit", sender: submitButton)
+            }
+            self.data = nil
         }
     }
     
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-        if (response as? NSHTTPURLResponse)?.statusCode == 400  {
+        NSLog("\((response as? NSHTTPURLResponse)!.statusCode)")
+        if (response as? NSHTTPURLResponse)?.statusCode == 401  {
             activityIndicator.stopAnimating()
             var alert = UIAlertController(title: "Failed to Login", message: "Invalid Username/Password", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else if (response as? NSHTTPURLResponse)?.statusCode == 200 {
+            NSLog("Success")
             self.data = NSMutableData()
         }
         else if (response as? NSHTTPURLResponse)?.statusCode == 403 {
@@ -132,4 +141,25 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
+    
+    /*func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge) {
+        if connection.currentRequest.URL == NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)   {
+            if challenge.previousFailureCount == 0  {
+                let creds = NSURLCredential(user: emailField.text, password: passwordField.text, persistence: NSURLCredentialPersistence.None)
+                challenge.sender.useCredential(creds, forAuthenticationChallenge: challenge)
+            }
+            else    {
+                challenge.sender.continueWithoutCredentialForAuthenticationChallenge(challenge)
+            }
+        }
+        else if connection.currentRequest.URL == NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)    {
+            if challenge.previousFailureCount == 0  {
+                let creds = NSURLCredential(user: user.token, password: "token", persistence: NSURLCredentialPersistence.None)
+                challenge.sender.useCredential(creds, forAuthenticationChallenge: challenge)
+            }
+            else    {
+                challenge.sender.continueWithoutCredentialForAuthenticationChallenge(challenge)
+            }
+        }
+    }*/
 }
