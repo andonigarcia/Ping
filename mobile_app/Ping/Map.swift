@@ -129,6 +129,16 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
             
             var calloutButton = UIButton.buttonWithType(.DetailDisclosure) as UIButton
             pinView!.rightCalloutAccessoryView = calloutButton
+            if(annotation as? StoreAnnotation)?.imageURL != ""  {
+                let url = NSURL(string: "http://www.igotpinged.com/\((annotation as? StoreAnnotation)?.imageURL)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                var request = NSURLRequest(URL: url!)
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
+                    if (response as NSHTTPURLResponse).statusCode == 200    {
+                        let logo = UIImageView(image: UIImage(data: data))
+                        pinView!.leftCalloutAccessoryView = logo
+                    }
+                }
+            }
         } else {
             pinView!.annotation = annotation
         }
@@ -168,10 +178,11 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
             for deal in deals as [NSDictionary]   {
                 let id = (deal.valueForKey("id") as NSNumber).stringValue
                 let name = (deal.valueForKey("info") as NSDictionary).valueForKey("name") as String
+                let imageURL = (deal.valueForKey("info") as NSDictionary).valueForKey("logo") as String
                 let latlong = deal.valueForKey("latlong") as NSDictionary
                 let lat = (latlong.valueForKey("lat") as NSNumber).doubleValue
                 let lng = (latlong.valueForKey("lng") as NSNumber).doubleValue
-                let annotation = StoreAnnotation(name: name, id: id, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng))
+                let annotation = StoreAnnotation(name: name, id: id, imageURL: imageURL, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng))
                 mapView.addAnnotation(annotation)
             }
             self.data = nil

@@ -14,17 +14,19 @@ class StoreAnnotation: NSObject, MKAnnotation {
     var title: String = ""
     var name: String = ""
     var id: String = ""
+    var imageURL: String = ""
     
     override init()  {
         super.init()
     }
     
-    init(name: String, id: String, coordinate: CLLocationCoordinate2D) {
+    init(name: String, id: String, imageURL: String, coordinate: CLLocationCoordinate2D) {
         super.init()
         self.name = name
         self.title = name
         self.setCoordinate(coordinate)
         self.id = id
+        self.imageURL = imageURL
     }
     
     func setCoordinate(newCoordinate: CLLocationCoordinate2D) {

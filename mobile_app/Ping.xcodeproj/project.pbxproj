@@ -19,6 +19,43 @@
 		AF859E4E1A8EABC700BA564D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF859E4C1A8EABC700BA564D /* LaunchScreen.xib */; };
 		AF859E5A1A8EABC700BA564D /* PingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF859E591A8EABC700BA564D /* PingTests.swift */; };
 		AFA00F571A91910E00FFD703 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA00F561A91910E00FFD703 /* NavigationController.swift */; };
+		AFD902FB1ABA253F008177CF /* Courgette-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902D11ABA253F008177CF /* Courgette-Regular.ttf */; };
+		AFD902FC1ABA253F008177CF /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD902D21ABA253F008177CF /* OFL.txt */; };
+		AFD902FD1ABA253F008177CF /* LobsterTwo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902D41ABA253F008177CF /* LobsterTwo-Bold.ttf */; };
+		AFD902FE1ABA253F008177CF /* LobsterTwo-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902D51ABA253F008177CF /* LobsterTwo-BoldItalic.ttf */; };
+		AFD902FF1ABA253F008177CF /* LobsterTwo-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902D61ABA253F008177CF /* LobsterTwo-Italic.ttf */; };
+		AFD903001ABA253F008177CF /* LobsterTwo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902D71ABA253F008177CF /* LobsterTwo-Regular.ttf */; };
+		AFD903011ABA253F008177CF /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD902D81ABA253F008177CF /* OFL.txt */; };
+		AFD903021ABA253F008177CF /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD902DA1ABA253F008177CF /* OFL.txt */; };
+		AFD903031ABA253F008177CF /* Philosopher-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902DB1ABA253F008177CF /* Philosopher-Bold.ttf */; };
+		AFD903041ABA253F008177CF /* Philosopher-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902DC1ABA253F008177CF /* Philosopher-BoldItalic.ttf */; };
+		AFD903051ABA253F008177CF /* Philosopher-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902DD1ABA253F008177CF /* Philosopher-Italic.ttf */; };
+		AFD903061ABA253F008177CF /* Philosopher-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902DE1ABA253F008177CF /* Philosopher-Regular.ttf */; };
+		AFD903071ABA253F008177CF /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E01ABA253F008177CF /* OFL.txt */; };
+		AFD903081ABA253F008177CF /* Playball-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E11ABA253F008177CF /* Playball-Regular.ttf */; };
+		AFD903091ABA253F008177CF /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E31ABA253F008177CF /* OFL.txt */; };
+		AFD9030A1ABA253F008177CF /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E41ABA253F008177CF /* Raleway-Bold.ttf */; };
+		AFD9030B1ABA253F008177CF /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E51ABA253F008177CF /* Raleway-ExtraBold.ttf */; };
+		AFD9030C1ABA253F008177CF /* Raleway-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E61ABA253F008177CF /* Raleway-ExtraLight.ttf */; };
+		AFD9030D1ABA253F008177CF /* Raleway-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E71ABA253F008177CF /* Raleway-Heavy.ttf */; };
+		AFD9030E1ABA253F008177CF /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E81ABA253F008177CF /* Raleway-Light.ttf */; };
+		AFD9030F1ABA253F008177CF /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902E91ABA253F008177CF /* Raleway-Medium.ttf */; };
+		AFD903101ABA253F008177CF /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902EA1ABA253F008177CF /* Raleway-Regular.ttf */; };
+		AFD903111ABA253F008177CF /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902EB1ABA253F008177CF /* Raleway-SemiBold.ttf */; };
+		AFD903121ABA253F008177CF /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902EC1ABA253F008177CF /* Raleway-Thin.ttf */; };
+		AFD903131ABA253F008177CF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD902EE1ABA253F008177CF /* LICENSE.txt */; };
+		AFD903141ABA253F008177CF /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902EF1ABA253F008177CF /* Roboto-Black.ttf */; };
+		AFD903151ABA253F008177CF /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F01ABA253F008177CF /* Roboto-BlackItalic.ttf */; };
+		AFD903161ABA253F008177CF /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F11ABA253F008177CF /* Roboto-Bold.ttf */; };
+		AFD903171ABA253F008177CF /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F21ABA253F008177CF /* Roboto-BoldItalic.ttf */; };
+		AFD903181ABA253F008177CF /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F31ABA253F008177CF /* Roboto-Italic.ttf */; };
+		AFD903191ABA253F008177CF /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F41ABA253F008177CF /* Roboto-Light.ttf */; };
+		AFD9031A1ABA253F008177CF /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F51ABA253F008177CF /* Roboto-LightItalic.ttf */; };
+		AFD9031B1ABA253F008177CF /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F61ABA253F008177CF /* Roboto-Medium.ttf */; };
+		AFD9031C1ABA253F008177CF /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F71ABA253F008177CF /* Roboto-MediumItalic.ttf */; };
+		AFD9031D1ABA253F008177CF /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F81ABA253F008177CF /* Roboto-Regular.ttf */; };
+		AFD9031E1ABA253F008177CF /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902F91ABA253F008177CF /* Roboto-Thin.ttf */; };
+		AFD9031F1ABA253F008177CF /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFD902FA1ABA253F008177CF /* Roboto-ThinItalic.ttf */; };
 		AFE1FB721A8F57E700717AF5 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1FB711A8F57E700717AF5 /* Login.swift */; };
 		AFE1FB741A8F581B00717AF5 /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1FB731A8F581B00717AF5 /* Registration.swift */; };
 		AFE1FB761A8F5B5E00717AF5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1FB751A8F5B5E00717AF5 /* Map.swift */; };
@@ -51,6 +88,43 @@
 		AF859E581A8EABC700BA564D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF859E591A8EABC700BA564D /* PingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingTests.swift; sourceTree = "<group>"; };
 		AFA00F561A91910E00FFD703 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		AFD902D11ABA253F008177CF /* Courgette-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courgette-Regular.ttf"; sourceTree = "<group>"; };
+		AFD902D21ABA253F008177CF /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		AFD902D41ABA253F008177CF /* LobsterTwo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Bold.ttf"; sourceTree = "<group>"; };
+		AFD902D51ABA253F008177CF /* LobsterTwo-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-BoldItalic.ttf"; sourceTree = "<group>"; };
+		AFD902D61ABA253F008177CF /* LobsterTwo-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Italic.ttf"; sourceTree = "<group>"; };
+		AFD902D71ABA253F008177CF /* LobsterTwo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Regular.ttf"; sourceTree = "<group>"; };
+		AFD902D81ABA253F008177CF /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		AFD902DA1ABA253F008177CF /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		AFD902DB1ABA253F008177CF /* Philosopher-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Philosopher-Bold.ttf"; sourceTree = "<group>"; };
+		AFD902DC1ABA253F008177CF /* Philosopher-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Philosopher-BoldItalic.ttf"; sourceTree = "<group>"; };
+		AFD902DD1ABA253F008177CF /* Philosopher-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Philosopher-Italic.ttf"; sourceTree = "<group>"; };
+		AFD902DE1ABA253F008177CF /* Philosopher-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Philosopher-Regular.ttf"; sourceTree = "<group>"; };
+		AFD902E01ABA253F008177CF /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		AFD902E11ABA253F008177CF /* Playball-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Playball-Regular.ttf"; sourceTree = "<group>"; };
+		AFD902E31ABA253F008177CF /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		AFD902E41ABA253F008177CF /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		AFD902E51ABA253F008177CF /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
+		AFD902E61ABA253F008177CF /* Raleway-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraLight.ttf"; sourceTree = "<group>"; };
+		AFD902E71ABA253F008177CF /* Raleway-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Heavy.ttf"; sourceTree = "<group>"; };
+		AFD902E81ABA253F008177CF /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
+		AFD902E91ABA253F008177CF /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		AFD902EA1ABA253F008177CF /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		AFD902EB1ABA253F008177CF /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		AFD902EC1ABA253F008177CF /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
+		AFD902EE1ABA253F008177CF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		AFD902EF1ABA253F008177CF /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		AFD902F01ABA253F008177CF /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		AFD902F11ABA253F008177CF /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		AFD902F21ABA253F008177CF /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		AFD902F31ABA253F008177CF /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		AFD902F41ABA253F008177CF /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		AFD902F51ABA253F008177CF /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		AFD902F61ABA253F008177CF /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		AFD902F71ABA253F008177CF /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		AFD902F81ABA253F008177CF /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		AFD902F91ABA253F008177CF /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		AFD902FA1ABA253F008177CF /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		AFE1FB711A8F57E700717AF5 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		AFE1FB731A8F581B00717AF5 /* Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
 		AFE1FB751A8F5B5E00717AF5 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
@@ -117,6 +191,7 @@
 		AF859E411A8EABC700BA564D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFD902CF1ABA253F008177CF /* fonts */,
 				AF859E421A8EABC700BA564D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -137,6 +212,98 @@
 				AF859E581A8EABC700BA564D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AFD902CF1ABA253F008177CF /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AFD902D01ABA253F008177CF /* Courgette */,
+				AFD902D31ABA253F008177CF /* Lobster_Two */,
+				AFD902D91ABA253F008177CF /* Philosopher */,
+				AFD902DF1ABA253F008177CF /* Playball */,
+				AFD902E21ABA253F008177CF /* Raleway */,
+				AFD902ED1ABA253F008177CF /* Roboto */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		AFD902D01ABA253F008177CF /* Courgette */ = {
+			isa = PBXGroup;
+			children = (
+				AFD902D11ABA253F008177CF /* Courgette-Regular.ttf */,
+				AFD902D21ABA253F008177CF /* OFL.txt */,
+			);
+			path = Courgette;
+			sourceTree = "<group>";
+		};
+		AFD902D31ABA253F008177CF /* Lobster_Two */ = {
+			isa = PBXGroup;
+			children = (
+				AFD902D41ABA253F008177CF /* LobsterTwo-Bold.ttf */,
+				AFD902D51ABA253F008177CF /* LobsterTwo-BoldItalic.ttf */,
+				AFD902D61ABA253F008177CF /* LobsterTwo-Italic.ttf */,
+				AFD902D71ABA253F008177CF /* LobsterTwo-Regular.ttf */,
+				AFD902D81ABA253F008177CF /* OFL.txt */,
+			);
+			path = Lobster_Two;
+			sourceTree = "<group>";
+		};
+		AFD902D91ABA253F008177CF /* Philosopher */ = {
+			isa = PBXGroup;
+			children = (
+				AFD902DA1ABA253F008177CF /* OFL.txt */,
+				AFD902DB1ABA253F008177CF /* Philosopher-Bold.ttf */,
+				AFD902DC1ABA253F008177CF /* Philosopher-BoldItalic.ttf */,
+				AFD902DD1ABA253F008177CF /* Philosopher-Italic.ttf */,
+				AFD902DE1ABA253F008177CF /* Philosopher-Regular.ttf */,
+			);
+			path = Philosopher;
+			sourceTree = "<group>";
+		};
+		AFD902DF1ABA253F008177CF /* Playball */ = {
+			isa = PBXGroup;
+			children = (
+				AFD902E01ABA253F008177CF /* OFL.txt */,
+				AFD902E11ABA253F008177CF /* Playball-Regular.ttf */,
+			);
+			path = Playball;
+			sourceTree = "<group>";
+		};
+		AFD902E21ABA253F008177CF /* Raleway */ = {
+			isa = PBXGroup;
+			children = (
+				AFD902E31ABA253F008177CF /* OFL.txt */,
+				AFD902E41ABA253F008177CF /* Raleway-Bold.ttf */,
+				AFD902E51ABA253F008177CF /* Raleway-ExtraBold.ttf */,
+				AFD902E61ABA253F008177CF /* Raleway-ExtraLight.ttf */,
+				AFD902E71ABA253F008177CF /* Raleway-Heavy.ttf */,
+				AFD902E81ABA253F008177CF /* Raleway-Light.ttf */,
+				AFD902E91ABA253F008177CF /* Raleway-Medium.ttf */,
+				AFD902EA1ABA253F008177CF /* Raleway-Regular.ttf */,
+				AFD902EB1ABA253F008177CF /* Raleway-SemiBold.ttf */,
+				AFD902EC1ABA253F008177CF /* Raleway-Thin.ttf */,
+			);
+			path = Raleway;
+			sourceTree = "<group>";
+		};
+		AFD902ED1ABA253F008177CF /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				AFD902EE1ABA253F008177CF /* LICENSE.txt */,
+				AFD902EF1ABA253F008177CF /* Roboto-Black.ttf */,
+				AFD902F01ABA253F008177CF /* Roboto-BlackItalic.ttf */,
+				AFD902F11ABA253F008177CF /* Roboto-Bold.ttf */,
+				AFD902F21ABA253F008177CF /* Roboto-BoldItalic.ttf */,
+				AFD902F31ABA253F008177CF /* Roboto-Italic.ttf */,
+				AFD902F41ABA253F008177CF /* Roboto-Light.ttf */,
+				AFD902F51ABA253F008177CF /* Roboto-LightItalic.ttf */,
+				AFD902F61ABA253F008177CF /* Roboto-Medium.ttf */,
+				AFD902F71ABA253F008177CF /* Roboto-MediumItalic.ttf */,
+				AFD902F81ABA253F008177CF /* Roboto-Regular.ttf */,
+				AFD902F91ABA253F008177CF /* Roboto-Thin.ttf */,
+				AFD902FA1ABA253F008177CF /* Roboto-ThinItalic.ttf */,
+			);
+			path = Roboto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +386,45 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD9030D1ABA253F008177CF /* Raleway-Heavy.ttf in Resources */,
+				AFD9030F1ABA253F008177CF /* Raleway-Medium.ttf in Resources */,
+				AFD9031A1ABA253F008177CF /* Roboto-LightItalic.ttf in Resources */,
+				AFD903061ABA253F008177CF /* Philosopher-Regular.ttf in Resources */,
+				AFD903121ABA253F008177CF /* Raleway-Thin.ttf in Resources */,
+				AFD903011ABA253F008177CF /* OFL.txt in Resources */,
+				AFD903021ABA253F008177CF /* OFL.txt in Resources */,
+				AFD902FD1ABA253F008177CF /* LobsterTwo-Bold.ttf in Resources */,
+				AFD9031B1ABA253F008177CF /* Roboto-Medium.ttf in Resources */,
+				AFD903151ABA253F008177CF /* Roboto-BlackItalic.ttf in Resources */,
+				AFD903141ABA253F008177CF /* Roboto-Black.ttf in Resources */,
+				AFD9031E1ABA253F008177CF /* Roboto-Thin.ttf in Resources */,
+				AFD902FF1ABA253F008177CF /* LobsterTwo-Italic.ttf in Resources */,
+				AFD903171ABA253F008177CF /* Roboto-BoldItalic.ttf in Resources */,
+				AFD9030C1ABA253F008177CF /* Raleway-ExtraLight.ttf in Resources */,
+				AFD903191ABA253F008177CF /* Roboto-Light.ttf in Resources */,
+				AFD902FC1ABA253F008177CF /* OFL.txt in Resources */,
+				AFD903111ABA253F008177CF /* Raleway-SemiBold.ttf in Resources */,
+				AFD903081ABA253F008177CF /* Playball-Regular.ttf in Resources */,
+				AFD903071ABA253F008177CF /* OFL.txt in Resources */,
+				AFD9031F1ABA253F008177CF /* Roboto-ThinItalic.ttf in Resources */,
+				AFD903101ABA253F008177CF /* Raleway-Regular.ttf in Resources */,
+				AFD903001ABA253F008177CF /* LobsterTwo-Regular.ttf in Resources */,
+				AFD902FE1ABA253F008177CF /* LobsterTwo-BoldItalic.ttf in Resources */,
+				AFD903031ABA253F008177CF /* Philosopher-Bold.ttf in Resources */,
+				AFD9030A1ABA253F008177CF /* Raleway-Bold.ttf in Resources */,
+				AFD903041ABA253F008177CF /* Philosopher-BoldItalic.ttf in Resources */,
+				AFD9030E1ABA253F008177CF /* Raleway-Light.ttf in Resources */,
+				AFD903131ABA253F008177CF /* LICENSE.txt in Resources */,
+				AFD903091ABA253F008177CF /* OFL.txt in Resources */,
+				AFD9031C1ABA253F008177CF /* Roboto-MediumItalic.ttf in Resources */,
 				AF859E491A8EABC700BA564D /* Main.storyboard in Resources */,
+				AFD903051ABA253F008177CF /* Philosopher-Italic.ttf in Resources */,
+				AFD9030B1ABA253F008177CF /* Raleway-ExtraBold.ttf in Resources */,
 				AF859E4E1A8EABC700BA564D /* LaunchScreen.xib in Resources */,
+				AFD902FB1ABA253F008177CF /* Courgette-Regular.ttf in Resources */,
+				AFD9031D1ABA253F008177CF /* Roboto-Regular.ttf in Resources */,
+				AFD903161ABA253F008177CF /* Roboto-Bold.ttf in Resources */,
+				AFD903181ABA253F008177CF /* Roboto-Italic.ttf in Resources */,
 				AF859E4B1A8EABC700BA564D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
