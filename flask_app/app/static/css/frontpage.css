@@ -91,10 +91,46 @@ html, body{
 	vertical-align: middle;
 	width: 33%;
 }
+.screen{
+	display: none;
+	position: fixed;
+	z-index: -2;
+}
+.screen.active{
+	display: inline-block;
+}
+#slider, #message{
+	background-color: rgba(172, 57, 157, 0.75);
+	border-radius: 3px;
+	color: #fff;
+	display: inline-block;
+	font-size: 13px;
+	padding: 3px;
+	position: fixed;
+	z-index: 101;
+}
+#message{
+	display: none;
+}
 
+@media(max-width: 1110px){
+	#slider, #message{
+		font-size: 12px;
+	}
+}
+@media(max-width: 1050px){
+	#slider, #message{
+		font-size: 11px;
+	}
+}
 @media(max-width: 1000px){
 	.buttonBox{
 		font-size: 28px;
+	}
+}
+@media(max-width: 950px){
+	#slider, #message{
+		font-size: 10px;
 	}
 }
 @media(max-width: 900px){
@@ -208,12 +244,22 @@ html, body{
 	#iphone{
 		width: 55%;
 	}
+	@media(max-width: 1110px){
+		#slider, #message{
+			font-size: 13px;
+		}
+	}
 }
 
 /* iPhone 4 & 5 & 6 & 6 Plus Landscape */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : landscape){
 	#iphone{
 		width: 17%;
+	}
+	@media(max-width: 1110px){
+		#slider, #message{
+			font-size: 8px;
+		}
 	}
 }
 
@@ -238,6 +284,11 @@ html, body{
 	#iphone{
 		width: 35%;
 	}
+	@media(max-width: 1110px){
+		#slider, #message{
+			font-size: 14px;
+		}
+	}
 }
 
 /* iPad (all) - Landscape */
@@ -257,5 +308,10 @@ html, body{
 	}
 	#iphone{
 		width: 40%;
+	}
+	@media(max-width: 1110px){
+		#slider, #message{
+			font-size: 15px;
+		}
 	}
 }

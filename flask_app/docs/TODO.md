@@ -1,6 +1,6 @@
 # Ping Collaborative To-Do List
 
-Updated - 13 March 2015 - Andoni Garcia
+Updated - 18 March 2015 - Andoni Garcia
 
 ## Web App
 
@@ -18,15 +18,16 @@ Updated - 13 March 2015 - Andoni Garcia
   * Forms:
   	- **Bug**: Click between help fields leads to build up of <br /> tags
     - **Bug**: First click/offclick on a help field doesn't <br /> the two notifications
-  * About:
+  * Meet The Team:
     - In any founder's page, if you click it will underline everything
   * Everywhere:
-    - Make the site mobile friendly (if not mobile first)
+    - Make the site mobile friendly
 4. Design:
   * Ping! Logo.
   * iPhone icons
 5. Landing Page:
-  * Interactive wireframe?
+  * Update current screen pictures
+  * Responsiveness is only 98% there. Still semi-buggy.
 6. Stripe:
   * We should open up a new html tab with a receipt after paying
   * Integrate our keys and stuff (account is under my email and password)
