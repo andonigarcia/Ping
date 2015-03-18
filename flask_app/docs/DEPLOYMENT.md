@@ -188,3 +188,16 @@ Run `lsblk` to see which name your newly added storage is directed under (If you
 [ec2-user@<ipaddr> ~]$ sudo mkdir /mnt/my-data
 [ec2-user@<ipaddr> ~]$ sudo mount /dev/<new_ecb_directory> /mnt/my-data
 ```
+
+### Troubleshooting 403 Errors and More
+
+If you followed everything above you *should* be running fine. But Apache is never that easy. Here is a very common fault that will arise in 403 and 500 errors from your server. If you investigate them, they most likely will tell you some vague error about `mod_fcgi`, but hours of googling won't turn up anything successful. Try this before emailing me for tech support:
+
+```
+[ec2-user@<ipaddr> ~]$ sudo chmod a+x /var/www/html/run-mysql.fcgi /var/www/html/Flask/bin/*
+[ec2-user@<ipaddr> ~]$ sudo chmod -R g+w /var/www/html/tmp
+[ec2-user@<ipaddr> ~]$ sudo mkdir /var/www/html/app/static/img/companies
+[ec2-user@<ipaddr> ~]$ sudo chmod -R g+w /var/www/html/app/static/img/companies
+```
+
+Often, permissions will get skewed during the set-up, leading critical things (like the Python interpreter itself!) to forbid access to Apache. This ensures that Apache can both execute all necessary files and write to the necessary files for complete functionality.
