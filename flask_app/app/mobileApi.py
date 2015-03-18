@@ -25,8 +25,8 @@ def verifyRegistration(name, email, email_check, age, password = True):
 			return "Password Must Be 6+ Characters."
 	return True
 
-def get_deals(latlong, radius):
-	center = (latlong['lat'], latlong['lng'])
+def get_deals(lat, lng, radius):
+	center = (lat, lng)
 	return Company.nearby_companies(center, radius)
 
 # Authentication Decorators
@@ -117,15 +117,25 @@ def ApiUpdateUser(id):
 	return jsonify({'token': token}), 200
 
 # Where Map Page Should Route To
-@app.route('/mobile/api/v0.1/users/<int:id>/map', methods = ['GET'])
+@app.route('/mobile/api/v0.1/users/<int:id>/map', methods = ['GET', 'PUT'])
 @auth.login_required
 def ApiUploadMap(id):
 	if g.user.id != id:
 		return make_response(jsonify({'error':'Forbidden'}), 403)
-	latlong = request.json.get('location')
-	if latlong is None:
+	if request.json:
+		lat = request.json.get('lat')
+		lng = request.json.get('lng')
+	else:
+		lat = request.args.get('lat')
+		lng = request.args.get('lng')
+	if lat is None or lng is None:
 		return make_response(jsonify({'error':'Bad Request'}), 400)
-	deals = get_deals(latlong, 0.5)
+	try:
+		lat = float(lat)
+		lng = float(lng)
+	except ValueError:
+		return make_response(jsonify({'error':'Bad Values'}), 400)
+	deals = get_deals(lat, lng, 0.5)
 	return jsonify({'deals': deals}), 200
 
 # Where Company Page Should Route To

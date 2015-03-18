@@ -1,0 +1,261 @@
+html{
+	background: url("/static/img/background.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	   -moz-background-size: cover;
+	     -0-background-size: cover;
+	        background-size: cover;
+}
+html, body{
+	height: 100%;
+	min-height: 100%;
+	width: 100%;
+	min-width: 100%;
+}
+.box{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.iphoneHolder{
+	float: left;
+	height: 100%;
+	text-align: center;
+	width: 50%;
+}
+.iphoneHolder:before{
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+.contentHolder{
+	display: table;
+	float: left;
+	height: 100%;
+	width: 50%;
+}
+.tablecell{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+}
+.buttonBox{
+	display: block;
+	height: 8.33vw;
+	font-family: 'Lobster Two', times, serif;
+	font-size: 32px;
+	width: 33%;
+	margin: 0 auto;
+}
+.buttonBox.filler{
+	color: rgba(0, 0, 0, 0);
+}
+.buttonBox a{
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	     -o-border-radius: 4px;
+	        border-radius: 4px;
+	display: block;
+	height: 100%;
+	line-height: 8.33vw;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+}
+.buttonBox a, .buttonBox a:active{
+	border: 1px #4f3a2f solid;
+	background: -webkit-linear-gradient(rgba(155, 118, 66, 0.5), rgba(136, 100, 81, 0.66), rgba(95, 70, 56, 0.8), rgba(79, 58, 47, 0.9), rgba(95, 70, 56, 0.8), rgba(136, 100, 81, 0.66), rgba(155, 118, 66, 0.5));
+	   background: -moz-linear-gradient(rgba(155, 118, 66, 0.5), rgba(136, 100, 81, 0.66), rgba(95, 70, 56, 0.8), rgba(79, 58, 47, 0.9), rgba(95, 70, 56, 0.8), rgba(136, 100, 81, 0.66), rgba(155, 118, 66, 0.5));
+  	     background: -o-linear-gradient(rgba(155, 118, 66, 0.5), rgba(136, 100, 81, 0.66), rgba(95, 70, 56, 0.8), rgba(79, 58, 47, 0.9), rgba(95, 70, 56, 0.8), rgba(136, 100, 81, 0.66), rgba(155, 118, 66, 0.5));
+  	        background: linear-gradient(rgba(155, 118, 66, 0.5), rgba(136, 100, 81, 0.66), rgba(95, 70, 56, 0.8), rgba(79, 58, 47, 0.9), rgba(95, 70, 56, 0.8), rgba(136, 100, 81, 0.66), rgba(155, 118, 66, 0.5));
+	color: #408a99;
+	text-decoration: none;
+}
+.buttonBox a:hover, .buttonBox a:active{
+	background: -webkit-linear-gradient(rgba(155, 118, 66, 0.7), rgba(136, 100, 81, 0.8), rgba(95, 70, 56, 0.9), rgba(79, 58, 47, 0.95), rgba(95, 70, 56, 0.9), rgba(136, 100, 81, 0.8), rgba(155, 118, 66, 0.7));
+	   background: -moz-linear-gradient(rgba(155, 118, 66, 0.7), rgba(136, 100, 81, 0.8), rgba(95, 70, 56, 0.9), rgba(79, 58, 47, 0.95), rgba(95, 70, 56, 0.9), rgba(136, 100, 81, 0.8), rgba(155, 118, 66, 0.7));
+  	     background: -o-linear-gradient(rgba(155, 118, 66, 0.7), rgba(136, 100, 81, 0.8), rgba(95, 70, 56, 0.9), rgba(79, 58, 47, 0.95), rgba(95, 70, 56, 0.9), rgba(136, 100, 81, 0.8), rgba(155, 118, 66, 0.7));
+  	        background: linear-gradient(rgba(155, 118, 66, 0.7), rgba(136, 100, 81, 0.8), rgba(95, 70, 56, 0.9), rgba(79, 58, 47, 0.95), rgba(95, 70, 56, 0.9), rgba(136, 100, 81, 0.8), rgba(155, 118, 66, 0.7));
+	-webkit-box-shadow: inset 0 1px 15px rgba(95, 70, 56,.33), 0 0 6px #4b626f;
+            box-shadow: inset 0 1px 15px rgba(95, 70, 56,.33), 0 0 6px #4b626f;
+	color: #3f95a6;
+	text-decoration: none;
+}
+#iphone{
+	vertical-align: middle;
+	width: 33%;
+}
+
+@media(max-width: 1000px){
+	.buttonBox{
+		font-size: 28px;
+	}
+}
+@media(max-width: 900px){
+	.iphoneHolder{
+		height: 80%;
+		width: 100%;
+	}
+	.contentHolder{
+		height: 20%;
+		width: 100%;
+	}
+	.tablecell{
+		font-size: 0;
+		vertical-align: top;
+	}
+	.buttonBox{
+		display: inline-block;
+		height: 8vw;
+		font-size: 28px;
+		margin: 0;
+		width: 20%;
+	}
+	.buttonBox a{
+		line-height: 8vw;
+	}
+	.buttonBox.wText{
+		font-size: 16px;
+	}
+	#iphone{
+		width: 20%;
+	}
+}
+@media(max-width: 800px){
+	#iphone{
+		width: 25%;
+	}
+}
+@media(max-width: 750px){
+	.buttonBox{
+		font-size: 26px;
+	}
+}
+@media(max-width: 650px){
+	.buttonBox{
+		height: 10vw;
+		width: 25%;
+	}
+	.buttonBox a{
+		line-height: 10vw;
+	}
+	#iphone{
+		width: 28%;
+	}
+}
+@media(max-width: 550px){
+	.buttonBox.filler{
+		width: 15%;
+	}
+	#iphone{
+		width: 30%;
+	}
+}
+@media(max-width: 500px){
+	.buttonBox{
+		font-size: 23px;
+	}
+}
+@media(max-width: 450px){
+	.iphoneHolder{
+		height: 85%;
+	}
+	.contentHolder{
+		height: 15%;
+	}
+	.buttonBox{
+		height: 14vw;
+		width: 30%;
+	}
+	.buttonBox a{
+		line-height: 14vw;
+	}
+	.buttonBox.filler{
+		width: 12%;
+	}
+	#iphone{
+		width: 38%;
+	}
+}
+
+/* iPhone 4 & 5 & 6 & 6 Plus Portrait */
+@media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait){
+	.iphoneHolder{
+		height: 80%;
+	}
+	.contentHolder{
+		height: 20%;
+	}
+	.tablecell{
+		vertical-align: top;
+	}
+	.buttonBox.filler{
+		width: 15%;
+	}
+	.buttonBox{
+		height: 16vw;
+		width: 30%;
+	}
+	.buttonBox a{
+		line-height: 16vw;
+	}
+	#iphone{
+		width: 55%;
+	}
+}
+
+/* iPhone 4 & 5 & 6 & 6 Plus Landscape */
+@media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : landscape){
+	#iphone{
+		width: 17%;
+	}
+}
+
+/* iPad (all) - Portait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation : portrait){
+	.iphoneHolder{
+		height: 80%;
+	}
+	.contentHolder{
+		height: 20%;
+	}
+	.tablecell{
+		vertical-align: top;
+	}
+	.buttonBox{
+		height: 10vw;
+		width: 25%;
+	}
+	.buttonBox a{
+		line-height: 10vw;
+	}
+	#iphone{
+		width: 35%;
+	}
+}
+
+/* iPad (all) - Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation : landscape){
+	.iphoneHolder{
+		width: 66%;
+	}
+	.contentHolder{
+		width: 34%;
+	}
+	.buttonBox{
+		height: 10vw;
+		width: 50%;
+	}
+	.buttonBox a{
+		line-height: 10vw;
+	}
+	#iphone{
+		width: 40%;
+	}
+}

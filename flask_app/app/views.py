@@ -77,6 +77,11 @@ def before_request():
 	g.company = current_user
 
 @app.route('/', methods = ['GET','POST'])
+def frontPage():
+	if g.company is not None and g.company.is_authenticated():
+		return redirect(url_for('company'))
+	return render_template('frontpage.html')
+
 @app.route('/index', methods = ['GET','POST'])
 def index():
 	if g.company is not None and g.company.is_authenticated():
