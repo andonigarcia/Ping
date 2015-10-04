@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class Login: UIViewController, NSURLConnectionDataDelegate   {
     
@@ -35,6 +36,7 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
         errorLabel.text = ""
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
+        saveUser(0, token: "")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -110,6 +112,7 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
                 user.name = dict.valueForKey("username") as String
                 user.age = (dict.valueForKey("age") as NSNumber).integerValue
                 user.email = dict.valueForKey("email") as String
+                saveUser(user.user_id, token: user.token)
                 performSegueWithIdentifier("submit", sender: submitButton)
             }
             self.data = nil
@@ -141,7 +144,7 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    
+
     /*func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge) {
         if connection.currentRequest.URL == NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/token".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)   {
             if challenge.previousFailureCount == 0  {
@@ -162,4 +165,31 @@ class Login: UIViewController, NSURLConnectionDataDelegate   {
             }
         }
     }*/
+    
+    // CORE DATA FUNCTIONALITY
+    
+    func saveUser(id: Int, token: String) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName:"User")
+        var error: NSError?
+        
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        if fetchedResults == nil || fetchedResults?.count == 0  {
+            let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)
+            let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+            user.setValue(id, forKey: "id")
+            user.setValue(token, forKey: "token")
+        }
+        else    {
+            if let results = fetchedResults {
+                let user = results[0]
+                user.setValue(id, forKey: "id")
+                user.setValue(token, forKey: "token")
+            }
+        }
+        if !managedContext.save(&error) {
+            NSLog("Could not save \(error), \(error?.userInfo)")
+        }
+    }
 }

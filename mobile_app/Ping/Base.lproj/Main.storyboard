@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RPD-nN-lF8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RPD-nN-lF8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -74,6 +74,7 @@
                     </toolbar>
                     <connections>
                         <segue destination="ZHO-0w-iSM" kind="relationship" relationship="rootViewController" id="YgL-bD-t4C"/>
+                        <segue destination="Rd3-5B-MZt" kind="show" identifier="toMap" id="olN-Xu-809"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cic-X1-d62" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -138,7 +139,7 @@ less than a block away</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYE-TD-ZXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="up" id="PQ7-ZD-Ftb">
                     <connections>
-                        <segue destination="pGB-GY-GIk" kind="show" id="h7p-pa-G2d"/>
+                        <segue destination="pGB-GY-GIk" kind="show" id="7YF-jb-Dlh"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -592,4 +593,7 @@ will not be changed</string>
             <point key="canvasLocation" x="-1396.5" y="-714.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="9rM-fP-nLv"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -200,6 +200,7 @@ class StoreView: UIViewController, MKMapViewDelegate, NSURLConnectionDataDelegat
                 }
                 let logoURL = info.valueForKey("logo") as? String
                 if logoURL != nil && logoURL != ""  {
+                    NSLog(NSString(contentsOfURL: connection.currentRequest.URL, encoding: NSUTF8StringEncoding, error: nil)!)
                     //HTTP Request for store logo
                     let url = NSURL(string: "http://www.igotpinged.com/\(logoURL!)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
                     var request = NSURLRequest(URL: url!)
@@ -227,10 +228,10 @@ class StoreView: UIViewController, MKMapViewDelegate, NSURLConnectionDataDelegat
                 self.data = NSMutableData()
             }
             else if (response as? NSHTTPURLResponse)?.statusCode == 403  {
-                var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server", preferredStyle: UIAlertControllerStyle.Alert)
+                var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server; you must re-login", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popToRootViewControllerAnimated(true)
             }
             else    {
                 var alert = UIAlertController(title: "Error", message: "Error loading store information", preferredStyle: UIAlertControllerStyle.Alert)

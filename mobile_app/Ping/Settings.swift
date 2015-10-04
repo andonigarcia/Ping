@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class Settings: UIViewController, NSURLConnectionDataDelegate   {
     @IBOutlet weak var nameLabel: UILabel!
@@ -148,6 +149,7 @@ class Settings: UIViewController, NSURLConnectionDataDelegate   {
             var dict = parseJSON(self.data!)
             let token:String = dict.valueForKey("token") as String
             user.token = token
+            saveUser(user.user_id, token: user.token)
             (delegate as? Map)?.user = user
             self.navigationController?.popViewControllerAnimated(true)
             self.data = nil
@@ -167,9 +169,10 @@ class Settings: UIViewController, NSURLConnectionDataDelegate   {
         }
         else if (response as? NSHTTPURLResponse)?.statusCode == 403  {
             activityIndicator.stopAnimating()
-            var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server; you must re-login", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
+            self.navigationController?.popToRootViewControllerAnimated(true)
         }
         else    {
             activityIndicator.stopAnimating()
@@ -189,4 +192,31 @@ class Settings: UIViewController, NSURLConnectionDataDelegate   {
             challenge.sender.continueWithoutCredentialForAuthenticationChallenge(challenge)
         }
     }*/
+    
+    //CORE DATA FUNCTIONALITUES
+    
+    func saveUser(id: Int, token: String) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName:"User")
+        var error: NSError?
+        
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        if fetchedResults == nil || fetchedResults?.count == 0  {
+            let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)
+            let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+            user.setValue(id, forKey: "id")
+            user.setValue(token, forKey: "token")
+        }
+        else    {
+            if let results = fetchedResults {
+                let user = results[0]
+                user.setValue(id, forKey: "id")
+                user.setValue(token, forKey: "token")
+            }
+        }
+        if !managedContext.save(&error) {
+            NSLog("Could not save \(error), \(error?.userInfo)")
+        }
+    }
 }

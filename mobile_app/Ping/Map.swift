@@ -32,6 +32,18 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
         logoutButton.target = self
         logoutButton.action = "pressed:"
         
+        //Map came from Landing - Must sign in with user
+        if user.email == "" {
+            //HTTP request to get user information
+            let url = NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+            var request = NSMutableURLRequest(URL: url!)
+            let loginString = "\(user.token):token"
+            let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+            let base64LoginString = loginData.base64EncodedStringWithOptions(nil)
+            request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+            var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        }
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -54,7 +66,6 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
             //HTTP request to get map information
             let url = NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/users/\(user.user_id)/map?lat=\(locationManager.location.coordinate.latitude)&lng=\(locationManager.location.coordinate.longitude)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
             var request = NSMutableURLRequest(URL: url!)
-            NSLog(NSString(contentsOfURL: url!, encoding: NSUTF8StringEncoding, error: nil)!)
             let loginString = "\(user.token):token"
             let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
             let base64LoginString = loginData.base64EncodedStringWithOptions(nil)
@@ -75,13 +86,17 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
             var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
             
         }
+        
+        //Register for push notifications
+        let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
     }
     
     func pressed(sender: AnyObject) {
         (self.delegate as Login).user = User()
-        (self.delegate as Login).emailField.text = ""
+        (self.delegate as Login).emailField?.text = ""
         self.locationManager.stopUpdatingLocation()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -129,16 +144,19 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
             
             var calloutButton = UIButton.buttonWithType(.DetailDisclosure) as UIButton
             pinView!.rightCalloutAccessoryView = calloutButton
-            if(annotation as? StoreAnnotation)?.imageURL != ""  {
+            /*if(annotation as? StoreAnnotation)?.imageURL != ""  {
                 let url = NSURL(string: "http://www.igotpinged.com/\((annotation as? StoreAnnotation)?.imageURL)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
                 var request = NSURLRequest(URL: url!)
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
+                    //NSLog("Loading Image - \((response as NSHTTPURLResponse).statusCode)")
+                    //NSLog(NSString(contentsOfURL: request.URL, encoding: NSUTF8StringEncoding, error: nil)!)
                     if (response as NSHTTPURLResponse).statusCode == 200    {
-                        let logo = UIImageView(image: UIImage(data: data))
-                        pinView!.leftCalloutAccessoryView = logo
+                        var imageview = UIImageView(frame: CGRectMake(0, 0, 45, 45))
+                        imageview.image = UIImage(data: data)
+                        pinView!.leftCalloutAccessoryView = imageview
                     }
                 }
-            }
+            }*/
         } else {
             pinView!.annotation = annotation
         }
@@ -173,17 +191,25 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
     
     func connectionDidFinishLoading(connection: NSURLConnection!)   {
         if self.data != nil {
-            NSLog(NSString(data: self.data!, encoding: NSUTF8StringEncoding)!)
-            var deals = parseJSON(self.data!).valueForKey("deals") as NSArray
-            for deal in deals as [NSDictionary]   {
-                let id = (deal.valueForKey("id") as NSNumber).stringValue
-                let name = (deal.valueForKey("info") as NSDictionary).valueForKey("name") as String
-                let imageURL = (deal.valueForKey("info") as NSDictionary).valueForKey("logo") as String
-                let latlong = deal.valueForKey("latlong") as NSDictionary
-                let lat = (latlong.valueForKey("lat") as NSNumber).doubleValue
-                let lng = (latlong.valueForKey("lng") as NSNumber).doubleValue
-                let annotation = StoreAnnotation(name: name, id: id, imageURL: imageURL, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng))
-                mapView.addAnnotation(annotation)
+            if connection.currentRequest.URL == NSURL(string: "http://www.igotpinged.com/mobile/api/v0.1/users/\(user.user_id)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)    {
+                var dict = parseJSON(self.data!)
+                user.name = dict.valueForKey("username") as String
+                user.age = (dict.valueForKey("age") as NSNumber).integerValue
+                user.email = dict.valueForKey("email") as String
+            }
+            else    {
+                NSLog(NSString(data: self.data!, encoding: NSUTF8StringEncoding)!)
+                var deals = parseJSON(self.data!).valueForKey("deals") as NSArray
+                for deal in deals as [NSDictionary]   {
+                    let id = (deal.valueForKey("id") as NSNumber).stringValue
+                    let name = (deal.valueForKey("info") as NSDictionary).valueForKey("name") as String
+                    let imageURL = (deal.valueForKey("info") as NSDictionary).valueForKey("logo") as String
+                    let latlong = deal.valueForKey("latlong") as NSDictionary
+                    let lat = (latlong.valueForKey("lat") as NSNumber).doubleValue
+                    let lng = (latlong.valueForKey("lng") as NSNumber).doubleValue
+                    let annotation = StoreAnnotation(name: name, id: id, imageURL: imageURL, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng))
+                    mapView.addAnnotation(annotation)
+                }
             }
             self.data = nil
         }
@@ -201,14 +227,16 @@ class Map: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, NSURL
             self.data = NSMutableData()
         }
         else if (response as? NSHTTPURLResponse)?.statusCode == 403  {
-            var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Invalid Auth Token", message: "There was an authentication error on the server; you must re-login", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
+            self.navigationController?.popToRootViewControllerAnimated(true)
         }
         else    {
             var alert = UIAlertController(title: "Error", message: "Error loading map content", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
     
